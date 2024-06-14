@@ -35,7 +35,7 @@ export interface Desk {
 
 export const SpaceViewer = () => {
   const [viewerReady, setViewerReady] = useState(false);
-  const spaceRef = useRef<any>() //cannot import type Space
+  const spaceRef = useRef<any>(); //cannot import type Space
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['desks'],
@@ -55,7 +55,7 @@ export const SpaceViewer = () => {
           preview: true,
           allowModeChange: true,
           onReady: () => {
-            setViewerReady(true)
+            setViewerReady(true);
             spaceRef.current.addDataLayer({
               id: 'desks',
               type: 'furniture',
@@ -63,28 +63,32 @@ export const SpaceViewer = () => {
               tooltip: (d) => `${d.name} - ${d.available ? 'free' : 'occupied'}`,
               color: (d) => (d.available ? '#50b268' : '#f75e56'),
               onClick: (d) => {
-                d.available === true
-                console.log("onclick", d.furnitureId)
+                d.available = !d.available;  // Toggle the available status
+                console.log("onclick", d.name, d.available);
+
+                // Update the data layer with the new status
+                spaceRef.current.layerController.update({
+                  data: data.map(item => item.id === d.id ? { ...item, available: d.available } : item)
+                });
               }
-            })
+            });
           },
           onError: (error: string) => console.error('Could not start viewer', error),
         });
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [data]);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
   if (error) {
-    return <div>Error loading carts</div>;
+    return <div>Error loading desks</div>;
   }
 
   if (!data) {
     return <div>No data</div>;
   }
-
 
   return (
     <>
@@ -103,6 +107,5 @@ export const SpaceViewer = () => {
         </ul>
       </div>
     </>
-
   );
 };
