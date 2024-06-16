@@ -41,3 +41,8 @@ h6 {
   display: flex;
   backdrop-filter: blur(10px);
 }
+
+.desk2monitorsImg {
+  height: 100%;
+  width: 500px;
+}

@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { loadSmplrJs } from '@smplrspace/smplr-loader';
-import { desks } from '../data';
 import { getAllDesks } from '../api/getAllDesks';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { ModalOnDesk } from './ModalOnDesk';
+import { UpdateDeskType, updateDeskById } from '../api/updateDeskById';
 
 export interface Furniture {
   catalogId: string;
@@ -35,12 +36,40 @@ export interface Desk {
 
 export const SpaceViewer = () => {
   const [viewerReady, setViewerReady] = useState(false);
+  const [selectedDesk, setSelectedDesk] = useState<Desk | null>(null);
   const spaceRef = useRef<any>(); //cannot import type Space
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['desks'],
-    queryFn: getAllDesks
+    queryFn: getAllDesks,
   });
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: async (data: UpdateDeskType) => updateDeskById({ newStatus: data.newStatus, deskId: data.deskId }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['desks'] });
+    },
+    onError: () => {
+      console.log("Something went wrong");
+    }
+  });
+
+  const handleDeskClick = (desk: Desk) => {
+    setSelectedDesk(desk);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedDesk(null);
+  };
+
+  const handleBook = (deskId: string) => {
+    mutation.mutate({
+      newStatus: true,
+      deskId
+    });
+  };
 
   useEffect(() => {
     loadSmplrJs('esm')
@@ -63,14 +92,8 @@ export const SpaceViewer = () => {
               tooltip: (d) => `${d.name} - ${d.available ? 'free' : 'occupied'}`,
               color: (d) => (d.available ? '#50b268' : '#f75e56'),
               onClick: (d) => {
-                d.available = !d.available;  // Toggle the available status
-                console.log("onclick", d.name, d.available);
-
-                // Update the data layer with the new status
-                spaceRef.current.layerController.update({
-                  data: data.map(item => item.id === d.id ? { ...item, available: d.available } : item)
-                });
-              }
+                handleDeskClick(d);
+              },
             });
           },
           onError: (error: string) => console.error('Could not start viewer', error),
@@ -96,16 +119,9 @@ export const SpaceViewer = () => {
         <div id="test" className="smplr-embed"></div>
       </div>
 
-      <div>
-        <h3>Furnitures in Space</h3>
-        <ul>
-          {desks.map((furniture, index) => (
-            <li key={index}>
-              {furniture.name} - {furniture.furnitureId}
-            </li>
-          ))}
-        </ul>
-      </div>
+      {selectedDesk && (
+        <ModalOnDesk desk={selectedDesk} onClose={handleCloseModal} onBook={handleBook} />
+      )}
     </>
   );
 };
