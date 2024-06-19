@@ -32,14 +32,17 @@ export interface Furniture {
 export interface Desk {
   name: string;
   available: boolean;
+  furnitureId: string;
+  id: string
 }
 
 export const SpaceViewer = () => {
   const [viewerReady, setViewerReady] = useState(false);
   const [selectedDesk, setSelectedDesk] = useState<Desk | null>(null);
-  const spaceRef = useRef<any>(); //cannot import type Space
+  const [layerController, setLayerController] = useState<any>(undefined)
+  const spaceRef = useRef<any>();
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['desks'],
     queryFn: getAllDesks,
   });
@@ -47,9 +50,9 @@ export const SpaceViewer = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: async (data: UpdateDeskType) => updateDeskById({ newStatus: data.newStatus, deskId: data.deskId }),
+    mutationFn: async (data: UpdateDeskType) => { return await updateDeskById({ newStatus: data.newStatus, desk: data.desk }) },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['desks'] });
+      refetch()
     },
     onError: () => {
       console.log("Something went wrong");
@@ -57,6 +60,7 @@ export const SpaceViewer = () => {
   });
 
   const handleDeskClick = (desk: Desk) => {
+    console.log('Selected desk:', desk);
     setSelectedDesk(desk);
   };
 
@@ -64,12 +68,15 @@ export const SpaceViewer = () => {
     setSelectedDesk(null);
   };
 
-  const handleBook = (deskId: string) => {
+  const handleBook = (desk: Desk) => {
+    console.log('Booking desk with ID:', desk.id);
     mutation.mutate({
-      newStatus: true,
-      deskId
+      newStatus: false,
+      desk: desk
     });
+    setSelectedDesk(null)
   };
+
 
   useEffect(() => {
     loadSmplrJs('esm')
@@ -85,22 +92,36 @@ export const SpaceViewer = () => {
           allowModeChange: true,
           onReady: () => {
             setViewerReady(true);
-            spaceRef.current.addDataLayer({
+            const controller = spaceRef.current.addDataLayer({
               id: 'desks',
               type: 'furniture',
-              data: data,
+              data: data || [],
               tooltip: (d) => `${d.name} - ${d.available ? 'free' : 'occupied'}`,
               color: (d) => (d.available ? '#50b268' : '#f75e56'),
               onClick: (d) => {
                 handleDeskClick(d);
               },
             });
+
+            setLayerController(controller)
           },
           onError: (error: string) => console.error('Could not start viewer', error),
         });
       })
       .catch((error) => console.error(error));
-  }, [data]);
+  }, [])
+
+
+
+  useEffect(() => {
+
+    if (data && layerController) {
+      layerController.update({
+        data: data
+      })
+    }
+
+  }, [data, layerController]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -119,7 +140,7 @@ export const SpaceViewer = () => {
         <div id="test" className="smplr-embed"></div>
       </div>
 
-      {selectedDesk && (
+      {selectedDesk?.available && (
         <ModalOnDesk desk={selectedDesk} onClose={handleCloseModal} onBook={handleBook} />
       )}
     </>

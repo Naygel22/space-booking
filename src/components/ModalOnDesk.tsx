@@ -2,7 +2,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Desk } from '../data';
+import { Desk } from './SpaceViewer';
+
+import { MdElectricalServices, MdEventAvailable, MdHeight, MdLight, MdMonitor } from "react-icons/md";
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -21,7 +23,15 @@ const style = {
 type ModalOnDeskProps = {
   desk: Desk,
   onClose: () => void,
-  onBook: any
+  onBook: (desk: Desk) => void
+}
+
+export type DeskFeatures = {
+  monitors: number
+  sockets: number
+  hasLamp: boolean
+  adjustableHeight: boolean
+  otherAccessories: string[]
 }
 
 
@@ -38,11 +48,53 @@ export const ModalOnDesk = ({ desk, onClose, onBook }: ModalOnDeskProps) => {
           {desk.name}
         </Typography>
         <img src='./src/assets/images/desk2monitors.jpeg' className='desk2monitorsImg' />
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          This desk is currently {desk.available ? 'free' : 'occupied'}.
-        </Typography>
+        <p>Equipment</p>
+
+        <div className="modalDescription">
+
+          <div className='featureInLine'>
+            <div className='featureName'>
+              <MdEventAvailable />
+              <div>Available</div>
+              {desk.available ? 'free' : 'occupied'}
+            </div>
+          </div>
+
+          <div className='featureInLine'>
+            <div className='featureName'>
+              <MdMonitor />
+              <div>Monitors</div>
+            </div>
+          </div>
+
+          <div className='featureInLine'>
+            <div className='featureName'>
+              <MdElectricalServices />
+              <div>Electrical sockets</div>
+            </div>
+          </div>
+
+          <div className='featureInLine'>
+            <div className='featureName'>
+              <MdLight />
+              <div>Lamp</div>
+            </div>
+          </div>
+
+          <div className='featureInLine'>
+            <div className='featureName'>
+              <MdHeight />
+              <div>Adjustable height desk</div>
+            </div>
+          </div>
+
+
+
+
+          {/* <p>This desk is currently {desk.available ? 'free' : 'occupied'}.</p> */}
+        </div>
         <Button onClick={onClose}>Close</Button>
-        <Button onClick={onBook}>Book</Button>
+        <Button onClick={() => onBook(desk)}>Book</Button>
       </Box>
     </Modal>
   );

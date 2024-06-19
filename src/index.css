@@ -46,3 +46,17 @@ h6 {
   height: 100%;
   width: 500px;
 }
+
+.modalDescription {
+  display: flex;
+  flex-direction: column;
+}
+
+.featureInLine {
+  display: flex;
+}
+
+.featureName {
+  display: flex;
+  align-items: center;
+}

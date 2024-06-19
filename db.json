@@ -3,162 +3,194 @@
     {
       "name": "Desk 01",
       "furnitureId": "f2a82419-6b70-4cc9-8d8c-9aa540761f19",
-      "available": false
+      "available": true,
+      "id": "4fa3"
     },
     {
       "name": "Desk 02",
       "furnitureId": "97c25896-fd56-480f-b5df-a8f33bca8d11",
-      "available": false
+      "available": false,
+      "id": "34fc"
     },
     {
       "name": "Desk 03",
       "furnitureId": "2da37f82-6497-4962-83c0-d00de737b0c7",
-      "available": false
+      "available": true,
+      "id": "dcb7"
     },
     {
       "name": "Desk 04",
       "furnitureId": "e5e79e67-b9cc-489d-8b69-a57e084dbe3f",
-      "available": false
+      "available": false,
+      "id": "41ba"
     },
     {
       "name": "Desk 05",
       "furnitureId": "8ae177d4-750f-4c60-a25d-a624a5f9afa2",
-      "available": false
+      "available": true,
+      "id": "fd47"
     },
     {
       "name": "Desk 06",
       "furnitureId": "748eeaeb-3a7b-455a-a0ef-99b44e5f5377",
-      "available": false
+      "available": true,
+      "id": "a71c"
     },
     {
       "name": "Desk 07",
       "furnitureId": "c078ef52-8088-4911-a944-e7cc8019d930",
-      "available": false
+      "available": true,
+      "id": "742f"
     },
     {
       "name": "Desk 08",
       "furnitureId": "2ce56555-36e7-46b7-9af4-004e0875d3d7",
-      "available": false
+      "available": true,
+      "id": "3245"
     },
     {
       "name": "Desk 09",
       "furnitureId": "d8b0f391-112a-471c-9fb7-256e904f32e1",
-      "available": false
+      "available": true,
+      "id": "4e18"
     },
     {
       "name": "Desk 10",
       "furnitureId": "e3cd0578-8ece-47d7-990c-73765889b685",
-      "available": false
+      "available": true,
+      "id": "f8f0"
     },
     {
       "name": "Desk 11",
       "furnitureId": "22995b3b-204e-481a-86ea-ff63afa4971c",
-      "available": false
+      "available": true,
+      "id": "b1cb"
     },
     {
       "name": "Desk 12",
       "furnitureId": "c8b42757-eb2e-462b-bbc4-00ec9fd5d1f6",
-      "available": false
+      "available": true,
+      "id": "a82f"
     },
     {
       "name": "Desk 13",
       "furnitureId": "324f36d8-46f5-4449-837a-f5c9eb408c99",
-      "available": false
+      "available": true,
+      "id": "c459"
     },
     {
       "name": "Desk 14",
       "furnitureId": "ad46c114-4968-479e-825b-041d08da53ba",
-      "available": false
+      "available": true,
+      "id": "2996"
     },
     {
       "name": "Desk 15",
       "furnitureId": "d630ef3d-4c69-4ec4-9f05-043eaee56aea",
-      "available": false
+      "available": true,
+      "id": "b76b"
     },
     {
       "name": "Desk 16",
       "furnitureId": "d590cf19-69f1-44f4-9feb-f5dd5d6449d9",
-      "available": false
+      "available": true,
+      "id": "7c29"
     },
     {
       "name": "Desk 17",
       "furnitureId": "4116b0d3-d898-4275-8034-a3318662783b",
-      "available": false
+      "available": true,
+      "id": "1850"
     },
     {
       "name": "Desk 18",
       "furnitureId": "d3db05bb-1bdb-4a3b-a5f0-4357abde6bca",
-      "available": false
+      "available": true,
+      "id": "616e"
     },
     {
       "name": "Desk 19",
       "furnitureId": "e7d75ee1-2004-489a-90bf-fc89912036b3",
-      "available": false
+      "available": true,
+      "id": "023f"
     },
     {
       "name": "Desk 20",
       "furnitureId": "bc048717-2968-4215-9959-b75a162aff44",
-      "available": false
+      "available": true,
+      "id": "b24a"
     },
     {
       "name": "Desk 21",
       "furnitureId": "913bb0a8-7023-4290-a3f4-a4578956a829",
-      "available": false
+      "available": true,
+      "id": "24b6"
     },
     {
       "name": "Desk 22",
       "furnitureId": "be2b723b-aab5-488c-a4c5-2ea3db0cf195",
-      "available": false
+      "available": true,
+      "id": "0650"
     },
     {
       "name": "Desk 23",
       "furnitureId": "7e10f64e-fbe1-4511-8ded-a867796c3e1e",
-      "available": false
+      "available": true,
+      "id": "4c93"
     },
     {
       "name": "Desk 24",
       "furnitureId": "0a339f6c-ff07-4d30-b045-ea76b400356e",
-      "available": false
+      "available": true,
+      "id": "3400"
     },
     {
       "name": "Desk 25",
       "furnitureId": "4c0321cc-c974-449f-afd7-69bde7571ca1",
-      "available": false
+      "available": true,
+      "id": "1ab6"
     },
     {
       "name": "Desk 26",
       "furnitureId": "e8c300c6-60ab-483e-be6b-d62c028eeef9",
-      "available": false
+      "available": true,
+      "id": "79b3"
     },
     {
       "name": "Desk 27",
       "furnitureId": "b25bb728-2605-4cc4-9fa5-bb5f4ca12ae5",
-      "available": false
+      "available": true,
+      "id": "7edb"
     },
     {
       "name": "Desk 28",
       "furnitureId": "03e92d5c-5976-4077-9277-aa69cb639745",
-      "available": false
+      "available": true,
+      "id": "5758"
     },
     {
       "name": "Desk 29",
       "furnitureId": "569b704c-52b2-4130-b6ac-5397a6dbe880",
-      "available": false
+      "available": true,
+      "id": "8fea"
     },
     {
       "name": "Desk 30",
       "furnitureId": "b6b3253b-0024-4109-9075-ad2ea3be37b6",
-      "available": false
+      "available": true,
+      "id": "b540"
     },
     {
       "name": "Desk 31",
       "furnitureId": "f1b12140-9401-4e88-b50e-bf1150fb6205",
-      "available": false
+      "available": true,
+      "id": "6cad"
     },
     {
       "name": "Desk 32",
       "furnitureId": "9517dda0-09e6-45e4-81d1-2511686dfe4d",
-      "available": false
+      "available": true,
+      "id": "1809"
     }
   ]
 }
