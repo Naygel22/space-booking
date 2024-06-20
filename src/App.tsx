@@ -2,6 +2,7 @@ import { SpaceViewer } from './components/SpaceViewer';
 import './index.css'
 import { FC } from 'react';
 import { Navbar } from './components/Navbar';
+import { Register } from './components/Register';
 
 
 const App: FC = () => {
@@ -9,6 +10,7 @@ const App: FC = () => {
     <div>
       <Navbar />
       <SpaceViewer />
+      <Register />
     </div>
   );
 };

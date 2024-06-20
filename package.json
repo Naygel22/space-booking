@@ -16,12 +16,15 @@
     "@mui/material": "^5.15.20",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@smplrspace/smplr-loader": "^2.19.0",
+    "@supabase/supabase-js": "^2.43.5",
     "@tanstack/react-query": "^5.45.0",
+    "formik": "^2.4.6",
     "json-server": "^1.0.0-beta.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
