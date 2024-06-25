@@ -7,7 +7,7 @@ import { Register } from './components/Register';
 
 const App: FC = () => {
   return (
-    <div>
+    <div className='app'>
       <Navbar />
       <SpaceViewer />
       <Register />

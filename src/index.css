@@ -1,3 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+
 @font-face {
   font-family: 'RNSSanz-Normal';
   src: url('https://docs.smplrspace.com/static/fonts/RNSSanz-Normal.woff2') format('woff2');
@@ -21,6 +29,11 @@ h4,
 h5,
 h6 {
   font-family: 'RNSSanz-Bold';
+}
+
+.app {
+  padding-left: 80px;
+  padding-right: 80px;
 }
 
 .smplr-wrapper {
