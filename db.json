@@ -105,7 +105,7 @@
     {
       "name": "Desk 18",
       "furnitureId": "d3db05bb-1bdb-4a3b-a5f0-4357abde6bca",
-      "available": true,
+      "available": false,
       "id": "616e"
     },
     {

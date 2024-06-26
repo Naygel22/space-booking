@@ -1,6 +1,7 @@
 import { useFormik } from "formik"
 import { TextInput } from "./TextInput"
 import { LoginFormValues, yupLoginSchema } from "../validators/validators"
+import { sendLoginValues } from "../api/sendLoginValues"
 
 const initialLoginFormValues = {
   mail: '',
@@ -10,7 +11,7 @@ const initialLoginFormValues = {
 export const Login = () => {
   const formik = useFormik<LoginFormValues>({
     initialValues: initialLoginFormValues,
-    onSubmit: (values) => console.log(values),
+    onSubmit: (values) => sendLoginValues(values),
     validationSchema: yupLoginSchema
   })
 

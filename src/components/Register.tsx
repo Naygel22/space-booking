@@ -1,6 +1,7 @@
 import { useFormik } from "formik"
 import { TextInput } from "./TextInput"
 import { RegisterFormValues, yupRegisterSchema } from "../validators/validators"
+import { sendRegisterValues } from "../api/sendRegisterValues"
 
 
 const initialRegisterFormValues: RegisterFormValues = {
@@ -16,7 +17,7 @@ const initialRegisterFormValues: RegisterFormValues = {
 export const Register = () => {
   const formik = useFormik<RegisterFormValues>({
     initialValues: initialRegisterFormValues,
-    onSubmit: (values) => console.log(values),
+    onSubmit: (values) => sendRegisterValues(values),
     validationSchema: yupRegisterSchema
   })
 

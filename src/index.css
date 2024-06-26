@@ -5,7 +5,6 @@
   box-sizing: border-box;
 }
 
-
 @font-face {
   font-family: 'RNSSanz-Normal';
   src: url('https://docs.smplrspace.com/static/fonts/RNSSanz-Normal.woff2') format('woff2');
@@ -18,6 +17,14 @@
 
 body {
   background-color: #464949;
+  background-image: url('src/assets/images/Designer (3).jpeg');
+  background-size: cover;
+  /* Dopasowuje obraz do całego tła */
+  background-repeat: no-repeat;
+  /* Zapobiega powtarzaniu obrazu */
+  background-attachment: fixed;
+  /* Obraz pozostaje w miejscu podczas przewijania */
+  background-position: center;
   font-family: 'RNSSanz-Normal';
   color: #e6e6e6;
 }
@@ -34,6 +41,8 @@ h6 {
 .app {
   padding-left: 80px;
   padding-right: 80px;
+  display: flex;
+  justify-content: center;
 }
 
 .smplr-wrapper {
@@ -50,26 +59,93 @@ h6 {
   height: 100%;
 }
 
-.navbar {
-  display: flex;
-  backdrop-filter: blur(10px);
-}
-
-.desk2monitorsImg {
-  height: 100%;
-  width: 500px;
-}
-
 .modalDescription {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .featureInLine {
   display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .featureName {
   display: flex;
   align-items: center;
+  gap: 5px;
+}
+
+.desk2monitorsImg {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(10px);
+  height: 70px;
+  padding-left: 80px;
+  padding-right: 80px;
+  border-bottom: 1px solid beige;
+  font-size: 18px;
+}
+
+.navbarButtons {
+  display: flex;
+  align-items: center;
+  margin-left: 300px;
+}
+
+.navbarButtons a {
+  position: relative;
+  display: flex;
+  color: white;
+  cursor: pointer;
+  margin-right: 50px;
+  text-decoration: none;
+}
+
+.navbarButtons a:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  /* wysokość paska */
+  background-color: white;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.navbarButtons a:hover:after {
+  width: 100%;
+}
+
+.signButtons {
+  display: flex;
+  align-items: center;
+  margin-left: 100px;
+  cursor: pointer;
+}
+
+.signButtons a {
+  margin-left: 50px;
+  text-decoration: none;
+  color: white;
+}
+
+.register {
+  background-color: white;
+  width: 600px;
+  border-radius: 10px;
+}
+
+.login {
+  background-color: white;
 }

@@ -4,6 +4,7 @@ import { getAllDesks } from '../api/getAllDesks';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { ModalOnDesk } from './ModalOnDesk';
 import { UpdateDeskType, updateDeskById } from '../api/updateDeskById';
+import { useSessionContext } from './SessionProvider';
 
 export interface Furniture {
   catalogId: string;
@@ -37,6 +38,14 @@ export interface Desk {
 }
 
 export const SpaceViewer = () => {
+
+  const { session } = useSessionContext()
+  if (!session) {
+    //wywalić na login
+    //albo info zaloguj się aby rezerwować
+    return null;
+  }
+
   const [viewerReady, setViewerReady] = useState(false);
   const [selectedDesk, setSelectedDesk] = useState<Desk | null>(null);
   const [layerController, setLayerController] = useState<any>(undefined)

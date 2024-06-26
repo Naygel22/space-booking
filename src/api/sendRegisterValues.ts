@@ -7,6 +7,13 @@ export const sendRegisterValues = async (newRegister: RegisterFormValues) => {
     email: newRegister.mail,
     password: newRegister.password
   })
+  if (data) {
+    await supabaseClient
+      .from('users')
+      .insert([
+        { userId: data.user?.id, name: newRegister.name, surname: newRegister.surname, mail: newRegister.mail, phonenumber: newRegister.phonenumber },
+      ])
+  }
   if (error) {
     return false;
   }
