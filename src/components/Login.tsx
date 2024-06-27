@@ -16,10 +16,10 @@ export const Login = () => {
   })
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit} className="loginForm">
       <TextInput formik={formik} accessor='mail' label='E-mail' />
       <TextInput formik={formik} accessor='password' label='Password' type='password' />
-      <button type="submit">Send</button>
+      <button type="submit" className="loginButton">Log In</button>
     </form>
   )
 }

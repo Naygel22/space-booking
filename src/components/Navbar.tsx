@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom"
+import { useSessionContext } from "./SessionProvider";
+import { supabaseClient } from "../supabaseClient";
 
 export const Navbar = () => {
+  const { session } = useSessionContext();
+
+  const handleLogout = async () => {
+    const { error } = await supabaseClient.auth.signOut();
+    if (error) {
+      console.error('Error logging out:', error.message);
+    }
+  };
+
   return (
     <nav className="navbar">
       <div>Logo</div>
@@ -10,10 +21,16 @@ export const Navbar = () => {
         <Link to='/pricing'>Pricing</Link>
         <Link to='/contact'>Contact</Link>
       </div>
-      <div className="signButtons">
-        <Link to='/login'>Sign in</Link>
-        <Link to='/register'>Sign up</Link>
-      </div>
+      {!session &&
+        <div className="signButtons">
+          <Link to='/login'>Sign in</Link>
+          <Link to='/register'>Sign up</Link>
+        </div>
+      }
+      {session &&
+        <button onClick={handleLogout}>Log out</button>
+      }
     </nav>
-  )
-}
+  );
+};
+

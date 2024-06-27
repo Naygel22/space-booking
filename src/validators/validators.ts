@@ -31,7 +31,7 @@ export type RegisterFormValues = yup.InferType<typeof yupRegisterSchema>
 
 export const yupLoginSchema = yup.object({
   mail: BASE_VALIDATORS.mailValidator,
-  password: yup.string().required()
+  password: yup.string().required('Password is required')
 })
 
 export type LoginFormValues = yup.InferType<typeof yupLoginSchema>
