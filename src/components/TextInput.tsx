@@ -22,6 +22,36 @@ export const TextInput = <FormValues,>({ formik, accessor, label, type = 'text' 
       onBlur={formik.handleBlur}
       value={formik.values[accessor]}
       type={type}
+      sx={{
+        '& label.Mui-focused': {
+          color: '#7d7c7a',
+        },
+        '& .MuiInput-underline:after': {
+          borderBottomColor: 'white',
+        },
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderColor: 'white',
+          },
+          '&:hover fieldset': {
+            borderColor: 'white',
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: 'white',
+          },
+          '& input': {
+            color: 'white',
+            backgroundColor: '#3c3a38',
+          },
+          backgroundColor: '#3c3a38',
+        },
+        '& .MuiFormHelperText-root': {
+          color: 'white',
+        },
+      }}
+      InputLabelProps={{
+        style: { color: 'white' },
+      }}
     />
   );
 }

@@ -1,15 +1,17 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useSessionContext } from "./SessionProvider";
 import { supabaseClient } from "../supabaseClient";
 
 export const Navbar = () => {
   const { session } = useSessionContext();
+  const navigate = useNavigate()
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
     if (error) {
       console.error('Error logging out:', error.message);
     }
+    navigate('/')
   };
 
   return (
