@@ -149,12 +149,13 @@ h6 {
 .login {
   background-color: #2e2d2b;
   border-radius: 10px;
+  margin-top: 20px;
 }
 
 .loginForm {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 500px;
   padding: 40px;
   padding-bottom: 0;
   gap: 15px;
@@ -244,4 +245,42 @@ h6 {
   font-weight: bold;
   font-size: 15px;
   text-decoration: none;
+}
+
+.avatarBadge {
+  display: flex;
+  align-items: center;
+}
+
+.userNameOnBadge {
+  margin-left: 20px;
+}
+
+.userProfile {
+  padding: 30px;
+  background-color: white;
+  color: black;
+}
+
+.userDataValue {
+  border: 1px solid black;
+}
+
+.flexDeskLogo {
+  width: 200px;
+  height: 200px;
+  border-radius: 150px;
+}
+
+.flexDeskLogoNavbar {
+  width: 70px;
+  height: 70px;
+  border-radius: 40px;
+}
+
+.logoAndLoginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
 }

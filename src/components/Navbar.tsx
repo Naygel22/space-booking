@@ -1,22 +1,40 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
 import { useSessionContext } from "./SessionProvider";
 import { supabaseClient } from "../supabaseClient";
+import { useQuery } from "@tanstack/react-query";
+import { getUserDataById } from "../api/getUserDataById";
+import { useState } from "react";
+import { UserOnNavbar } from "./UserOnNavbar";
 
 export const Navbar = () => {
   const { session } = useSessionContext();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
     if (error) {
       console.error('Error logging out:', error.message);
     }
-    navigate('/')
+    navigate('/');
   };
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['userName'],
+    queryFn: () => getUserDataById(session),
+    enabled: !!session, // Only run the query if session is available
+  });
+
+  console.log(data);
 
   return (
     <nav className="navbar">
-      <div>Logo</div>
+      <Link to='/'>
+        <div>
+          <img className="flexDeskLogoNavbar" src="src/assets/images/flexDeskLogo.jpeg" />
+          <div>FLEXDESK</div>
+        </div>
+      </Link>
+
       <div className="navbarButtons">
         <Link to='/'>Home</Link>
         <Link to='/booking'>Booking</Link>
@@ -30,9 +48,13 @@ export const Navbar = () => {
         </div>
       }
       {session &&
-        <button onClick={handleLogout}>Log out</button>
+        <>
+          <UserOnNavbar
+            userData={data}
+            handleLogout={handleLogout}
+          />
+        </>
       }
     </nav>
   );
 };
-

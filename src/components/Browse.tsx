@@ -3,6 +3,7 @@ import { RegisterPage } from "../pages/RegisterPage"
 import { SpaceViewer } from "./SpaceViewer"
 import { LoginPage } from "../pages/LoginPage"
 import { useSessionContext } from "./SessionProvider"
+import { UserProfile } from "./UserProfile"
 
 export const Browse = () => {
   const { session } = useSessionContext()
@@ -18,6 +19,9 @@ export const Browse = () => {
           <Route path='/register' element={<RegisterPage />} />
           <Route path='/login' element={<LoginPage />} />
         </>
+      }
+      {session &&
+        <Route path='/profile' element={<UserProfile />} />
       }
 
     </Routes>
