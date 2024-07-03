@@ -8,6 +8,7 @@ import { useSessionContext } from './SessionProvider';
 import { LoginInfoToBook } from './LoginInfoToBook';
 import { sendReservationValues } from '../api/sendReservationValues';
 import { format } from 'date-fns';
+import { getReservationForDate } from '../api/getReservationsForDate';
 
 
 export interface Furniture {
@@ -41,7 +42,8 @@ export interface Desk {
   id: string
 }
 
-export const SpaceViewer = () => {
+export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
+  console.log(selectedDate)
 
   const { session } = useSessionContext()
 
@@ -49,27 +51,19 @@ export const SpaceViewer = () => {
   const [selectedDesk, setSelectedDesk] = useState<Desk | null>(null);
   const [layerController, setLayerController] = useState<any>(undefined)
   const spaceRef = useRef<any>();
-  const [selectedDate, setSelectedDate] = useState(null);
+
 
   const { data: desks, isLoading, error, refetch } = useQuery({
     queryKey: ['desks'],
     queryFn: getAllDesks,
   });
 
-  // const queryClient = useQueryClient();
+  const { data: reservations } = useQuery({
+    queryKey: ['reservations', selectedDate],
+    queryFn: () => getReservationForDate(format(selectedDate, 'yyyy-MM-dd')),
+  });
 
-  // const mutation = useMutation({
-  //   mutationFn: async (data: UpdateDeskType) => { return await updateDeskById({ newStatus: data.newStatus, desk: data.desk }) },
-  //   onSuccess: () => {
-  //     refetch()
-  //   },
-  //   onError: () => {
-  //     console.log("Something went wrong");
-  //   }
-  // });
-  const handleDateChange = (newValue) => {
-    setSelectedDate(newValue);
-  };
+  console.log("reser", reservations)
 
   const handleDeskClick = (desk: Desk) => {
     console.log('Selected desk:', desk);
@@ -81,10 +75,7 @@ export const SpaceViewer = () => {
   };
 
   const handleBook = async () => {
-    // mutation.mutate({
-    //   newStatus: false,
-    //   desk: desk
-    // });
+
     if (session && selectedDate && selectedDesk) {
 
       const formattedDate = format(selectedDate, 'yyyy-MM-dd');
@@ -122,7 +113,11 @@ export const SpaceViewer = () => {
               type: 'furniture',
               data: desks || [],
               tooltip: (d) => `${d.name} - ${d.available ? 'free' : 'occupied'}`,
-              color: (d) => (d.available ? '#50b268' : '#f75e56'),
+              color: (d) => {
+                // console.log("here", d)
+                // console.log("2", reservations?.find(res => res.furnitureId === d.furnitureId) ? '#f75e56' : '#50b268')
+                return reservations?.find(res => res.furnitureId === d.furnitureId) ? '#f75e56' : '#50b268';
+              },
               onClick: (d) => {
                 handleDeskClick(d);
               },
@@ -148,9 +143,6 @@ export const SpaceViewer = () => {
 
   }, [desks, layerController]);
 
-  if (!session) {
-    return <LoginInfoToBook />
-  }
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -171,7 +163,7 @@ export const SpaceViewer = () => {
       </div>
 
       {selectedDesk && (
-        <ModalOnDesk desk={selectedDesk} onClose={handleCloseModal} onBook={handleBook} selectedDate={selectedDate} handleDateChange={handleDateChange} />
+        <ModalOnDesk desk={selectedDesk} onClose={handleCloseModal} onBook={handleBook} selectedDate={selectedDate} />
       )}
     </>
   );

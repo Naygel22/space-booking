@@ -289,3 +289,20 @@ h6 {
   align-items: center;
   padding-top: 40px;
 }
+
+.registerFirstForm {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  background-color: #2e2d2b;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 40px;
+}
+
+.registerFirstFormImg {
+  max-width: 100%;
+  /* Ustawienie maksymalnej szerokości na 100% kontenera */
+  height: auto;
+  border-radius: 300px;
+}

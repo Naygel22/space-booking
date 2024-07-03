@@ -4,6 +4,7 @@ import { SpaceViewer } from "./SpaceViewer"
 import { LoginPage } from "../pages/LoginPage"
 import { useSessionContext } from "./SessionProvider"
 import { UserProfile } from "./UserProfile"
+import { BookingPage } from "../pages/BookingPage"
 
 export const Browse = () => {
   const { session } = useSessionContext()
@@ -11,7 +12,7 @@ export const Browse = () => {
   return (
     <Routes>
       <Route path="/" element={<div>Home</div>} />
-      <Route path="/booking" element={<SpaceViewer />} />
+      <Route path="/booking" element={<BookingPage />} />
       <Route path='/pricing' element={<div>Pricing</div>} />
       <Route path='/contact' element={<div>Contact</div>} />
       {!session &&

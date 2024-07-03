@@ -27,7 +27,6 @@ type ModalOnDeskProps = {
   onClose: () => void,
   onBook: (desk: Desk) => void,
   selectedDate: any,
-  handleDateChange: any
 }
 
 export type DeskFeatures = {
@@ -39,7 +38,7 @@ export type DeskFeatures = {
 }
 
 
-export const ModalOnDesk = ({ desk, onClose, onBook, selectedDate, handleDateChange }: ModalOnDeskProps) => {
+export const ModalOnDesk = ({ desk, onClose, onBook, selectedDate }: ModalOnDeskProps) => {
   return (
     <Modal
       open={true}
@@ -92,13 +91,13 @@ export const ModalOnDesk = ({ desk, onClose, onBook, selectedDate, handleDateCha
             </div>
           </div>
 
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
+          {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
             <div>
               <div>Select a Date & Time</div>
               <DateCalendar views={['day']} value={selectedDate} onChange={handleDateChange} />
             </div>
 
-          </LocalizationProvider>
+          </LocalizationProvider> */}
 
         </div>
         <Button onClick={onClose}>Close</Button>
