@@ -6,6 +6,9 @@ import { ModalOnDesk } from './ModalOnDesk';
 import { UpdateDeskType, updateDeskById } from '../api/updateDeskById';
 import { useSessionContext } from './SessionProvider';
 import { LoginInfoToBook } from './LoginInfoToBook';
+import { sendReservationValues } from '../api/sendReservationValues';
+import { format } from 'date-fns';
+
 
 export interface Furniture {
   catalogId: string;
@@ -41,33 +44,32 @@ export interface Desk {
 export const SpaceViewer = () => {
 
   const { session } = useSessionContext()
-  if (!session) {
-    //wywalić na login
-    //albo info zaloguj się aby rezerwować
-    return <LoginInfoToBook />
-  }
 
   const [viewerReady, setViewerReady] = useState(false);
   const [selectedDesk, setSelectedDesk] = useState<Desk | null>(null);
   const [layerController, setLayerController] = useState<any>(undefined)
   const spaceRef = useRef<any>();
+  const [selectedDate, setSelectedDate] = useState(null);
 
-  const { data, isLoading, error, refetch } = useQuery({
+  const { data: desks, isLoading, error, refetch } = useQuery({
     queryKey: ['desks'],
     queryFn: getAllDesks,
   });
 
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
-  const mutation = useMutation({
-    mutationFn: async (data: UpdateDeskType) => { return await updateDeskById({ newStatus: data.newStatus, desk: data.desk }) },
-    onSuccess: () => {
-      refetch()
-    },
-    onError: () => {
-      console.log("Something went wrong");
-    }
-  });
+  // const mutation = useMutation({
+  //   mutationFn: async (data: UpdateDeskType) => { return await updateDeskById({ newStatus: data.newStatus, desk: data.desk }) },
+  //   onSuccess: () => {
+  //     refetch()
+  //   },
+  //   onError: () => {
+  //     console.log("Something went wrong");
+  //   }
+  // });
+  const handleDateChange = (newValue) => {
+    setSelectedDate(newValue);
+  };
 
   const handleDeskClick = (desk: Desk) => {
     console.log('Selected desk:', desk);
@@ -78,13 +80,26 @@ export const SpaceViewer = () => {
     setSelectedDesk(null);
   };
 
-  const handleBook = (desk: Desk) => {
-    console.log('Booking desk with ID:', desk.id);
-    mutation.mutate({
-      newStatus: false,
-      desk: desk
-    });
-    setSelectedDesk(null)
+  const handleBook = async () => {
+    // mutation.mutate({
+    //   newStatus: false,
+    //   desk: desk
+    // });
+    if (session && selectedDate && selectedDesk) {
+
+      const formattedDate = format(selectedDate, 'yyyy-MM-dd');
+      const success = await sendReservationValues({
+        date: formattedDate,
+        furnitureId: selectedDesk.furnitureId,
+      });
+      if (success) {
+        console.log('Reservation successful');
+        setSelectedDesk(null);
+      } else {
+        console.log('Reservation failed');
+      }
+      console.log(formattedDate)
+    }
   };
 
 
@@ -105,7 +120,7 @@ export const SpaceViewer = () => {
             const controller = spaceRef.current.addDataLayer({
               id: 'desks',
               type: 'furniture',
-              data: data || [],
+              data: desks || [],
               tooltip: (d) => `${d.name} - ${d.available ? 'free' : 'occupied'}`,
               color: (d) => (d.available ? '#50b268' : '#f75e56'),
               onClick: (d) => {
@@ -125,13 +140,17 @@ export const SpaceViewer = () => {
 
   useEffect(() => {
 
-    if (data && layerController) {
+    if (desks && layerController) {
       layerController.update({
-        data: data
+        data: desks
       })
     }
 
-  }, [data, layerController]);
+  }, [desks, layerController]);
+
+  if (!session) {
+    return <LoginInfoToBook />
+  }
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -140,18 +159,19 @@ export const SpaceViewer = () => {
     return <div>Error loading desks</div>;
   }
 
-  if (!data) {
+  if (!desks) {
     return <div>No data</div>;
   }
-
+  console.log(selectedDate)
+  //console.log(format(selectedDate, 'EEEE, MMMM d'))
   return (
     <>
       <div className="smplr-wrapper">
         <div id="test" className="smplr-embed"></div>
       </div>
 
-      {selectedDesk?.available && (
-        <ModalOnDesk desk={selectedDesk} onClose={handleCloseModal} onBook={handleBook} />
+      {selectedDesk && (
+        <ModalOnDesk desk={selectedDesk} onClose={handleCloseModal} onBook={handleBook} selectedDate={selectedDate} handleDateChange={handleDateChange} />
       )}
     </>
   );

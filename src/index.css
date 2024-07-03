@@ -272,6 +272,11 @@ h6 {
   border-radius: 150px;
 }
 
+.logoBar {
+  display: flex;
+  align-items: center;
+}
+
 .flexDeskLogoNavbar {
   width: 70px;
   height: 70px;

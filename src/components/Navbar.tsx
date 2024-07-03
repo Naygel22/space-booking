@@ -3,7 +3,6 @@ import { useSessionContext } from "./SessionProvider";
 import { supabaseClient } from "../supabaseClient";
 import { useQuery } from "@tanstack/react-query";
 import { getUserDataById } from "../api/getUserDataById";
-import { useState } from "react";
 import { UserOnNavbar } from "./UserOnNavbar";
 
 export const Navbar = () => {
@@ -29,7 +28,7 @@ export const Navbar = () => {
   return (
     <nav className="navbar">
       <Link to='/'>
-        <div>
+        <div className="logoBar">
           <img className="flexDeskLogoNavbar" src="src/assets/images/flexDeskLogo.jpeg" />
           <div>FLEXDESK</div>
         </div>

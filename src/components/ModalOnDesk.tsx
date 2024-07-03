@@ -5,6 +5,8 @@ import Modal from '@mui/material/Modal';
 import { Desk } from './SpaceViewer';
 
 import { MdElectricalServices, MdEventAvailable, MdHeight, MdLight, MdMonitor } from "react-icons/md";
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
+import { DateCalendar, LocalizationProvider } from '@mui/x-date-pickers';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -23,7 +25,9 @@ const style = {
 type ModalOnDeskProps = {
   desk: Desk,
   onClose: () => void,
-  onBook: (desk: Desk) => void
+  onBook: (desk: Desk) => void,
+  selectedDate: any,
+  handleDateChange: any
 }
 
 export type DeskFeatures = {
@@ -35,7 +39,7 @@ export type DeskFeatures = {
 }
 
 
-export const ModalOnDesk = ({ desk, onClose, onBook }: ModalOnDeskProps) => {
+export const ModalOnDesk = ({ desk, onClose, onBook, selectedDate, handleDateChange }: ModalOnDeskProps) => {
   return (
     <Modal
       open={true}
@@ -88,10 +92,14 @@ export const ModalOnDesk = ({ desk, onClose, onBook }: ModalOnDeskProps) => {
             </div>
           </div>
 
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <div>
+              <div>Select a Date & Time</div>
+              <DateCalendar views={['day']} value={selectedDate} onChange={handleDateChange} />
+            </div>
 
+          </LocalizationProvider>
 
-
-          {/* <p>This desk is currently {desk.available ? 'free' : 'occupied'}.</p> */}
         </div>
         <Button onClick={onClose}>Close</Button>
         <Button onClick={() => onBook(desk)}>Book</Button>

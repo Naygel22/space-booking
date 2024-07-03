@@ -17,7 +17,7 @@ export const Login = () => {
     initialValues: initialLoginFormValues,
     onSubmit: (values) => {
       sendLoginValues(values)
-      navigate('/home')
+      navigate('/')
     },
     validationSchema: yupLoginSchema
   })
