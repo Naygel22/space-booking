@@ -49,7 +49,7 @@ export const Navbar = () => {
       {session &&
         <>
           <UserOnNavbar
-            userData={data || []}
+            userData={data}
             handleLogout={handleLogout}
           />
         </>
