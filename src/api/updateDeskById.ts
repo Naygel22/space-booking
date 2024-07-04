@@ -1,4 +1,4 @@
-import { Desk } from "../components/SpaceViewer";
+import { Desk } from "../components/SpaceViewer/SpaceViewer.types";
 
 export type UpdateDeskType = { newStatus: boolean, desk: Desk }
 

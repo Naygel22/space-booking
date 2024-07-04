@@ -17,7 +17,7 @@ export const Navbar = () => {
     navigate('/');
   };
 
-  const { data, isLoading, error } = useQuery({
+  const { data } = useQuery({
     queryKey: ['userName'],
     queryFn: () => getUserDataById(session),
     enabled: !!session, // Only run the query if session is available
@@ -49,7 +49,7 @@ export const Navbar = () => {
       {session &&
         <>
           <UserOnNavbar
-            userData={data}
+            userData={data || []}
             handleLogout={handleLogout}
           />
         </>

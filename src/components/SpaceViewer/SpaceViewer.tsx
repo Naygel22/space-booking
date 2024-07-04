@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { loadSmplrJs } from '@smplrspace/smplr-loader';
 import { getAllDesks } from '../../api/getAllDesks';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { ModalOnDesk } from './../ModalOnDesk';
-import { UpdateDeskType, updateDeskById } from '../../api/updateDeskById';
 import { useSessionContext } from './../SessionProvider';
-import { LoginInfoToBook } from './../LoginInfoToBook';
 import { sendReservationValues } from '../../api/sendReservationValues';
 import { format } from 'date-fns';
 import { getReservationForDate } from '../../api/getReservationsForDate';
@@ -20,13 +18,13 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
 
   const { session } = useSessionContext()
 
-  const [viewerReady, setViewerReady] = useState(false);
+  const [_, setViewerReady] = useState(false);
   const [selectedDesk, setSelectedDesk] = useState<Desk | null>(null);
   const [layerController, setLayerController] = useState<any>(undefined)
   const spaceRef = useRef<any>();
 
 
-  const { data: desks, isLoading, error, refetch } = useQuery({
+  const { data: desks, isLoading, error } = useQuery({
     queryKey: ['desks'],
     queryFn: getAllDesks,
   });

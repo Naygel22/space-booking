@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom"
 import { RegisterPage } from "../pages/RegisterPage"
-import { SpaceViewer } from "./SpaceViewer"
 import { LoginPage } from "../pages/LoginPage"
 import { useSessionContext } from "./SessionProvider"
 import { UserProfile } from "./UserProfile"

@@ -1,4 +1,4 @@
-import { Register } from "../components/Register"
+//import { Register } from "../components/Register"
 import { RegisterFirstForm } from "../components/RegisterFirstForm"
 
 export const RegisterPage = () => {

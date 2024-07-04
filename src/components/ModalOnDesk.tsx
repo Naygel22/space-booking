@@ -3,10 +3,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Desk } from './SpaceViewer/SpaceViewer.types';
-
 import { MdElectricalServices, MdEventAvailable, MdHeight, MdLight, MdMonitor } from "react-icons/md";
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
-import { DateCalendar, LocalizationProvider } from '@mui/x-date-pickers';
+
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -38,7 +36,7 @@ export type DeskFeatures = {
 }
 
 
-export const ModalOnDesk = ({ desk, onClose, onBook, selectedDate }: ModalOnDeskProps) => {
+export const ModalOnDesk = ({ desk, onClose, onBook }: ModalOnDeskProps) => {
   return (
     <Modal
       open={true}
