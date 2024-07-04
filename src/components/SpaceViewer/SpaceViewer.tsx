@@ -1,46 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 import { loadSmplrJs } from '@smplrspace/smplr-loader';
-import { getAllDesks } from '../api/getAllDesks';
+import { getAllDesks } from '../../api/getAllDesks';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { ModalOnDesk } from './ModalOnDesk';
-import { UpdateDeskType, updateDeskById } from '../api/updateDeskById';
-import { useSessionContext } from './SessionProvider';
-import { LoginInfoToBook } from './LoginInfoToBook';
-import { sendReservationValues } from '../api/sendReservationValues';
+import { ModalOnDesk } from './../ModalOnDesk';
+import { UpdateDeskType, updateDeskById } from '../../api/updateDeskById';
+import { useSessionContext } from './../SessionProvider';
+import { LoginInfoToBook } from './../LoginInfoToBook';
+import { sendReservationValues } from '../../api/sendReservationValues';
 import { format } from 'date-fns';
-import { getReservationForDate } from '../api/getReservationsForDate';
+import { getReservationForDate } from '../../api/getReservationsForDate';
+import { Desk } from './SpaceViewer.types';
+import { Box } from '@mui/material';
 
+import { styles } from './SpaceViewer.styles'
 
-export interface Furniture {
-  catalogId: string;
-  id: string;
-  name: string;
-  levelIndex: number;
-  position: {
-    x: number;
-    z: number;
-    elevation: number;
-  };
-  rotation: Partial<{
-    pitch: number;
-    yaw: number;
-    roll: number;
-  }>;
-  dimensions: Partial<{
-    length: number;
-    height: number;
-    width: number;
-  }>;
-  configuration?: object;
-  available?: boolean;
-}
-
-export interface Desk {
-  name: string;
-  available: boolean;
-  furnitureId: string;
-  id: string
-}
 
 export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
   console.log(selectedDate)
@@ -58,7 +31,7 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
     queryFn: getAllDesks,
   });
 
-  const { data: reservations } = useQuery({
+  const { data: reservations, refetch: refetchReservation } = useQuery({
     queryKey: ['reservations', selectedDate],
     queryFn: () => getReservationForDate(format(selectedDate, 'yyyy-MM-dd')),
   });
@@ -79,6 +52,7 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
     if (session && selectedDate && selectedDesk) {
 
       const formattedDate = format(selectedDate, 'yyyy-MM-dd');
+      // TODO: przenies do react query i uzyj useMutation
       const success = await sendReservationValues({
         date: formattedDate,
         furnitureId: selectedDesk.furnitureId,
@@ -86,6 +60,7 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
       if (success) {
         console.log('Reservation successful');
         setSelectedDesk(null);
+        refetchReservation()
       } else {
         console.log('Reservation failed');
       }
@@ -104,7 +79,6 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
         });
 
         spaceRef.current.startViewer({
-          preview: true,
           allowModeChange: true,
           onReady: () => {
             setViewerReady(true);
@@ -112,13 +86,12 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
               id: 'desks',
               type: 'furniture',
               data: desks || [],
-              tooltip: (d) => `${d.name} - ${d.available ? 'free' : 'occupied'}`,
-              color: (d) => {
-                // console.log("here", d)
+              tooltip: (d: Desk) => `${d.name} - ${d.available ? 'free' : 'occupied'}`,
+              color: (d: Desk) => {
                 // console.log("2", reservations?.find(res => res.furnitureId === d.furnitureId) ? '#f75e56' : '#50b268')
                 return reservations?.find(res => res.furnitureId === d.furnitureId) ? '#f75e56' : '#50b268';
               },
-              onClick: (d) => {
+              onClick: (d: Desk) => {
                 handleDeskClick(d);
               },
             });
@@ -137,11 +110,14 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
 
     if (desks && layerController) {
       layerController.update({
-        data: desks
+        data: desks,
+        color: (d: Desk) => {
+          return reservations?.find(res => res.furnitureId === d.furnitureId) ? '#f75e56' : '#50b268';
+        }
       })
     }
 
-  }, [desks, layerController]);
+  }, [desks, layerController, reservations]);
 
 
   if (isLoading) {
@@ -161,6 +137,8 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
       <div className="smplr-wrapper">
         <div id="test" className="smplr-embed"></div>
       </div>
+
+      <Box sx={styles}></Box>
 
       {selectedDesk && (
         <ModalOnDesk desk={selectedDesk} onClose={handleCloseModal} onBook={handleBook} selectedDate={selectedDate} />

@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Desk } from './SpaceViewer';
+import { Desk } from './SpaceViewer/SpaceViewer.types';
 
 import { MdElectricalServices, MdEventAvailable, MdHeight, MdLight, MdMonitor } from "react-icons/md";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
