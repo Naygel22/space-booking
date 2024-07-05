@@ -4,6 +4,7 @@ import { RegisterFormValues, yupRegisterSchema } from "../../validators/validato
 import { sendRegisterValues } from "../../api/sendRegisterValues";
 import { Grid, Box, Button, Container } from "@mui/material";
 import { styles } from "./Register.styles";
+import { FaArrowLeft } from "react-icons/fa6";
 
 type RegisterProps = {
   onStepChange: () => void;
@@ -27,21 +28,30 @@ export const Register = ({ onStepChange }: RegisterProps) => {
 
   return (
     <Container sx={styles.registerContainer}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
+      <Grid container>
+        <Grid item xs={12} md={6} sx={styles.imageContainer}>
           <Box component="img" sx={styles.registerImg} src="src/assets/images/registerSecondForm.jpeg" />
         </Grid>
         <Grid item xs={12} md={6} sx={styles.registerFormSide}>
+          <Box sx={styles.buttonContainer}>
+            <Button sx={styles.goBackButton} onClick={onStepChange}><FaArrowLeft style={styles.leftArrowIcon as React.CSSProperties} /></Button>
+          </Box>
           <Box component="img" sx={styles.flexDeskLogo} src="src/assets/images/flexDeskLogo.jpeg" />
-          <form onSubmit={formik.handleSubmit}>
-            <TextInput formik={formik} accessor="name" label="Name" />
-            <TextInput formik={formik} accessor="surname" label="Surname" />
-            <TextInput formik={formik} accessor="mail" label="E-mail" />
-            <TextInput formik={formik} accessor="phonenumber" label="Phone" />
-            <TextInput formik={formik} accessor="password" label="Password" type="password" />
-            <TextInput formik={formik} accessor="repeatPassword" label="Confirm password" type="password" />
-            <Button type="submit">Register</Button>
-          </form>
+          <Box component="form" onSubmit={formik.handleSubmit} sx={styles.registerForm}>
+            <Box sx={styles.textFieldBar}>
+              <TextInput formik={formik} accessor="name" label="Name" />
+              <TextInput formik={formik} accessor="surname" label="Surname" />
+            </Box>
+            <Box sx={styles.textFieldBar}>
+              <TextInput formik={formik} accessor="mail" label="E-mail" />
+              <TextInput formik={formik} accessor="phonenumber" label="Phone" />
+            </Box>
+            <Box sx={styles.textFieldBar}>
+              <TextInput formik={formik} accessor="password" label="Password" type="password" />
+              <TextInput formik={formik} accessor="repeatPassword" label="Confirm password" type="password" />
+            </Box>
+            <Button type="submit" sx={styles.registerButton}>Register</Button>
+          </Box>
         </Grid>
       </Grid>
     </Container>
