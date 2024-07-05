@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { loadSmplrJs } from '@smplrspace/smplr-loader';
 import { getAllDesks } from '../../api/getAllDesks';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 import { ModalOnDesk } from './../ModalOnDesk';
 import { useSessionContext } from './../SessionProvider';
 import { sendReservationValues } from '../../api/sendReservationValues';
@@ -10,19 +10,17 @@ import { getReservationForDate } from '../../api/getReservationsForDate';
 import { Desk } from './SpaceViewer.types';
 import { Box } from '@mui/material';
 
-import { styles } from './SpaceViewer.styles'
-
+import { styles } from './SpaceViewer.styles';
 
 export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
-  console.log(selectedDate)
+  console.log(selectedDate);
 
-  const { session } = useSessionContext()
+  const { session } = useSessionContext();
 
   const [_, setViewerReady] = useState(false);
   const [selectedDesk, setSelectedDesk] = useState<Desk | null>(null);
-  const [layerController, setLayerController] = useState<any>(undefined)
+  const [layerController, setLayerController] = useState<any>(undefined);
   const spaceRef = useRef<any>();
-
 
   const { data: desks, isLoading, error } = useQuery({
     queryKey: ['desks'],
@@ -34,7 +32,7 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
     queryFn: () => getReservationForDate(format(selectedDate, 'yyyy-MM-dd')),
   });
 
-  console.log("reser", reservations)
+  console.log("reser", reservations);
 
   const handleDeskClick = (desk: Desk) => {
     console.log('Selected desk:', desk);
@@ -45,27 +43,28 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
     setSelectedDesk(null);
   };
 
-  const handleBook = async () => {
+  const reservationMutation = useMutation({
+    mutationFn: (reservationData: { date: string; furnitureId: string }) => sendReservationValues(reservationData),
+    onSuccess: () => {
+      console.log('Reservation successful');
+      setSelectedDesk(null);
+      refetchReservation();
+    },
+    onError: () => {
+      console.log('Reservation failed');
+    },
+  });
 
+  const handleBook = () => {
     if (session && selectedDate && selectedDesk) {
-
       const formattedDate = format(selectedDate, 'yyyy-MM-dd');
-      // TODO: przenies do react query i uzyj useMutation
-      const success = await sendReservationValues({
+      reservationMutation.mutate({
         date: formattedDate,
         furnitureId: selectedDesk.furnitureId,
       });
-      if (success) {
-        console.log('Reservation successful');
-        setSelectedDesk(null);
-        refetchReservation()
-      } else {
-        console.log('Reservation failed');
-      }
-      console.log(formattedDate)
+      console.log(formattedDate);
     }
   };
-
 
   useEffect(() => {
     loadSmplrJs('esm')
@@ -86,7 +85,6 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
               data: desks || [],
               tooltip: (d: Desk) => `${d.name} - ${d.available ? 'free' : 'occupied'}`,
               color: (d: Desk) => {
-                // console.log("2", reservations?.find(res => res.furnitureId === d.furnitureId) ? '#f75e56' : '#50b268')
                 return reservations?.find(res => res.furnitureId === d.furnitureId) ? '#f75e56' : '#50b268';
               },
               onClick: (d: Desk) => {
@@ -94,18 +92,15 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
               },
             });
 
-            setLayerController(controller)
+            setLayerController(controller);
           },
           onError: (error: string) => console.error('Could not start viewer', error),
         });
       })
       .catch((error) => console.error(error));
-  }, [])
-
-
+  }, [desks, reservations]);
 
   useEffect(() => {
-
     if (desks && layerController) {
       layerController.update({
         data: desks,
@@ -114,9 +109,7 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
         }
       })
     }
-
   }, [desks, layerController, reservations]);
-
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -124,12 +117,12 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
   if (error) {
     return <div>Error loading desks</div>;
   }
-
   if (!desks) {
     return <div>No data</div>;
   }
-  console.log(selectedDate)
-  //console.log(format(selectedDate, 'EEEE, MMMM d'))
+
+  console.log(selectedDate);
+
   return (
     <>
       <div className="smplr-wrapper">
