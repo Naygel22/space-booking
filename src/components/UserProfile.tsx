@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getUserDataById } from "../api/getUserDataById";
 import { useSessionContext } from "./SessionProvider";
 import { Avatar } from "@mui/material";
+import { Reservations } from "./Reservations/Reservations";
+import { Link } from "react-router-dom";
 
 
 export const UserProfile = () => {
@@ -56,6 +58,8 @@ export const UserProfile = () => {
             </div>
 
           </div>
+          <Link to='/myreservations'>Reservations</Link>
+
         </>
       )}
     </div>

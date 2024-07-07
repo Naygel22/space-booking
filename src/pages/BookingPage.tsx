@@ -2,7 +2,7 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { SpaceViewer } from "../components/SpaceViewer/SpaceViewer"
 import { useState } from "react";
-import { LoginInfoToBook } from "../components/LoginInfoToBook";
+import { LoginInfoToBook } from "../components/LoginInfoToBook/LoginInfoToBook";
 import { useSessionContext } from "../components/SessionProvider";
 
 

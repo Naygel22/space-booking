@@ -4,6 +4,7 @@ import { LoginPage } from "../pages/LoginPage"
 import { useSessionContext } from "./SessionProvider"
 import { UserProfile } from "./UserProfile"
 import { BookingPage } from "../pages/BookingPage"
+import { Reservations } from "./Reservations/Reservations"
 
 export const Browse = () => {
   const { session } = useSessionContext()
@@ -21,7 +22,10 @@ export const Browse = () => {
         </>
       }
       {session &&
-        <Route path='/profile' element={<UserProfile />} />
+        <>
+          <Route path='/profile' element={<UserProfile />} />
+          <Route path='/myreservations' element={<Reservations />} />
+        </>
       }
 
     </Routes>
