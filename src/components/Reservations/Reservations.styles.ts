@@ -3,11 +3,9 @@ import { SxProps, Theme } from "@mui/material";
 export const styles: { [key: string]: SxProps<Theme> } = {
   container: {
     padding: '20px',
-    border: '1px solid #ccc',
     borderRadius: '10px',
-    marginTop: '20px',
     backgroundColor: '#2e2d2b',
-    width: '55%'
+    width: '100%'
   },
   header: {
     borderBottom: '2px solid #000',

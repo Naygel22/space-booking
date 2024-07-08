@@ -1,10 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getUserDataById } from "../api/getUserDataById";
 import { useSessionContext } from "./SessionProvider";
-import { Avatar } from "@mui/material";
-import { Reservations } from "./Reservations/Reservations";
-import { Link } from "react-router-dom";
-
+import { Avatar, Box, Grid, Typography, CircularProgress, Container, Paper } from "@mui/material";
 
 export const UserProfile = () => {
   const { session } = useSessionContext();
@@ -12,56 +9,54 @@ export const UserProfile = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ['userName'],
     queryFn: () => getUserDataById(session),
-    enabled: !!session
+    enabled: !!session,
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+        <CircularProgress />
+      </Box>
+    );
   }
   if (error) {
-    return <div>Error loading desks</div>;
+    return <Typography>Error loading user data</Typography>;
   }
-
   if (!data) {
-    return <div>No data</div>;
+    return <Typography>No data available</Typography>;
   }
 
   return (
-    <div className="userProfile">
-      {data && (
-        <>
-          <Avatar
-            sx={{
-              width: 100,
-              height: 100
-            }}
-          >{data ? data[0].name[0] : null}</Avatar>
-          <div>
-            <div className="oneUserDataBar">
-              <div className="label">Name</div>
-              <div className="userDataValue">{data[0].name}</div>
-            </div>
-
-            <div className="oneUserDataBar">
-              <div className="label">Surname</div>
-              <div className="userDataValue">{data[0].surname}</div>
-            </div>
-
-            <div className="oneUserDataBar">
-              <div className="label">Email</div>
-              <div className="userDataValue">{data[0].mail}</div>
-            </div>
-
-            <div className="oneUserDataBar">
-              <div className="label">Phone number</div>
-              <div className="userDataValue">{data[0].phonenumber}</div>
-            </div>
-
-          </div>
-          <Link to='/myreservations'>Reservations</Link>
-
-        </>
-      )}
-    </div>
+    <Container>
+      <Box >
+        <Paper sx={{ padding: 3, width: '100%' }}>
+          <Box display="flex" flexDirection="column" alignItems="center">
+            <Avatar sx={{ width: 100, height: 100 }}>
+              {data[0].name[0]}
+            </Avatar>
+            <Box marginTop={5} width="100%">
+              <Grid container spacing={2} justifyContent="center">
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="subtitle2" color="textSecondary" align="center">Name</Typography>
+                  <Typography variant="body1" align="center">{data[0].name}</Typography>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="subtitle2" color="textSecondary" align="center">Surname</Typography>
+                  <Typography variant="body1" align="center">{data[0].surname}</Typography>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="subtitle2" color="textSecondary" align="center">Email</Typography>
+                  <Typography variant="body1" align="center">{data[0].mail}</Typography>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="subtitle2" color="textSecondary" align="center">Phone number</Typography>
+                  <Typography variant="body1" align="center">{data[0].phonenumber}</Typography>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+        </Paper>
+      </Box>
+    </Container>
   );
 };

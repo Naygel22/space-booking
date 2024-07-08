@@ -8,9 +8,6 @@ import { sendReservationValues } from '../../api/sendReservationValues';
 import { format } from 'date-fns';
 import { getReservationForDate } from '../../api/getReservationsForDate';
 import { Desk } from './SpaceViewer.types';
-import { Box } from '@mui/material';
-
-import { styles } from './SpaceViewer.styles';
 
 export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
   console.log(selectedDate);
@@ -83,7 +80,7 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
               id: 'desks',
               type: 'furniture',
               data: desks || [],
-              tooltip: (d: Desk) => `${d.name} - ${d.available ? 'free' : 'occupied'}`,
+              tooltip: (d: Desk) => { return reservations?.find(res => res.furnitureId === d.furnitureId) ? `${d.name} - occupied` : `${d.name} - free` },
               color: (d: Desk) => {
                 return reservations?.find(res => res.furnitureId === d.furnitureId) ? '#f75e56' : '#50b268';
               },
@@ -128,8 +125,6 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
       <div className="smplr-wrapper">
         <div id="test" className="smplr-embed"></div>
       </div>
-
-      <Box sx={styles}></Box>
 
       {selectedDesk && (
         <ModalOnDesk desk={selectedDesk} onClose={handleCloseModal} onBook={handleBook} selectedDate={selectedDate} />

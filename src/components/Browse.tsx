@@ -2,9 +2,9 @@ import { Route, Routes } from "react-router-dom"
 import { RegisterPage } from "../pages/RegisterPage"
 import { LoginPage } from "../pages/LoginPage"
 import { useSessionContext } from "./SessionProvider"
-import { UserProfile } from "./UserProfile"
 import { BookingPage } from "../pages/BookingPage"
 import { Reservations } from "./Reservations/Reservations"
+import { UserDashboard } from "./UserDashboard/UserDashboard"
 
 export const Browse = () => {
   const { session } = useSessionContext()
@@ -23,7 +23,7 @@ export const Browse = () => {
       }
       {session &&
         <>
-          <Route path='/profile' element={<UserProfile />} />
+          <Route path='/profile' element={<UserDashboard />} />
           <Route path='/myreservations' element={<Reservations />} />
         </>
       }
