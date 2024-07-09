@@ -29,8 +29,7 @@ export const Navbar = () => {
     <nav className="navbar">
       <Link to='/'>
         <div className="logoBar">
-          <img className="flexDeskLogoNavbar" src="src/assets/images/flexDeskLogo.jpeg" />
-          <div>FLEXDESK</div>
+          <img className="flexDeskLogoNavbar" src="src/assets/images/navbarLogo.jpeg" />
         </div>
       </Link>
 

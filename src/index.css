@@ -130,7 +130,7 @@ h6 {
 .signButtons {
   display: flex;
   align-items: center;
-  margin-left: 100px;
+  margin-left: 50px;
   cursor: pointer;
 }
 
@@ -152,101 +152,6 @@ h6 {
   margin-top: 20px;
 }
 
-/* .loginForm {
-  display: flex;
-  flex-direction: column;
-  width: 500px;
-  padding: 40px;
-  padding-bottom: 0;
-  gap: 15px;
-}
-
-.loginButton {
-  height: 50px;
-  border-radius: 10px;
-  cursor: pointer;
-  background-color: #8cb835;
-  margin-top: 40px;
-  margin-bottom: 20px;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  border: none;
-}
-
-.loginButton:hover {
-  background-color: #afc786;
-}
-
-.loginWithGoogleButton,
-.loginWithGithubButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 45px;
-  gap: 10px;
-  background-color: #4285F4;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.loginWithGoogleButton {
-  background-color: #ffffff;
-  color: #24292e;
-  margin-top: 20px;
-}
-
-.loginWithGoogleButton:hover {
-  background-color: #357ae8;
-  color: white;
-}
-
-.loginWithGithubButton {
-  background-color: #000000;
-
-}
-
-.loginWithGithubButton:hover {
-  background-color: #24292e;
-}
-
-.googleLogo {
-  width: 20px;
-  height: 20px;
-  margin-right: 30px;
-  margin-left: -70px;
-}
-
-.githubLogo {
-  width: 25px;
-  height: 25px;
-  margin-right: 20px;
-  margin-left: -75px;
-} */
-
-/* .loginIsNew {
-  background-color: #211f1c;
-  height: 60px;
-  margin-top: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0 0 10px 10px;
-} */
-
-/* .signupButtonInLoginForm {
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 15px;
-  text-decoration: none;
-} */
-
 .avatarBadge {
   display: flex;
   align-items: center;
@@ -266,21 +171,15 @@ h6 {
   border: 1px solid black;
 }
 
-.flexDeskLogo {
-  width: 200px;
-  height: 200px;
-  border-radius: 150px;
-}
-
 .logoBar {
   display: flex;
   align-items: center;
 }
 
 .flexDeskLogoNavbar {
-  width: 70px;
-  height: 70px;
-  border-radius: 40px;
+  width: 33%;
+  height: auto;
+  border-radius: 20px;
 }
 
 .logoAndLoginForm {
@@ -289,19 +188,3 @@ h6 {
   align-items: center;
   padding-top: 40px;
 }
-
-/* .registerFirstForm {
-  display: flex;
-  flex-direction: column;
-  width: 600px;
-  background-color: #2e2d2b;
-  border-radius: 10px;
-  margin-top: 20px;
-  padding: 40px;
-} */
-
-/* .registerFirstFormImg {
-  max-width: 100%;
-  height: auto;
-  border-radius: 300px;
-} */

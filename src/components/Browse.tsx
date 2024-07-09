@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import { RegisterPage } from "../pages/RegisterPage"
 import { LoginPage } from "../pages/LoginPage"
 import { useSessionContext } from "./SessionProvider"
-import { BookingPage } from "../pages/BookingPage"
+import { BookingPage } from "../pages/BookingPage/BookingPage"
 import { Reservations } from "./Reservations/Reservations"
 import { UserDashboard } from "./UserDashboard/UserDashboard"
 
