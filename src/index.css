@@ -39,8 +39,7 @@ h6 {
 }
 
 .app {
-  padding-left: 80px;
-  padding-right: 80px;
+
   display: flex;
   justify-content: center;
 }
@@ -130,7 +129,7 @@ h6 {
 .signButtons {
   display: flex;
   align-items: center;
-  margin-left: 50px;
+  margin-left: 20px;
   cursor: pointer;
 }
 

@@ -5,13 +5,14 @@ import { useSessionContext } from "./SessionProvider"
 import { BookingPage } from "../pages/BookingPage/BookingPage"
 import { Reservations } from "./Reservations/Reservations"
 import { UserDashboard } from "./UserDashboard/UserDashboard"
+import { HomePage } from "../pages/HomePage/HomePage"
 
 export const Browse = () => {
   const { session } = useSessionContext()
 
   return (
     <Routes>
-      <Route path="/" element={<div>Home</div>} />
+      <Route path="/" element={<HomePage />} />
       <Route path="/booking" element={<BookingPage />} />
       <Route path='/pricing' element={<div>Pricing</div>} />
       <Route path='/contact' element={<div>Contact</div>} />

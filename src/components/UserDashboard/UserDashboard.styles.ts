@@ -40,6 +40,19 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     },
   },
   buttonSelected: {
+    marginBottom: '10px',
+    width: '80%',
+    height: '40px',
+    textAlign: 'left',
+    color: 'white',
+    textTransform: 'none',
+    borderRadius: '10px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    '&:hover': {
+      backgroundColor: '#3c3c3c',
+    },
     backgroundColor: '#3c3c3c',
   },
   content: {

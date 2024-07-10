@@ -15,21 +15,21 @@ export const UserDashboard = () => {
         <Grid item xs={3} sx={styles.sidebar}>
           <Box component='img' sx={styles.flexDeskLogo} src="src/assets/images/flexDeskLogo.jpeg" />
           <Button
-            sx={{ ...styles.button, ...(selectedTab === 'profile' && styles.buttonSelected) }}
+            sx={{ ...(selectedTab === 'profile' ? styles.buttonSelected : styles.button) }}
             onClick={() => setSelectedTab('profile')}
           >
             <BsFillPersonFill style={{ marginRight: '15px', fontSize: '17px' }} />
             My Profile
           </Button>
           <Button
-            sx={{ ...styles.button, ...(selectedTab === 'reservations' && styles.buttonSelected) }}
+            sx={{ ...(selectedTab === 'reservations' ? styles.buttonSelected : styles.button) }}
             onClick={() => setSelectedTab('reservations')}
           >
             <BsCalendar2CheckFill style={{ marginRight: '15px', fontSize: '17px' }} />
             My Reservations
           </Button>
           <Button
-            sx={{ ...styles.button, ...(selectedTab === 'calendar' && styles.buttonSelected) }}
+            sx={{ ...(selectedTab === 'calendar' ? styles.buttonSelected : styles.button) }}
             onClick={() => setSelectedTab('calendar')}
           >
             <BsCalendar2Date style={{ marginRight: '15px', fontSize: '17px' }} />

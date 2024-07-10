@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { loadSmplrJs } from '@smplrspace/smplr-loader';
 import { getAllDesks } from '../../api/getAllDesks';
-import { useQuery, useMutation } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ModalOnDesk } from './../ModalOnDesk';
 import { useSessionContext } from './../SessionProvider';
 import { sendReservationValues } from '../../api/sendReservationValues';
@@ -14,10 +14,10 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
 
   const { session } = useSessionContext();
 
-  const [_, setViewerReady] = useState(false);
   const [selectedDesk, setSelectedDesk] = useState<Desk | null>(null);
   const [layerController, setLayerController] = useState<any>(undefined);
   const spaceRef = useRef<any>();
+  const queryClient = useQueryClient();
 
   const { data: desks, isLoading, error } = useQuery({
     queryKey: ['desks'],
@@ -34,6 +34,7 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
   const handleDeskClick = (desk: Desk) => {
     console.log('Selected desk:', desk);
     setSelectedDesk(desk);
+
   };
 
   const handleCloseModal = () => {
@@ -44,6 +45,7 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
     mutationFn: (reservationData: { date: string; furnitureId: string }) => sendReservationValues(reservationData),
     onSuccess: () => {
       console.log('Reservation successful');
+      queryClient.invalidateQueries({ queryKey: ["userReservations"] });
       setSelectedDesk(null);
       refetchReservation();
     },
@@ -75,7 +77,6 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
         spaceRef.current.startViewer({
           allowModeChange: true,
           onReady: () => {
-            setViewerReady(true);
             const controller = spaceRef.current.addDataLayer({
               id: 'desks',
               type: 'furniture',
@@ -85,8 +86,11 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
                 return reservations?.find(res => res.furnitureId === d.furnitureId) ? '#f75e56' : '#50b268';
               },
               onClick: (d: Desk) => {
-                handleDeskClick(d);
+                if (!reservations?.find(res => res.furnitureId === d.furnitureId)) {
+                  handleDeskClick(d);
+                }
               },
+
             });
 
             setLayerController(controller);
@@ -101,6 +105,7 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
     if (desks && layerController) {
       layerController.update({
         data: desks,
+        tooltip: (d: Desk) => { return reservations?.find(res => res.furnitureId === d.furnitureId) ? `${d.name} - occupied` : `${d.name} - free` },
         color: (d: Desk) => {
           return reservations?.find(res => res.furnitureId === d.furnitureId) ? '#f75e56' : '#50b268';
         }

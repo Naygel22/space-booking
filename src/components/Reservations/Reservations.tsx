@@ -10,7 +10,7 @@ export const Reservations = () => {
   const { session } = useSessionContext();
 
   const { data: reservations, isLoading, error, refetch } = useQuery({
-    queryKey: ['reservations'],
+    queryKey: ['userReservations', session?.user.id],
     queryFn: () => getReservationsForUser(session?.user.id),
   });
 
