@@ -8,6 +8,7 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     backgroundColor: '#f5f5f5',
     paddingTop: '30px',
     paddingBottom: '30px',
+    marginTop: '50px',
     borderRadius: '10px',
     maxWidth: '50%',
   },

@@ -1,7 +1,7 @@
 //import { Register } from "../components/Register"
 import { useState } from "react";
-import { RegisterFirstForm } from "../components/RegisterFirstForm/RegisterFirstForm"
-import { Register } from "../components/Register/Register";
+import { RegisterFirstForm } from "../../components/RegisterFirstForm/RegisterFirstForm"
+import { Register } from "../../components/Register/Register";
 
 export const RegisterPage = () => {
   const [step, setStep] = useState(1);

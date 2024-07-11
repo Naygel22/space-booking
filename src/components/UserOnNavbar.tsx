@@ -1,5 +1,6 @@
-import { Avatar, Menu, MenuItem } from "@mui/material";
+import { Avatar, ListItem, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
+import { BsBoxArrowRight, BsPersonCircle } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 type UserOnNavbarType = {
@@ -47,8 +48,23 @@ export const UserOnNavbar = ({ userData, handleLogout }: UserOnNavbarType) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleAccountClick}>My account</MenuItem>
-        <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
+        <MenuItem onClick={handleAccountClick}>
+          <ListItem >
+            <ListItemIcon>
+              <BsPersonCircle />
+            </ListItemIcon>
+            <ListItemText primary="My account" />
+          </ListItem>
+        </MenuItem>
+
+        <MenuItem onClick={handleLogoutClick}>
+          <ListItem>
+            <ListItemIcon>
+              <BsBoxArrowRight />
+            </ListItemIcon>
+            <ListItemText primary="Logout" />
+          </ListItem>
+        </MenuItem>
       </Menu>
     </div>
   );

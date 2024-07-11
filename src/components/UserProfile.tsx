@@ -29,7 +29,7 @@ export const UserProfile = () => {
   return (
     <Container>
       <Box >
-        <Paper sx={{ padding: 3, width: '100%' }}>
+        <Paper sx={{ padding: 10, width: '100%', height: '100%', backgroundColor: '#f1f0ea', }}>
           <Box display="flex" flexDirection="column" alignItems="center">
             <Avatar sx={{ width: 100, height: 100 }}>
               {data[0].name[0]}
