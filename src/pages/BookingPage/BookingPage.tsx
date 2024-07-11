@@ -24,7 +24,7 @@ export const BookingPage = () => {
     <Box sx={styles.bookingPageContainer}>
 
       <Box sx={styles.datePickerContainer}>
-        <Box component="img" sx={styles.flexDeskLogo} src="src/assets/images/flexDeskLogo.jpeg" alt="Flex Desk Logo" />
+        <Box component="img" sx={styles.flexDeskLogo} src="/assets/images/flexDeskLogo.jpeg" alt="Flex Desk Logo" />
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
             label="Pick your date"

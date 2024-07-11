@@ -8,7 +8,7 @@ export const HomePage = () => {
   return (
     <Box sx={styles.homepageContainer}>
       <Box sx={styles.headingContainer}>
-        <Box component="img" src="src/assets/images/flexDeskLogo.jpeg" alt="Flex Desk Logo" sx={styles.logo} />
+        <Box component="img" src="/assets/images/flexDeskLogo.jpeg" alt="Flex Desk Logo" sx={styles.logo} />
         <Typography variant="h4" sx={styles.headingText}>Your Premier Co-Working Destination</Typography>
         <Typography variant="h6" sx={styles.subheadingText}>
           Discover a dynamic workspace designed to inspire productivity and foster collaboration. At FlexDesk, we provide

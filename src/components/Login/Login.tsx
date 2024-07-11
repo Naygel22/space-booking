@@ -26,7 +26,7 @@ export const Login = () => {
   return (
     <>
       <Box sx={styles.logoAndLoginForm}>
-        <Box component='img' sx={styles.flexDeskLogo} src="src/assets/images/flexDeskLogo.jpeg" />
+        <Box component='img' sx={styles.flexDeskLogo} src="/assets/images/flexDeskLogo.jpeg" />
         <Box component="form" onSubmit={formik.handleSubmit} sx={styles.loginForm}>
           <TextInput formik={formik} accessor='mail' label='E-mail' />
           <TextInput formik={formik} accessor='password' label='Password' type='password' />
@@ -34,13 +34,13 @@ export const Login = () => {
           <Divider sx={styles.divider}>OR</Divider>
 
           <Button type="button" sx={styles.loginWithGoogleButton}
-            startIcon={<Box component='img' sx={styles.googleLogo} src="src/assets/images/googleLogo.png" />
+            startIcon={<Box component='img' sx={styles.googleLogo} src="/assets/images/googleLogo.png" />
             }>
             Log in with Google
           </Button>
 
           <Button type="button" sx={styles.loginWithGithubButton}
-            startIcon={<Box component="img" src="src/assets/images/github-mark-white.svg" sx={styles.githubLogo} />
+            startIcon={<Box component="img" src="/assets/images/github-mark-white.svg" sx={styles.githubLogo} />
             }>
             Log in with GitHub
           </Button>

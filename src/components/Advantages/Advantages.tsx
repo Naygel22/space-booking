@@ -5,39 +5,39 @@ import { styles } from "./Advantages.styles";
 const advantages = [
   {
     text: "No contract required",
-    imgSource: 'src/assets/images/contract.png'
+    imgSource: '/assets/images/contract.png'
   },
   {
     text: "Free cancellation",
-    imgSource: 'src/assets/images/cancel.png'
+    imgSource: '/assets/images/cancel.png'
   },
   {
     text: "Fast and unlimited wireless fiber optic internet",
-    imgSource: 'src/assets/images/wifi.png'
+    imgSource: '/assets/images/wifi.png'
   },
   {
     text: "Ergonomic, height-adjustable desks where you won't run out of space",
-    imgSource: 'src/assets/images/workplace.png'
+    imgSource: '/assets/images/workplace.png'
   },
   {
     text: 'Comfortable office chairs designed for long hours of work',
-    imgSource: 'src/assets/images/gaming-chair.png'
+    imgSource: '/assets/images/gaming-chair.png'
   },
   {
     text: "Air conditioning",
-    imgSource: 'src/assets/images/air-conditioner.png'
+    imgSource: '/assets/images/air-conditioner.png'
   },
   {
     text: "A modern common area with comfortable sofas and a TV",
-    imgSource: 'src/assets/images/living-room.png'
+    imgSource: '/assets/images/living-room.png'
   },
   {
     text: "Well-equipped kitchen",
-    imgSource: 'src/assets/images/kitchen.png'
+    imgSource: '/assets/images/kitchen.png'
   },
   {
     text: "Elevator in the building and access for people with disabilities",
-    imgSource: 'src/assets/images/elevator.png'
+    imgSource: '/assets/images/elevator.png'
   },
 ]
 

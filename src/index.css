@@ -17,7 +17,7 @@
 
 body {
   background-color: #464949;
-  background-image: url('src/assets/images/Designer (3).jpeg');
+  background-image: url('/assets/images/Designer (3).jpeg');
   background-size: cover;
   /* Dopasowuje obraz do całego tła */
   background-repeat: no-repeat;

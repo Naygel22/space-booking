@@ -13,7 +13,7 @@ export const UserDashboard = () => {
     <Box sx={styles.container}>
       <Grid container>
         <Grid item xs={3} sx={styles.sidebar}>
-          <Box component='img' sx={styles.flexDeskLogo} src="src/assets/images/flexDeskLogo.jpeg" />
+          <Box component='img' sx={styles.flexDeskLogo} src="/assets/images/flexDeskLogo.jpeg" />
           <Button
             sx={{ ...(selectedTab === 'profile' ? styles.buttonSelected : styles.button) }}
             onClick={() => setSelectedTab('profile')}

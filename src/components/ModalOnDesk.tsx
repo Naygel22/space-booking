@@ -48,7 +48,7 @@ export const ModalOnDesk = ({ desk, onClose, onBook }: ModalOnDeskProps) => {
         <Typography id="modal-modal-title" variant="h6" component="h2">
           {desk.name}
         </Typography>
-        <img src='./src/assets/images/desk2monitors.jpeg' className='desk2monitorsImg' />
+        <img src='.//assets/images/desk2monitors.jpeg' className='desk2monitorsImg' />
         <p>Equipment</p>
 
         <div className="modalDescription">

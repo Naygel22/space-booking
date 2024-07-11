@@ -7,7 +7,7 @@ export const LoginInfoToBook = () => {
     <Box sx={styles.container}>
       <Grid container>
         <Grid item xs={12} md={6} sx={styles.imageContainer}>
-          <Box component="img" sx={styles.loginAccessImg} src="src/assets/images/loginBeforeAccess.jpeg" />
+          <Box component="img" sx={styles.loginAccessImg} src="/assets/images/loginBeforeAccess.jpeg" />
         </Grid>
         <Grid item xs={12} md={6} sx={styles.textContainer}>
           <Typography variant="h6" sx={styles.title}>

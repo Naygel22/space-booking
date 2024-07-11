@@ -30,13 +30,13 @@ export const Register = ({ onStepChange }: RegisterProps) => {
     <Container sx={styles.registerContainer}>
       <Grid container>
         <Grid item xs={12} md={6} sx={styles.imageContainer}>
-          <Box component="img" sx={styles.registerImg} src="src/assets/images/registerSecondForm.jpeg" />
+          <Box component="img" sx={styles.registerImg} src="/assets/images/registerSecondForm.jpeg" />
         </Grid>
         <Grid item xs={12} md={6} sx={styles.registerFormSide}>
           <Box sx={styles.buttonContainer}>
             <Button sx={styles.goBackButton} onClick={onStepChange}><FaArrowLeft style={styles.leftArrowIcon as React.CSSProperties} /></Button>
           </Box>
-          <Box component="img" sx={styles.flexDeskLogo} src="src/assets/images/flexDeskLogo.jpeg" />
+          <Box component="img" sx={styles.flexDeskLogo} src="/assets/images/flexDeskLogo.jpeg" />
           <Box component="form" onSubmit={formik.handleSubmit} sx={styles.registerForm}>
             <Box sx={styles.textFieldBar}>
               <TextInput formik={formik} accessor="name" label="Name" />
