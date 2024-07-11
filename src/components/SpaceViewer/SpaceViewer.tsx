@@ -65,6 +65,8 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
     }
   };
 
+  const getDeskColor = (d: Desk) => reservations?.find(res => res.furnitureId === d.furnitureId) ? '#f75e56' : '#50b268';
+
   useEffect(() => {
     loadSmplrJs('esm')
       .then((smplr) => {
@@ -82,9 +84,7 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
               type: 'furniture',
               data: desks || [],
               tooltip: (d: Desk) => { return reservations?.find(res => res.furnitureId === d.furnitureId) ? `${d.name} - occupied` : `${d.name} - free` },
-              color: (d: Desk) => {
-                return reservations?.find(res => res.furnitureId === d.furnitureId) ? '#f75e56' : '#50b268';
-              },
+              color: getDeskColor,
               onClick: (d: Desk) => {
                 if (!reservations?.find(res => res.furnitureId === d.furnitureId)) {
                   handleDeskClick(d);
@@ -106,12 +106,16 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
       layerController.update({
         data: desks,
         tooltip: (d: Desk) => { return reservations?.find(res => res.furnitureId === d.furnitureId) ? `${d.name} - occupied` : `${d.name} - free` },
-        color: (d: Desk) => {
-          return reservations?.find(res => res.furnitureId === d.furnitureId) ? '#f75e56' : '#50b268';
-        }
+        color: getDeskColor,
+        onClick: (d: Desk) => {
+          if (!reservations?.find(res => res.furnitureId === d.furnitureId)) {
+            handleDeskClick(d);
+          }
+        },
       })
     }
   }, [desks, layerController, reservations]);
+
 
   if (isLoading) {
     return <div>Loading...</div>;

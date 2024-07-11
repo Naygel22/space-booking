@@ -47,6 +47,9 @@ export const BookingPage = () => {
                   borderColor: 'white',
                 },
               },
+              "& label.Mui-focused": {
+                color: "white"
+              },
               '.MuiInputBase-input': {
                 color: 'white',
               },
@@ -58,16 +61,6 @@ export const BookingPage = () => {
               },
               '.MuiPickersDay-root': {
                 color: 'white',
-              },
-            }}
-            componentsProps={{
-              textField: {
-                InputLabelProps: {
-                  style: { color: 'white' },
-                },
-                InputProps: {
-                  style: { color: 'white' },
-                },
               },
             }}
           />

@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import { styles } from './HomePage.styles';
+import * as styles from './HomePage.styles';
 import { Advantages } from '../../components/Advantages/Advantages';
 import { Link } from 'react-router-dom';
 import { ExamplePricing } from '../../components/ExamplePricing/ExamplePricing';

@@ -6,7 +6,7 @@ type UserOnNavbarType = {
   userData: Array<{
     name: string;
     surname: string;
-  }>
+  }> | undefined
   handleLogout: () => void
 };
 
@@ -38,9 +38,9 @@ export const UserOnNavbar = ({ userData, handleLogout }: UserOnNavbarType) => {
         onClick={handleClick}
         sx={{ cursor: 'pointer' }}
       >
-        {userData ? userData[0].name[0] : null}
+        {userData?.[0] ? userData[0].name[0] : null}
       </Avatar>
-      <div className="userNameOnBadge">{userData ? userData[0].name : null}</div>
+      <div className="userNameOnBadge">{userData?.[0] ? userData[0].name : null}</div>
 
       <Menu
         anchorEl={anchorEl}
