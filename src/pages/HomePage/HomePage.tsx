@@ -3,6 +3,7 @@ import * as styles from './HomePage.styles';
 import { Advantages } from '../../components/Advantages/Advantages';
 import { Link } from 'react-router-dom';
 import { ExamplePricing } from '../../components/ExamplePricing/ExamplePricing';
+import { Footer } from '../../components/Footer/Footer';
 
 export const HomePage = () => {
   return (
@@ -20,6 +21,7 @@ export const HomePage = () => {
       </Box>
       <Advantages />
       <ExamplePricing />
+      <Footer />
     </Box>
   );
 };

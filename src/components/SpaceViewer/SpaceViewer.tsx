@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { loadSmplrJs } from '@smplrspace/smplr-loader';
 import { getAllDesks } from '../../api/getAllDesks';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { ModalOnDesk } from './../ModalOnDesk';
+import { ModalOnDesk } from '../ModalOnDesk/ModalOnDesk';
 import { useSessionContext } from './../SessionProvider';
 import { sendReservationValues } from '../../api/sendReservationValues';
 import { format } from 'date-fns';

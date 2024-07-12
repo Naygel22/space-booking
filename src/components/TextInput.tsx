@@ -1,11 +1,13 @@
 import TextField from '@mui/material/TextField';
 import { FormikProps } from 'formik';
 
-export const TextInput = <FormValues,>({ formik, accessor, label, type = 'text' }: {
+export const TextInput = <FormValues,>({ formik, accessor, label, type = 'text', multiline = false, rows = 1 }: {
   formik: FormikProps<FormValues>,
-  accessor: keyof FormValues & string
+  accessor: keyof FormValues & string,
   label: string,
-  type?: string
+  type?: string,
+  multiline?: boolean,
+  rows?: number,
 }) => {
   return (
     <TextField
@@ -22,6 +24,8 @@ export const TextInput = <FormValues,>({ formik, accessor, label, type = 'text' 
       onBlur={formik.handleBlur}
       value={formik.values[accessor]}
       type={type}
+      multiline={multiline}
+      rows={rows}
       sx={{
         '& label.Mui-focused': {
           color: '#7d7c7a',
@@ -43,6 +47,10 @@ export const TextInput = <FormValues,>({ formik, accessor, label, type = 'text' 
             color: 'white',
             backgroundColor: '#3c3a38',
           },
+          '& textarea': {
+            color: 'white',
+            backgroundColor: '#3c3a38',
+          },
           backgroundColor: '#3c3a38',
         },
         '& .MuiFormHelperText-root': {
@@ -54,4 +62,4 @@ export const TextInput = <FormValues,>({ formik, accessor, label, type = 'text' 
       }}
     />
   );
-}
+};

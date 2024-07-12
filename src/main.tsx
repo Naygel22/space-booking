@@ -6,6 +6,7 @@ import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-qu
 import { Navbar } from './components/Navbar.tsx'
 import { BrowserRouter } from 'react-router-dom'
 import { SessionProvider } from './components/SessionProvider.tsx'
+import { NotificationProvider } from './NotificationContext.tsx'
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache(),
@@ -19,12 +20,14 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <SessionProvider>
-        <BrowserRouter>
-          <Navbar />
-          <App />
-        </BrowserRouter>
-      </SessionProvider>
+      <NotificationProvider>
+        <SessionProvider>
+          <BrowserRouter>
+            <Navbar />
+            <App />
+          </BrowserRouter>
+        </SessionProvider>
+      </NotificationProvider>
     </QueryClientProvider>
   </React.StrictMode>
 )

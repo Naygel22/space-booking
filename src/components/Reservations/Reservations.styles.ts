@@ -25,4 +25,28 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     alignItems: 'center',
     justifyContent: 'center',
   },
+  statusCompleted: {
+    color: 'green',
+    fontWeight: 'bold'
+  },
+  cancelButton: {
+    height: '35px',
+    padding: '15px',
+    borderRadius: '10px',
+    cursor: 'pointer',
+    backgroundColor: '#bc4749',
+    color: 'white',
+    fontSize: '14px',
+    fontWeight: '600',
+    border: 'none',
+    textAlign: 'center',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textDecoration: 'none',
+    '&:hover': {
+      backgroundColor: '#d36a6d',
+    },
+  },
+  
 };

@@ -5,6 +5,7 @@ import { sendLoginValues } from "../../api/sendLoginValues"
 import { Link, useNavigate } from "react-router-dom"
 import { Box, Button, Divider } from "@mui/material"
 import { styles } from "./Login.styles"
+import { useNotificationContext } from "../../NotificationContext"
 
 const initialLoginFormValues = {
   mail: '',
@@ -13,12 +14,14 @@ const initialLoginFormValues = {
 
 export const Login = () => {
   const navigate = useNavigate()
+  const { notify } = useNotificationContext()
 
   const formik = useFormik<LoginFormValues>({
     initialValues: initialLoginFormValues,
     onSubmit: (values) => {
       sendLoginValues(values)
       navigate('/')
+      notify("You succesfully logged in", "success")
     },
     validationSchema: yupLoginSchema
   })

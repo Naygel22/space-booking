@@ -2,9 +2,11 @@ import { useFormik } from "formik";
 import { TextInput } from "../TextInput";
 import { RegisterFormValues, yupRegisterSchema } from "../../validators/validators";
 import { sendRegisterValues } from "../../api/sendRegisterValues";
-import { Grid, Box, Button, Container } from "@mui/material";
+import { Grid, Box, Button } from "@mui/material";
 import { styles } from "./Register.styles";
 import { FaArrowLeft } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+import { useNotificationContext } from "../../NotificationContext";
 
 type RegisterProps = {
   onStepChange: () => void;
@@ -20,14 +22,21 @@ const initialRegisterFormValues: RegisterFormValues = {
 };
 
 export const Register = ({ onStepChange }: RegisterProps) => {
+  const navigate = useNavigate()
+  const { notify } = useNotificationContext()
+
   const formik = useFormik<RegisterFormValues>({
     initialValues: initialRegisterFormValues,
-    onSubmit: (values) => sendRegisterValues(values),
+    onSubmit: (values) => {
+      sendRegisterValues(values)
+      navigate("/login");
+      notify('You successfully registered', "success")
+    },
     validationSchema: yupRegisterSchema
   });
 
   return (
-    <Container sx={styles.registerContainer}>
+    <Box sx={styles.registerContainer}>
       <Grid container>
         <Grid item xs={12} md={6} sx={styles.imageContainer}>
           <Box component="img" sx={styles.registerImg} src="/assets/images/registerSecondForm.jpeg" />
@@ -54,6 +63,6 @@ export const Register = ({ onStepChange }: RegisterProps) => {
           </Box>
         </Grid>
       </Grid>
-    </Container>
+    </Box>
   );
 };

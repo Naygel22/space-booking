@@ -2,11 +2,12 @@ import { SxProps, Theme } from "@mui/material";
 
 export const styles: { [key: string]: SxProps<Theme> } = {
   registerContainer: {
-    marginTop: "20px",
+    marginTop: "50px",
     backgroundColor: "#2e2d2b",
     borderRadius: "10px",
     paddingLeft: 0,
-    paddingRight: 0
+    paddingRight: 0,
+    width: '60%'
   },
   imageContainer: {
     display: 'flex',
@@ -23,7 +24,9 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     flexDirection: 'column',
     alignItems: 'center',
     paddingTop: '20px',
-    position: 'relative'
+    paddingLeft: '30px',
+    paddingRight: '30px',
+    position: 'relative',
   },
   buttonContainer: {
     width: '100%',
@@ -60,6 +63,8 @@ export const styles: { [key: string]: SxProps<Theme> } = {
   },
   textFieldBar: {
     marginBottom: '20px',
+    display: 'flex',
+    gap: '20px'
   },
   registerButton: {
     height: '50px',

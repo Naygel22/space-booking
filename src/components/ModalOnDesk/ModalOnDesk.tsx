@@ -2,23 +2,10 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Desk } from './SpaceViewer/SpaceViewer.types';
+import { Desk } from '../SpaceViewer/SpaceViewer.types';
 import { MdElectricalServices, MdEventAvailable, MdHeight, MdLight, MdMonitor } from "react-icons/md";
+import { styles } from './ModalOnDesk.styles';
 
-
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 500,
-  bgcolor: 'background.paper',
-  color: 'black',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-  borders: 'none'
-};
 
 type ModalOnDeskProps = {
   desk: Desk,
@@ -43,8 +30,10 @@ export const ModalOnDesk = ({ desk, onClose, onBook }: ModalOnDeskProps) => {
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+
     >
-      <Box sx={style}>
+      <Box sx={styles.modalContentContainer}>
+        <Button onClick={onClose} sx={styles.closeButton}>X</Button>
         <Typography id="modal-modal-title" variant="h6" component="h2">
           {desk.name}
         </Typography>
@@ -89,17 +78,9 @@ export const ModalOnDesk = ({ desk, onClose, onBook }: ModalOnDeskProps) => {
             </div>
           </div>
 
-          {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <div>
-              <div>Select a Date & Time</div>
-              <DateCalendar views={['day']} value={selectedDate} onChange={handleDateChange} />
-            </div>
-
-          </LocalizationProvider> */}
-
         </div>
-        <Button onClick={onClose}>Close</Button>
-        <Button onClick={() => onBook(desk)}>Book</Button>
+
+        <Button onClick={() => onBook(desk)} sx={styles.bookButton}>Book</Button>
       </Box>
     </Modal>
   );

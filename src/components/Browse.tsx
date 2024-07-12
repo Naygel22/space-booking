@@ -7,6 +7,7 @@ import { Reservations } from "./Reservations/Reservations"
 import { UserDashboard } from "./UserDashboard/UserDashboard"
 import { HomePage } from "../pages/HomePage/HomePage"
 import { PricingPage } from "../pages/PricingPage/PricingPage"
+import { ContactPage } from "../pages/ContactPage/ContactPage"
 
 export const Browse = () => {
   const { session } = useSessionContext()
@@ -16,7 +17,7 @@ export const Browse = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/booking" element={<BookingPage />} />
       <Route path='/pricing' element={<PricingPage />} />
-      <Route path='/contact' element={<div>Contact</div>} />
+      <Route path='/contact' element={<ContactPage />} />
       {!session &&
         <>
           <Route path='/register' element={<RegisterPage />} />
