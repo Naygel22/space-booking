@@ -1,16 +1,21 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getReservationsForUser } from "../../api/getReservationsForUser";
 import { useSessionContext } from "../SessionProvider";
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Pagination, Typography } from "@mui/material";
 import { styles } from "./Reservations.styles";
 import { deleteReservationById } from "../../api/deleteReservationById";
 import { isAfter, parseISO, isToday } from 'date-fns';
 import { getAllDesks } from "../../api/getAllDesks";
 import { useNotificationContext } from "../../NotificationContext";
+import { useState } from "react";
+
+const ITEMS_PER_PAGE = 10;
+
 
 export const Reservations = () => {
   const { session } = useSessionContext();
   const { notify } = useNotificationContext()
+  const [currentPage, setCurrentPage] = useState(1);
 
   const { data: reservations, isLoading, error, refetch } = useQuery({
     queryKey: ['userReservations', session?.user.id],
@@ -48,6 +53,14 @@ export const Reservations = () => {
     return isAfter(reservationDate, today) || isToday(reservationDate);
   };
 
+  const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
+    setCurrentPage(page);
+  };
+
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const paginatedReservations = reservations?.slice().reverse().slice(startIndex, endIndex);
+
   return (
     <Box sx={styles.container}>
       <Grid container sx={styles.header}>
@@ -64,31 +77,39 @@ export const Reservations = () => {
           <Typography variant="h6" sx={styles.headerText}>Status</Typography>
         </Grid>
       </Grid>
-      {reservations?.slice().reverse().map((reservation) => {
-        const desk = desks?.find(desk => desk.furnitureId === reservation.furnitureId);
-        return (
-          <Grid container key={reservation.reservationId} sx={styles.row}>
-            <Grid item xs={3} sx={styles.cell}>
-              <Typography>{reservation.reservationId.slice(-5)}</Typography>
+      <Box sx={styles.reservationContent}>
+        {paginatedReservations?.map((reservation) => {
+          const desk = desks?.find(desk => desk.furnitureId === reservation.furnitureId);
+          return (
+            <Grid container key={reservation.reservationId} sx={styles.row}>
+              <Grid item xs={3} sx={styles.cell}>
+                <Typography>{reservation.reservationId.slice(-5)}</Typography>
+              </Grid>
+              <Grid item xs={3} sx={styles.cell}>
+                <Typography>{reservation.date}</Typography>
+              </Grid>
+              <Grid item xs={3} sx={styles.cell}>
+                <Typography>{desk ? desk.name : "Unknown Desk"}</Typography>
+              </Grid>
+              <Grid item xs={3} sx={styles.cell}>
+                {isFutureReservation(reservation.date) ? (
+                  <Button onClick={() => handleDelete(reservation.reservationId)} sx={styles.cancelButton}>Cancel</Button>
+                ) : (
+                  <Typography sx={styles.statusCompleted}>Completed</Typography>
+                )}
+              </Grid>
             </Grid>
-            <Grid item xs={3} sx={styles.cell}>
-              <Typography>{reservation.date}</Typography>
-            </Grid>
-            <Grid item xs={3} sx={styles.cell}>
-              <Typography>{desk ? desk.name : "Unknown Desk"}</Typography>
-            </Grid>
-            <Grid item xs={3} sx={styles.cell}>
-              {isFutureReservation(reservation.date) ? (
-                <Button onClick={() => {
-                  handleDelete(reservation.reservationId)
-                }} sx={styles.cancelButton}>Cancel</Button>
-              ) : (
-                <Typography sx={styles.statusCompleted}>Completed</Typography>
-              )}
-            </Grid>
-          </Grid>
-        );
-      })}
+          );
+        })}
+      </Box>
+      <Box sx={styles.paginationBox}>
+        <Pagination
+          count={Math.ceil((reservations?.length || 0) / ITEMS_PER_PAGE)}
+          page={currentPage}
+          onChange={handlePageChange}
+          sx={styles.pagination}
+        />
+      </Box>
     </Box>
   );
 };

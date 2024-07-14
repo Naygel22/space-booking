@@ -2,13 +2,12 @@ import { SxProps, Theme } from "@mui/material";
 
 export const styles: { [key: string]: SxProps<Theme> } = {
   container: {
-    paddingLeft: '20px',
-    paddingRight: '20px',
     borderRadius: '10px',
     marginTop: '20px',
     display: 'flex',
     backgroundColor: '#2e2d2b',
-    width: '70%'
+    width: '70%',
+    minHeight: '700px'
   },
   sidebar: {
     borderRight: '1px solid #ccc',
