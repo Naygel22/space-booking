@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getUserDataById } from "../api/getUserDataById";
 import { useSessionContext } from "./SessionProvider";
-import { Avatar, Box, Grid, Typography, CircularProgress, Container, Paper } from "@mui/material";
+import { Avatar, Box, Grid, Typography, CircularProgress, Paper } from "@mui/material";
 
 export const UserProfile = () => {
   const { session } = useSessionContext();
