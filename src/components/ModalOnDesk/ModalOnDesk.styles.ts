@@ -9,10 +9,13 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     width: 500,
     bgcolor: 'background.paper',
     color: 'black',
-    border: '2px solid #000',
     boxShadow: 24,
     p: 4,
     borders: 'none',
+  },
+  deskName: {
+    fontSize: '20px',
+    fontWeight: 'bold'
   },
   closeButton: {
     position: 'absolute',
@@ -36,8 +39,54 @@ export const styles: { [key: string]: SxProps<Theme> } = {
       outline: 'none',
     },
   },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    marginRight: '20px',
+    marginTop: '30px'
+  },
   bookButton: {
-    border: '1px solid black'
+    height: '40px',
+    paddingLeft: '30px',
+    paddingRight: '30px',
+    borderRadius: '10px',
+    cursor: 'pointer',
+    backgroundColor: '#8cb835',
+    color: 'white',
+    fontSize: '15px',
+    fontWeight: 'bold',
+    border: 'none',
+    '&:hover': {
+      backgroundColor: '#afc786',
+    },
+  },
+  stationEquipmentTitle: {
+    marginBottom: '20px',
+    fontWeight: 'bold'
+  },
+  modalDescription: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+  },
+  featureInLine: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between', 
+    gap: '5px',
+  },
+  featureLabel: {
+    flexGrow: 1, 
+    fontSize: '15px'
+  },
+  featureValue: {
+    marginLeft: 'auto', 
+    fontSize: '15px'
+  },
+  desk2monitorsImg: {
+    width: '100%',
+    height: 'auto',
+    marginBottom: '10px',
+    marginTop: '10px',
   }
-  
-}
+};

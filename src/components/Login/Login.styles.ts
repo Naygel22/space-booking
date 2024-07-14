@@ -20,6 +20,10 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     paddingBottom: 0,
     gap: '15px',
   },
+  loginError: {
+    fontSize: '13px',
+    color: '#c52c2c'
+  },
   loginButton: {
     height: '50px',
     borderRadius: '10px',

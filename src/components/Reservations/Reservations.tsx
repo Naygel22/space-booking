@@ -64,7 +64,7 @@ export const Reservations = () => {
           <Typography variant="h6" sx={styles.headerText}>Status</Typography>
         </Grid>
       </Grid>
-      {reservations?.map((reservation) => {
+      {reservations?.slice().reverse().map((reservation) => {
         const desk = desks?.find(desk => desk.furnitureId === reservation.furnitureId);
         return (
           <Grid container key={reservation.reservationId} sx={styles.row}>
@@ -79,7 +79,9 @@ export const Reservations = () => {
             </Grid>
             <Grid item xs={3} sx={styles.cell}>
               {isFutureReservation(reservation.date) ? (
-                <Button onClick={() => handleDelete(reservation.reservationId)} sx={styles.cancelButton}>Cancel</Button>
+                <Button onClick={() => {
+                  handleDelete(reservation.reservationId)
+                }} sx={styles.cancelButton}>Cancel</Button>
               ) : (
                 <Typography sx={styles.statusCompleted}>Completed</Typography>
               )}

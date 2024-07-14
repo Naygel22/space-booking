@@ -3,9 +3,10 @@ import { TextInput } from "../TextInput"
 import { LoginFormValues, yupLoginSchema } from "../../validators/validators"
 import { sendLoginValues } from "../../api/sendLoginValues"
 import { Link, useNavigate } from "react-router-dom"
-import { Box, Button, Divider } from "@mui/material"
+import { Box, Button, Divider, Typography } from "@mui/material"
 import { styles } from "./Login.styles"
 import { useNotificationContext } from "../../NotificationContext"
+import { useState } from "react"
 
 const initialLoginFormValues = {
   mail: '',
@@ -15,13 +16,22 @@ const initialLoginFormValues = {
 export const Login = () => {
   const navigate = useNavigate()
   const { notify } = useNotificationContext()
+  const [loginError, setLoginError] = useState<string | null>(null)
 
   const formik = useFormik<LoginFormValues>({
     initialValues: initialLoginFormValues,
     onSubmit: (values) => {
       sendLoginValues(values)
-      navigate('/')
-      notify("You succesfully logged in", "success")
+        .then(response => {
+          if (!response) {
+            notify("Login failed", "error")
+            setLoginError("Invalid email or password. Please try again.")
+          } if (response) {
+            setLoginError(null)
+            navigate('/')
+            notify("You successfully logged in", "success")
+          }
+        })
     },
     validationSchema: yupLoginSchema
   })
@@ -33,6 +43,7 @@ export const Login = () => {
         <Box component="form" onSubmit={formik.handleSubmit} sx={styles.loginForm}>
           <TextInput formik={formik} accessor='mail' label='E-mail' />
           <TextInput formik={formik} accessor='password' label='Password' type='password' />
+          <Typography sx={styles.loginError}>{loginError}</Typography>
           <Button type="submit" sx={styles.loginButton}>Log In</Button>
           <Divider sx={styles.divider}>OR</Divider>
 

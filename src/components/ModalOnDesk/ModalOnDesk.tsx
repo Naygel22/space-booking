@@ -5,6 +5,8 @@ import Modal from '@mui/material/Modal';
 import { Desk } from '../SpaceViewer/SpaceViewer.types';
 import { MdElectricalServices, MdEventAvailable, MdHeight, MdLight, MdMonitor } from "react-icons/md";
 import { styles } from './ModalOnDesk.styles';
+import { Divider } from '@mui/material';
+import { useNotificationContext } from '../../NotificationContext';
 
 
 type ModalOnDeskProps = {
@@ -19,68 +21,78 @@ export type DeskFeatures = {
   sockets: number
   hasLamp: boolean
   adjustableHeight: boolean
-  otherAccessories: string[]
+  otherAccessories?: string[]
 }
 
+const everyDeskFeatures = {
+  monitors: 2,
+  sockets: 3,
+  hasLamp: true,
+  adjustableHeight: true
+}
 
 export const ModalOnDesk = ({ desk, onClose, onBook }: ModalOnDeskProps) => {
+  const { notify } = useNotificationContext()
+
   return (
     <Modal
       open={true}
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
-
     >
       <Box sx={styles.modalContentContainer}>
+        <Typography sx={styles.deskName}>{desk.name}</Typography>
         <Button onClick={onClose} sx={styles.closeButton}>X</Button>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          {desk.name}
-        </Typography>
-        <img src='.//assets/images/desk2monitors.jpeg' className='desk2monitorsImg' />
-        <p>Equipment</p>
+        <Box component="img" src=".//assets/images/desk2monitors.jpeg" alt="Desk with two monitors" sx={styles.desk2monitorsImg} />
+        <Typography sx={styles.stationEquipmentTitle}>Station equipment</Typography>
 
-        <div className="modalDescription">
+        <Box sx={styles.modalDescription}>
+          <Box sx={styles.featureInLine}>
+            <MdEventAvailable style={{ fontSize: '19px' }} />
+            <Typography sx={styles.featureLabel}>Available</Typography>
+            <Typography sx={styles.featureValue}>Free</Typography>
+          </Box>
 
-          <div className='featureInLine'>
-            <div className='featureName'>
-              <MdEventAvailable />
-              <div>Available</div>
-              {desk.available ? 'free' : 'occupied'}
-            </div>
-          </div>
+          <Divider />
 
-          <div className='featureInLine'>
-            <div className='featureName'>
-              <MdMonitor />
-              <div>Monitors</div>
-            </div>
-          </div>
+          <Box sx={styles.featureInLine}>
+            <MdMonitor style={{ fontSize: '19px' }} />
+            <Typography sx={styles.featureLabel}>Monitors</Typography>
+            <Typography sx={styles.featureValue}>{everyDeskFeatures.monitors}</Typography>
+          </Box>
 
-          <div className='featureInLine'>
-            <div className='featureName'>
-              <MdElectricalServices />
-              <div>Electrical sockets</div>
-            </div>
-          </div>
+          <Divider />
 
-          <div className='featureInLine'>
-            <div className='featureName'>
-              <MdLight />
-              <div>Lamp</div>
-            </div>
-          </div>
+          <Box sx={styles.featureInLine}>
+            <MdElectricalServices style={{ fontSize: '19px' }} />
+            <Typography sx={styles.featureLabel}>Electrical sockets</Typography>
+            <Typography sx={styles.featureValue}>{everyDeskFeatures.sockets}</Typography>
+          </Box>
 
-          <div className='featureInLine'>
-            <div className='featureName'>
-              <MdHeight />
-              <div>Adjustable height desk</div>
-            </div>
-          </div>
+          <Divider />
 
-        </div>
+          <Box sx={styles.featureInLine}>
+            <MdLight style={{ fontSize: '19px' }} />
+            <Typography sx={styles.featureLabel}>Lamp</Typography>
+            <Typography sx={styles.featureValue}>{everyDeskFeatures.hasLamp ? 'Yes' : 'No'}</Typography>
+          </Box>
 
-        <Button onClick={() => onBook(desk)} sx={styles.bookButton}>Book</Button>
+          <Divider />
+
+          <Box sx={styles.featureInLine}>
+            <MdHeight style={{ fontSize: '19px' }} />
+            <Typography sx={styles.featureLabel}>Adjustable height desk</Typography>
+            <Typography sx={styles.featureValue}>{everyDeskFeatures.adjustableHeight ? 'Yes' : 'No'}</Typography>
+          </Box>
+        </Box>
+
+        <Box sx={styles.buttonContainer}>
+          <Button sx={styles.bookButton} onClick={() => {
+            onBook(desk)
+            notify('Your desk has been booked', "success")
+          }}>Book</Button>
+        </Box>
       </Box>
     </Modal>
   );

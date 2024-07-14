@@ -30,13 +30,13 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     fontWeight: 'bold'
   },
   cancelButton: {
-    height: '35px',
+    height: '30px',
     padding: '15px',
     borderRadius: '10px',
     cursor: 'pointer',
     backgroundColor: '#bc4749',
     color: 'white',
-    fontSize: '14px',
+    fontSize: '13px',
     fontWeight: '600',
     border: 'none',
     textAlign: 'center',
