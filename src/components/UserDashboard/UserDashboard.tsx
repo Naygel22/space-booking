@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Box, Button, Grid } from '@mui/material';
 import { Reservations } from '../Reservations/Reservations';
 import { styles } from './UserDashboard.styles';
-import { UserProfile } from '../UserProfile';
+import { UserProfile } from '../UserProfile/UserProfile';
 import { BsCalendar2CheckFill, BsCalendar2Date, BsFillPersonFill } from 'react-icons/bs';
 import { ReservationsCalendar } from '../ReservationsCalendar';
 import { useQuery } from '@tanstack/react-query';

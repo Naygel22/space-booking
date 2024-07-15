@@ -30,7 +30,6 @@ body {
 
 
 .app {
-
   display: flex;
   justify-content: center;
 }
@@ -47,4 +46,34 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
+}
+
+.rbc-off-range-bg {
+  background: white;
+}
+
+.rbc-calendar .rbc-toolbar {
+  margin-bottom: 20px;
+}
+
+.rbc-toolbar .rbc-btn-group button {
+  color: white;
+  background-color: rgb(121, 121, 121);
+  font-weight: bold;
+}
+
+.rbc-toolbar .rbc-btn-group .rbc-active {
+  color: black;
+}
+
+.rbc-toolbar .rbc-toolbar-label {
+  font-weight: bold;
+}
+
+.rbc-month-view .rbc-date-cell.rbc-now button.rbc-button-link {
+  color: black;
+}
+
+.rbc-row .rbc-time-header-cell .rbc-header .rbc-today button.rbc-button-link {
+  color: black;
 }

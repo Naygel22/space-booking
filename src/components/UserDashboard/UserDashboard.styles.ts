@@ -3,7 +3,7 @@ import { SxProps, Theme } from "@mui/material";
 export const styles: { [key: string]: SxProps<Theme> } = {
   container: {
     borderRadius: '10px',
-    marginTop: '20px',
+    marginTop: '50px',
     display: 'flex',
     backgroundColor: '#2e2d2b',
     width: '70%',
