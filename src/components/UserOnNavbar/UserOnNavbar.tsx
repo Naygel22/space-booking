@@ -1,7 +1,8 @@
-import { Avatar, ListItem, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
+import { Avatar, Box, ListItem, ListItemIcon, ListItemText, Menu, MenuItem, Typography } from "@mui/material";
 import { useState } from "react";
 import { BsBoxArrowRight, BsPersonCircle } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { styles } from "./UserOnNavbar.styles";
 
 type UserOnNavbarType = {
   userData: Array<{
@@ -34,14 +35,14 @@ export const UserOnNavbar = ({ userData, handleLogout }: UserOnNavbarType) => {
   };
 
   return (
-    <div className="avatarBadge">
+    <Box sx={styles.avatarBadge}>
       <Avatar
         onClick={handleClick}
         sx={{ cursor: 'pointer' }}
       >
         {userData?.[0] ? userData[0].name[0] : null}
       </Avatar>
-      <div className="userNameOnBadge">{userData?.[0] ? userData[0].name : null}</div>
+      <Typography sx={styles.userNameOnBadge}>{userData?.[0] ? userData[0].name : null}</Typography>
 
       <Menu
         anchorEl={anchorEl}
@@ -66,6 +67,6 @@ export const UserOnNavbar = ({ userData, handleLogout }: UserOnNavbarType) => {
           </ListItem>
         </MenuItem>
       </Menu>
-    </div>
+    </Box>
   );
 };

@@ -59,11 +59,17 @@ export const styles: { [key: string]: SxProps<Theme> } = {
   },
   pagination: {
     color: 'white',
-            '.MuiPaginationItem-root': { color: 'white' }, 
-            '.Mui-selected': {
-              backgroundColor: 'white',
-              color: 'black' 
-            },
+    '.MuiPaginationItem-root': { 
+      color: 'white',
+      '&.Mui-selected': {
+        backgroundColor: 'white',
+        color: 'black',
+        fontWeight: 'bold',
+        '&:hover': {
+          backgroundColor: 'white', // ensures the hover state remains consistent
+        }
+      }
+    }
   }
   
 };

@@ -3,7 +3,7 @@ import { useSessionContext } from "../SessionProvider";
 import { supabaseClient } from "../../supabaseClient";
 import { useQuery } from "@tanstack/react-query";
 import { getUserDataById } from "../../api/getUserDataById";
-import { UserOnNavbar } from "../UserOnNavbar";
+import { UserOnNavbar } from "../UserOnNavbar/UserOnNavbar";
 import { AppBar, Box, Button, Toolbar } from "@mui/material";
 import { styles } from "./Navbar.styles";
 

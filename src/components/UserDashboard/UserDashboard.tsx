@@ -4,9 +4,30 @@ import { Reservations } from '../Reservations/Reservations';
 import { styles } from './UserDashboard.styles';
 import { UserProfile } from '../UserProfile';
 import { BsCalendar2CheckFill, BsCalendar2Date, BsFillPersonFill } from 'react-icons/bs';
+import { ReservationsCalendar } from '../ReservationsCalendar';
+import { useQuery } from '@tanstack/react-query';
+import { getReservationsForUser } from '../../api/getReservationsForUser';
+import { useSessionContext } from '../SessionProvider';
 
 export const UserDashboard = () => {
+  const { session } = useSessionContext();
   const [selectedTab, setSelectedTab] = useState('profile');
+
+  const { data: reservations, isLoading, error } = useQuery({
+    queryKey: ['userReservations', session?.user.id],
+    queryFn: () => getReservationsForUser(session?.user.id),
+  });
+  reservations?.map((reservation) => {
+    console.log(reservation?.date)
+  })
+
+
+  const events = reservations?.map((reservation) => ({
+    title: 'Reservation',
+    start: new Date(reservation.date),
+    end: new Date(reservation.date),
+    allDay: true,
+  })) || [];
 
 
   return (
@@ -39,6 +60,9 @@ export const UserDashboard = () => {
         <Grid item xs={9} sx={styles.content}>
           {selectedTab === 'profile' && <UserProfile />}
           {selectedTab === 'reservations' && <Reservations />}
+          <Box sx={{ marginTop: '30px' }}>
+            {selectedTab === 'calendar' && <ReservationsCalendar events={events} />}
+          </Box>
         </Grid>
       </Grid>
     </Box>
