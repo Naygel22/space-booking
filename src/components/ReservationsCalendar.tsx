@@ -1,4 +1,4 @@
-import { Calendar, CalendarProps, dateFnsLocalizer } from 'react-big-calendar'
+import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
 import format from 'date-fns/format'
 import parse from 'date-fns/parse'
 import startOfWeek from 'date-fns/startOfWeek'
@@ -18,7 +18,7 @@ const localizer = dateFnsLocalizer({
   locales,
 })
 
-export const ReservationsCalendar = ({ events }: CalendarProps) => (
+export const ReservationsCalendar = ({ events }: any) => ( //CalendarProps?
   <div>
     <Calendar
       localizer={localizer}

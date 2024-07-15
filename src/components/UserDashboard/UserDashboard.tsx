@@ -13,7 +13,7 @@ export const UserDashboard = () => {
   const { session } = useSessionContext();
   const [selectedTab, setSelectedTab] = useState('profile');
 
-  const { data: reservations, isLoading, error } = useQuery({
+  const { data: reservations } = useQuery({
     queryKey: ['userReservations', session?.user.id],
     queryFn: () => getReservationsForUser(session?.user.id),
   });
