@@ -8,6 +8,7 @@ import { isAfter, parseISO, isToday } from 'date-fns';
 import { getAllDesks } from "../../api/getAllDesks";
 import { useNotificationContext } from "../../NotificationContext";
 import { useState } from "react";
+import { ModalOnCancel } from "../ModalOnCancel/ModalOnCancel";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -16,6 +17,7 @@ export const Reservations = () => {
   const { session } = useSessionContext();
   const { notify } = useNotificationContext()
   const [currentPage, setCurrentPage] = useState(1);
+  const [reservationToCancel, setReservationToCancel] = useState<string | null>(null)
 
   const { data: reservations, isLoading, error, refetch } = useQuery({
     queryKey: ['userReservations', session?.user.id],
@@ -31,16 +33,27 @@ export const Reservations = () => {
     mutationFn: async (reservationId: string) => deleteReservationById(reservationId),
     onSuccess: () => {
       refetch();
+      notify('Your reservation has been canceled', "success")
+      setReservationToCancel(null)
     },
     onError: () => {
       console.log("Something went wrong");
+      notify('Error canceling reservation', "error");
     },
   });
 
   const handleDelete = (reservationId: string) => {
     mutation.mutate(reservationId);
-    notify('Your reservation has been canceled', "success")
   };
+
+  const handleOpenModal = (reservationId: string) => {
+    setReservationToCancel(reservationId)
+  }
+
+  const handleCloseModal = () => {
+    setReservationToCancel(null)
+  }
+
 
   if (isLoading || loadingDesks) return <div>Loading...</div>;
   if (error) return <div>Error loading reservations</div>;
@@ -79,6 +92,7 @@ export const Reservations = () => {
       </Grid>
       <Box sx={styles.reservationContent}>
         {paginatedReservations?.map((reservation) => {
+          console.log(reservation)
           const desk = desks?.find(desk => desk.furnitureId === reservation.furnitureId);
           return (
             <Grid container key={reservation.reservationId} sx={styles.row}>
@@ -93,7 +107,7 @@ export const Reservations = () => {
               </Grid>
               <Grid item xs={3} sx={styles.cell}>
                 {isFutureReservation(reservation.date) ? (
-                  <Button onClick={() => handleDelete(reservation.reservationId)} sx={styles.cancelButton}>Cancel</Button>
+                  <Button onClick={() => handleOpenModal(reservation.reservationId)} sx={styles.cancelButton}>Cancel</Button>
                 ) : (
                   <Typography sx={styles.statusCompleted}>Completed</Typography>
                 )}
@@ -110,6 +124,8 @@ export const Reservations = () => {
           sx={styles.pagination}
         />
       </Box>
+      {reservationToCancel &&
+        <ModalOnCancel open={!!reservationToCancel} onConfirm={() => handleDelete(reservationToCancel)} onClose={handleCloseModal} />}
     </Box>
   );
 };

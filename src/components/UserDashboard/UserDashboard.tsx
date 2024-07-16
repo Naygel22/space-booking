@@ -17,10 +17,6 @@ export const UserDashboard = () => {
     queryKey: ['userReservations', session?.user.id],
     queryFn: () => getReservationsForUser(session?.user.id),
   });
-  reservations?.map((reservation) => {
-    console.log(reservation?.date)
-  })
-
 
   const events = reservations?.map((reservation) => ({
     title: 'Reservation',

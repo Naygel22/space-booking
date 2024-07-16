@@ -1,37 +1,28 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogTitle from '@mui/material/DialogTitle';
+import { Modal, Box, Typography, Button } from '@mui/material';
+import { styles } from './ModalOnCancel.styles';
 
 type ModalOnCancelProps = {
-  buttonName: string,
-  onConfirm: () => void
+  open: any,
+  onConfirm: () => void,
+  onClose: () => void,
 }
 
-export default function ModalOnCancel({ onConfirm }: ModalOnCancelProps) {
-  const [open, setOpen] = React.useState(true);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+export const ModalOnCancel = ({ open, onConfirm, onClose }: ModalOnCancelProps) => {
   return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
-    >
-      <DialogTitle id="alert-dialog-title">
-        {"Are you sure you want to delete this?"}
-      </DialogTitle>
-      <DialogActions>
-        <Button onClick={handleClose}>Disagree</Button>
-        <Button onClick={onConfirm} autoFocus>
-          Agree
-        </Button>
-      </DialogActions>
-    </Dialog>
+    <Modal open={open} onClose={onClose} sx={styles.modalBox}>
+      <Box >
+        <Typography id="modal-modal-title" variant="h6" component="h2" sx={styles.modalTitle}>
+          Are you sure you want to cancel this reservation?
+        </Typography>
+        <Box sx={styles.buttonBox}>
+          <Button onClick={onConfirm} sx={styles.button}>
+            Yes
+          </Button>
+          <Button onClick={onClose} sx={styles.button}>
+            No
+          </Button>
+        </Box>
+      </Box>
+    </Modal>
   );
-}
+};
