@@ -4,6 +4,7 @@ import { Advantages } from '../../components/Advantages/Advantages';
 import { Link } from 'react-router-dom';
 import { ExamplePricing } from '../../components/ExamplePricing/ExamplePricing';
 import { Footer } from '../../components/Footer/Footer';
+import { Faq } from '../../components/Faq/Faq';
 
 export const HomePage = () => {
   return (
@@ -21,6 +22,7 @@ export const HomePage = () => {
       </Box>
       <Advantages />
       <ExamplePricing />
+      <Faq />
       <Footer />
     </Box>
   );

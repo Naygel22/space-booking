@@ -33,36 +33,7 @@ export const BookingPage = () => {
             value={selectedDate}
             onChange={handleDateChange}
             format="yyyy-MM-dd"
-            sx={{
-              marginTop: '30px',
-              width: '81%',
-              '.MuiOutlinedInput-root': {
-                '& fieldset': {
-                  borderColor: 'white',
-                },
-                '&:hover fieldset': {
-                  borderColor: 'white',
-                },
-                '&.Mui-focused fieldset': {
-                  borderColor: 'white',
-                },
-              },
-              "& label.Mui-focused": {
-                color: "white"
-              },
-              '.MuiInputBase-input': {
-                color: 'white',
-              },
-              '.MuiInputLabel-root': {
-                color: 'white',
-              },
-              '.MuiSvgIcon-root': {
-                color: 'white',
-              },
-              '.MuiPickersDay-root': {
-                color: 'white',
-              },
-            }}
+            sx={styles.dataPicker}
           />
         </LocalizationProvider>
       </Box>

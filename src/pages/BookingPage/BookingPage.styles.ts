@@ -23,6 +23,35 @@ export const styles: { [key: string]: SxProps<Theme> } = {
   },
   spaceviewerContainer: {
     width: '100%'
+  },
+  dataPicker: {
+    marginTop: '30px',
+    width: '81%',
+    '.MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white',
+      },
+      '&:hover fieldset': {
+        borderColor: 'white',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'white',
+      },
+    },
+    "& label.Mui-focused": {
+      color: "white"
+    },
+    '.MuiInputBase-input': {
+      color: 'white',
+    },
+    '.MuiInputLabel-root': {
+      color: 'white',
+    },
+    '.MuiSvgIcon-root': {
+      color: 'white',
+    },
+    '.MuiPickersDay-root': {
+      color: 'white',
+    },
   }
-
 };
