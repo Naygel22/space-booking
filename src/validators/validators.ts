@@ -8,6 +8,9 @@ export const BASE_VALIDATORS = {
     nameValidator: yup
     .string()
     .required('Name is required'),
+    surnameValidator: yup
+    .string()
+    .required('Name is required'),
     phonenumber: yup
     .string()
     .matches(/^\+\d{11}$/, "Phone number must start with '+'")
@@ -16,7 +19,7 @@ export const BASE_VALIDATORS = {
 
 export const yupRegisterSchema = yup.object({
   name: BASE_VALIDATORS.nameValidator,
-  surname: yup.string().required('Name is required'),
+  surname: BASE_VALIDATORS.surnameValidator,
   mail: BASE_VALIDATORS.mailValidator,
   phonenumber: BASE_VALIDATORS.phonenumber,
   password: yup
@@ -48,3 +51,12 @@ export const yupContactSchema = yup.object({
 })
 
 export type ContactFormValues = yup.InferType<typeof yupContactSchema>
+
+export const yupChangeUserSchema= yup.object({
+  name: BASE_VALIDATORS.nameValidator,
+  surname: BASE_VALIDATORS.surnameValidator,
+  mail: BASE_VALIDATORS.mailValidator,
+  phonenumber: BASE_VALIDATORS.phonenumber
+})
+
+export type ChangeUserFormValues = yup.InferType<typeof yupChangeUserSchema>
