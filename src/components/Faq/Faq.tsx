@@ -31,8 +31,8 @@ export const Faq = () => {
       <Typography sx={styles.title}>FAQ</Typography>
       <Box >
         <Box>
-          {questionsAndAnswers.map((object) => (
-            <Accordion >
+          {questionsAndAnswers.map((object, id) => (
+            <Accordion key={id}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={styles.question}>
                 {object.question}
               </AccordionSummary>

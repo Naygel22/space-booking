@@ -8,7 +8,7 @@ export const getUserDataById = async (session: Session | null) => {
 
   const { data: users, error } = await supabaseClient
     .from('users')
-    .select('name, surname, mail, phonenumber')
+    .select('name, surname, mail, phonenumber, role')
     .eq('userId', session?.user.id);
 
   if (error) {

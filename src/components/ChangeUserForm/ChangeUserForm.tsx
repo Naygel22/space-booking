@@ -6,6 +6,7 @@ import { TextInput } from "../TextInput"
 import { useMutation } from "@tanstack/react-query"
 import { useQueryClient } from "@tanstack/react-query"
 import { styles } from "./ChangeUserForm.styles"
+import { useNotificationContext } from "../../NotificationContext"
 
 type ChangeUserFormProps = {
   initialUserFormValues: ChangeUserFormValues
@@ -15,6 +16,7 @@ type ChangeUserFormProps = {
 export const ChangeUserForm = ({ initialUserFormValues }: ChangeUserFormProps) => {
 
   const queryClient = useQueryClient();
+  const { notify } = useNotificationContext()
 
   const formik = useFormik<ChangeUserFormValues>({
     initialValues: initialUserFormValues,
@@ -36,6 +38,10 @@ export const ChangeUserForm = ({ initialUserFormValues }: ChangeUserFormProps) =
     },
   })
 
+  function saveChanges() {
+    notify("Changes saved", "success")
+  }
+
   return (
     <Box component="form" onSubmit={formik.handleSubmit} sx={styles.formContainer}>
       <Box sx={styles.textFieldBar}>
@@ -47,7 +53,7 @@ export const ChangeUserForm = ({ initialUserFormValues }: ChangeUserFormProps) =
         <TextInput formik={formik} accessor="phonenumber" label="Phone" />
       </Box>
       <Box sx={styles.buttonContainer}>
-        <Button type="submit" sx={styles.saveChangesButton}>Save changes</Button>
+        <Button type="submit" sx={styles.saveChangesButton} onClick={saveChanges}>Save changes</Button>
       </Box>
     </Box>
   )
