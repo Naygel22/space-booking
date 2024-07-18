@@ -1,13 +1,16 @@
 import { useState } from 'react';
-import { Box, Button, Grid } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import { Reservations } from '../Reservations/Reservations';
 import { styles } from './UserDashboard.styles';
 import { UserProfile } from '../UserProfile/UserProfile';
-import { BsCalendar2CheckFill, BsCalendar2Date, BsFillPersonFill } from 'react-icons/bs';
+import { BsCalendar2CheckFill, BsCalendar2Date, BsFillMegaphoneFill, BsFillPeopleFill, BsFillPersonFill, BsThermometerHalf } from 'react-icons/bs';
 import { ReservationsCalendar } from '../ReservationsCalendar';
 import { useQuery } from '@tanstack/react-query';
 import { getReservationsForUser } from '../../api/getReservationsForUser';
 import { useSessionContext } from '../SessionProvider';
+import { getUserDataById } from '../../api/getUserDataById';
+import { SoundIntensityChart } from '../SoundIntensityChart/SoundIntensityChart';
+import { TemperatureChart } from '../../TemperatureChart/TemperatureChart';
 
 export const UserDashboard = () => {
   const { session } = useSessionContext();
@@ -18,6 +21,12 @@ export const UserDashboard = () => {
     queryFn: () => getReservationsForUser(session?.user.id),
   });
 
+  const { data: userData } = useQuery({
+    queryKey: ['userName'],
+    queryFn: () => getUserDataById(session),
+    enabled: !!session,
+  });
+
   const events = reservations?.map((reservation) => ({
     title: 'Reservation',
     start: new Date(reservation.date),
@@ -25,6 +34,9 @@ export const UserDashboard = () => {
     allDay: true,
   })) || [];
 
+  if (!userData) {
+    return <Typography>No data available</Typography>;
+  }
 
   return (
     <Box sx={styles.container}>
@@ -52,6 +64,31 @@ export const UserDashboard = () => {
             <BsCalendar2Date style={{ marginRight: '15px', fontSize: '17px' }} />
             Calendar
           </Button>
+          {userData[0].role === 'admin' &&
+            <>
+              <Button
+                sx={{ ...(selectedTab === 'sound' ? styles.buttonSelected : styles.button) }}
+                onClick={() => setSelectedTab('sound')}
+              >
+                <BsFillMegaphoneFill style={{ marginRight: '15px', fontSize: '17px' }} />
+                Sound intensity
+              </Button>
+              <Button
+                sx={{ ...(selectedTab === 'temperature' ? styles.buttonSelected : styles.button) }}
+                onClick={() => setSelectedTab('temperature')}
+              >
+                <BsThermometerHalf style={{ marginRight: '15px', fontSize: '17px' }} />
+                Temperature in the office
+              </Button>
+              <Button
+                sx={{ ...(selectedTab === 'occupancy' ? styles.buttonSelected : styles.button) }}
+                onClick={() => setSelectedTab('occupancy')}
+              >
+                <BsFillPeopleFill style={{ marginRight: '15px', fontSize: '17px' }} />
+                People occupancy
+              </Button>
+            </>
+          }
         </Grid>
         <Grid item xs={9} sx={styles.content}>
           {selectedTab === 'profile' && <UserProfile />}
@@ -59,6 +96,8 @@ export const UserDashboard = () => {
           <Box sx={{ marginTop: '30px' }}>
             {selectedTab === 'calendar' && <ReservationsCalendar events={events} />}
           </Box>
+          {selectedTab === 'sound' && <SoundIntensityChart />}
+          {selectedTab === 'temperature' && <TemperatureChart />}
         </Grid>
       </Grid>
     </Box>
