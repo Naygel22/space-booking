@@ -4,9 +4,9 @@ import { changeUserData, ChangeUserEmailProps } from "../../api/changeUserData"
 import { ChangeUserFormValues, yupChangeUserSchema } from "../../validators/validators"
 import { TextInput } from "../TextInput"
 import { useMutation } from "@tanstack/react-query"
-import { useQueryClient } from "@tanstack/react-query"
 import { styles } from "./ChangeUserForm.styles"
 import { useNotificationContext } from "../../NotificationContext"
+import { useSessionContext } from "../SessionProvider"
 
 type ChangeUserFormProps = {
   initialUserFormValues: ChangeUserFormValues
@@ -14,9 +14,8 @@ type ChangeUserFormProps = {
 
 
 export const ChangeUserForm = ({ initialUserFormValues }: ChangeUserFormProps) => {
-
-  const queryClient = useQueryClient();
   const { notify } = useNotificationContext()
+  const { session, getUserData } = useSessionContext()
 
   const formik = useFormik<ChangeUserFormValues>({
     initialValues: initialUserFormValues,
@@ -29,7 +28,7 @@ export const ChangeUserForm = ({ initialUserFormValues }: ChangeUserFormProps) =
   const { mutate } = useMutation({
     mutationFn: async (data: ChangeUserEmailProps) => changeUserData(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["userName"] });
+      getUserData(session)
       console.log("success")
     },
     onError: () => {

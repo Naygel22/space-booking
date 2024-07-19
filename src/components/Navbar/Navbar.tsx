@@ -1,14 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useSessionContext } from "../SessionProvider";
 import { supabaseClient } from "../../supabaseClient";
-import { useQuery } from "@tanstack/react-query";
-import { getUserDataById } from "../../api/getUserDataById";
 import { UserOnNavbar } from "../UserOnNavbar/UserOnNavbar";
 import { AppBar, Box, Button, Toolbar } from "@mui/material";
 import { styles } from "./Navbar.styles";
 
 export const Navbar = () => {
-  const { session } = useSessionContext();
+  const { session, userData: data } = useSessionContext();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -18,12 +16,6 @@ export const Navbar = () => {
     }
     navigate('/');
   };
-
-  const { data } = useQuery({
-    queryKey: ['userName'],
-    queryFn: () => getUserDataById(session),
-    enabled: !!session,
-  });
 
   return (
     <AppBar position="static" sx={styles.navbar}>

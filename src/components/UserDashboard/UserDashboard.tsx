@@ -7,24 +7,17 @@ import { BsCalendar2CheckFill, BsCalendar2Date, BsFillMegaphoneFill, BsFillPeopl
 import { ReservationsCalendar } from '../ReservationsCalendar';
 import { useQuery } from '@tanstack/react-query';
 import { getReservationsForUser } from '../../api/getReservationsForUser';
-import { useSessionContext } from '../SessionProvider';
-import { getUserDataById } from '../../api/getUserDataById';
+import { useSessionContext } from '../SessionProvider'
 import { SoundIntensityChart } from '../SoundIntensityChart/SoundIntensityChart';
 import { TemperatureChart } from '../../TemperatureChart/TemperatureChart';
 
 export const UserDashboard = () => {
-  const { session } = useSessionContext();
+  const { session, userData } = useSessionContext();
   const [selectedTab, setSelectedTab] = useState('profile');
 
   const { data: reservations } = useQuery({
     queryKey: ['userReservations', session?.user.id],
     queryFn: () => getReservationsForUser(session?.user.id),
-  });
-
-  const { data: userData } = useQuery({
-    queryKey: ['userName'],
-    queryFn: () => getUserDataById(session),
-    enabled: !!session,
   });
 
   const events = reservations?.map((reservation) => ({

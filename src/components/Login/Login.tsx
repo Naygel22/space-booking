@@ -7,6 +7,7 @@ import { Box, Button, Divider, Typography } from "@mui/material"
 import { styles } from "./Login.styles"
 import { useNotificationContext } from "../../NotificationContext"
 import { useState } from "react"
+import { useSessionContext } from "../SessionProvider"
 
 const initialLoginFormValues = {
   mail: '',
@@ -16,6 +17,7 @@ const initialLoginFormValues = {
 export const Login = () => {
   const navigate = useNavigate()
   const { notify } = useNotificationContext()
+  const { getUserData } = useSessionContext()
   const [loginError, setLoginError] = useState<string | null>(null)
 
   const formik = useFormik<LoginFormValues>({
@@ -26,9 +28,11 @@ export const Login = () => {
           if (!response) {
             notify("Login failed", "error")
             setLoginError("Invalid email or password. Please try again.")
-          } if (response) {
+          }
+          if (response) {
             setLoginError(null)
             navigate('/')
+            getUserData(response.session)
             notify("You successfully logged in", "success")
           }
         })

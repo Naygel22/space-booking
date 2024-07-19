@@ -1,7 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
-import { getUserDataById } from "../../api/getUserDataById";
 import { useSessionContext } from "../SessionProvider";
-import { Avatar, Box, Typography, CircularProgress, Paper, Button, Grid } from "@mui/material";
+import { Avatar, Box, Typography, Paper, Button, Grid } from "@mui/material";
 import { styles } from "./UserProfile.styles";
 import { ChangeUserForm } from "../ChangeUserForm/ChangeUserForm";
 import { useState } from "react";
@@ -9,28 +7,8 @@ import { BsFillPencilFill } from "react-icons/bs";
 import { FaArrowLeft } from "react-icons/fa6";
 
 export const UserProfile = () => {
-  const { session } = useSessionContext();
+  const { userData: data } = useSessionContext();
   const [clickedToEdit, setClickedToEdit] = useState(false)
-
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['userName'],
-    queryFn: () => getUserDataById(session),
-    enabled: !!session,
-  });
-
-  if (isLoading) {
-    return (
-      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
-        <CircularProgress />
-      </Box>
-    );
-  }
-  if (error) {
-    return <Typography>Error loading user data</Typography>;
-  }
-  if (!data) {
-    return <Typography>No data available</Typography>;
-  }
 
   return (
     <Box sx={styles.container}>

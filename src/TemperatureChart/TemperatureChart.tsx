@@ -119,25 +119,42 @@ export const TemperatureChart = () => {
       }
     ]
   })
-
-  function handleMinusClick() {
+  const handleMinusClick = () => {
     setOption((prevOption) => {
-      const newOption = { ...prevOption }
-      console.log(newOption)
-      newOption.series[0].data[0].value -= 1;
-      console.log(newOption.series[0].data[0].value - 1)
-      return newOption
-    })
-  }
+      const newValue = prevOption.series[0].data[0].value - 1
+      console.log(prevOption)
+      if (newValue >= 16) {
+        return {
+          series: prevOption.series.map((series) => ({
+            ...series,
+            data: series.data.map((dataPoint) => ({
+              ...dataPoint,
+              value: newValue,
+            })),
+          })),
+        };
+      }
+      return prevOption
+    });
+  };
 
   function handlePlusClick() {
     setOption((prevOption) => {
-      const newOption = { ...prevOption }
-      console.log(newOption)
-      newOption.series[0].data[0].value -= 1;
-      console.log(newOption.series[0].data[0].value + 1)
-      return newOption
-    })
+      const newValue = prevOption.series[0].data[0].value + 1
+      console.log(prevOption)
+      if (newValue <= 25) {
+        return {
+          series: prevOption.series.map((series) => ({
+            ...series,
+            data: series.data.map((dataPoint) => ({
+              ...dataPoint,
+              value: newValue,
+            })),
+          })),
+        };
+      }
+      return prevOption
+    });
   }
 
   return (

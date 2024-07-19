@@ -1,19 +1,44 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { supabaseClient } from "../supabaseClient";
 import { Session } from "@supabase/supabase-js";
+import { getUserDataById } from "../api/getUserDataById";
+
+type UserType = {
+  name: string;
+  surname: string;
+  mail?: string;
+  phonenumber?: string;
+  role?: string;
+}
 
 type SessionContextProps = {
   session: Session | null;
+  //TODO: dodaj typy
+  userData: UserType | undefined
+  //TODO: dodaj typy
+  getUserData: (session: Session) => void;
 }
 
 const SessionContext = createContext<SessionContextProps | undefined>(undefined)
 
 export const SessionProvider = ({ children }: { children: React.ReactNode }) => {
   const [session, setSession] = useState<Session | null>(null)
-  console.log('session', session)
+  //TODO: dodac typy
+  const [userData, setUserData] = useState<UserType | undefined>(undefined);
+
+  const getUserData = async (session: Session) => {
+    // TODO: dodaj typy
+    const data: UserType = await getUserDataById(session)
+    console.log(data)
+    setUserData(data)
+  }
+
   useEffect(() => {
     supabaseClient.auth.getSession().then(({ data: { session } }) => {
       setSession(session)
+      if (session) {
+        getUserData(session)
+      }
     })
 
     const {
@@ -25,7 +50,7 @@ export const SessionProvider = ({ children }: { children: React.ReactNode }) => 
     return () => subscription.unsubscribe()
   }, [])
 
-  return <SessionContext.Provider value={{ session }}>{children}</SessionContext.Provider>
+  return <SessionContext.Provider value={{ session, userData, getUserData }}>{children}</SessionContext.Provider>
 };
 
 export const useSessionContext = () => {

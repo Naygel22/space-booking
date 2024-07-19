@@ -98,7 +98,6 @@ export const SoundIntensityChart = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setOption((prevOption) => ({
-        ...prevOption,
         series: [
           {
             ...prevOption.series[0],
