@@ -5,15 +5,25 @@ export const BASE_VALIDATORS = {
     .string()
     .email('Invalid email format')
     .required('Email is required'),
-    nameValidator: yup
+  nameValidator: yup
     .string()
     .required('Name is required'),
-    surnameValidator: yup
+  surnameValidator: yup
     .string()
-    .required('Name is required'),
-    phonenumber: yup
+    .required('Surname is required'),
+  phonenumber: yup
     .string()
-    .matches(/^\+\d{11}$/, "Phone number must start with '+'")
+    .test(
+      'starts-with-plus',
+      "Phone number must start with '+'",
+      value => value?.startsWith('+') || false
+    )
+    .test(
+      'correct-length',
+      'Incorrect phone number',
+      value => value ? value.length === 12 : false
+    )
+
     .required('Phone number is required'),
 }
 

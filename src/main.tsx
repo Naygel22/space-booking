@@ -7,6 +7,7 @@ import { Navbar } from './components/Navbar/Navbar.tsx'
 import { BrowserRouter } from 'react-router-dom'
 import { SessionProvider } from './components/SessionProvider.tsx'
 import { NotificationProvider } from './NotificationContext.tsx'
+import { TemperatureProvider } from './components/TemperatureContext.tsx'
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache(),
@@ -20,14 +21,16 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <NotificationProvider>
-        <SessionProvider>
-          <BrowserRouter>
-            <Navbar />
-            <App />
-          </BrowserRouter>
-        </SessionProvider>
-      </NotificationProvider>
+      <TemperatureProvider>
+        <NotificationProvider>
+          <SessionProvider>
+            <BrowserRouter>
+              <Navbar />
+              <App />
+            </BrowserRouter>
+          </SessionProvider>
+        </NotificationProvider>
+      </TemperatureProvider>
     </QueryClientProvider>
   </React.StrictMode>
 )

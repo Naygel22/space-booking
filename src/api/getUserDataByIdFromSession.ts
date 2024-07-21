@@ -1,17 +1,18 @@
+import { Session } from "@supabase/supabase-js";
 import { supabaseClient } from "../supabaseClient"
 
-export const getUserDataById = async (userId: string) => {
-  if (!userId) {
+export const getUserDataByIdFromSession = async (session: Session | null) => {
+  if (!session) {
     return
   }
 
   const { data: users, error } = await supabaseClient
     .from('users')
     .select('name, surname, mail, phonenumber, role')
-    .eq('userId', userId);
+    .eq('userId', session?.user.id);
 
   if (error) {
-    console.error("Error fetching user data:", error);
+    console.error("Error fetching user name:", error);
     return
   }
 

@@ -1,13 +1,11 @@
 import './index.css'
-import { FC } from 'react';
 import { Browse } from './components/Browse';
 
 
-const App: FC = () => {
+const App = () => {
   return (
 
     <div className="app">
-      {/* <SpaceViewer /> */}
       <Browse />
     </div>
   )

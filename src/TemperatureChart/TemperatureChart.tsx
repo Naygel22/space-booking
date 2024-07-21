@@ -1,13 +1,13 @@
 import { Box, Button, Typography } from "@mui/material";
-import { useState } from "react";
 import ReactECharts from 'echarts-for-react';
 import { styles } from "./TemperatureChart.styles";
 import { BsArrowLeftRight } from "react-icons/bs";
-
+import { useTemperatureContext } from "../components/TemperatureContext";
 
 export const TemperatureChart = () => {
-  const [option, setOption] = useState({
+  const { temperature, increaseTemperature, decreaseTemperature } = useTemperatureContext();
 
+  const option = {
     series: [
       {
         type: 'gauge',
@@ -24,7 +24,6 @@ export const TemperatureChart = () => {
           show: true,
           width: 30
         },
-
         pointer: {
           show: false
         },
@@ -73,11 +72,10 @@ export const TemperatureChart = () => {
         },
         data: [
           {
-            value: 22
+            value: temperature
           }
         ]
       },
-
       {
         type: 'gauge',
         center: ['50%', '60%'],
@@ -92,7 +90,6 @@ export const TemperatureChart = () => {
           show: true,
           width: 8
         },
-
         pointer: {
           show: true
         },
@@ -113,59 +110,22 @@ export const TemperatureChart = () => {
         },
         data: [
           {
-            value: 22
+            value: temperature
           }
         ]
       }
     ]
-  })
-  const handleMinusClick = () => {
-    setOption((prevOption) => {
-      const newValue = prevOption.series[0].data[0].value - 1
-      console.log(prevOption)
-      if (newValue >= 16) {
-        return {
-          series: prevOption.series.map((series) => ({
-            ...series,
-            data: series.data.map((dataPoint) => ({
-              ...dataPoint,
-              value: newValue,
-            })),
-          })),
-        };
-      }
-      return prevOption
-    });
   };
-
-  function handlePlusClick() {
-    setOption((prevOption) => {
-      const newValue = prevOption.series[0].data[0].value + 1
-      console.log(prevOption)
-      if (newValue <= 25) {
-        return {
-          series: prevOption.series.map((series) => ({
-            ...series,
-            data: series.data.map((dataPoint) => ({
-              ...dataPoint,
-              value: newValue,
-            })),
-          })),
-        };
-      }
-      return prevOption
-    });
-  }
 
   return (
     <Box sx={styles.chartContainer}>
       <Typography sx={styles.title}>Temperature controller in the office</Typography>
       <ReactECharts option={option} style={styles.chart as React.CSSProperties} />
       <Box sx={styles.buttons}>
-        <Button onClick={handleMinusClick} sx={styles.minusButton}>-1 °C</Button>
+        <Button onClick={decreaseTemperature} sx={styles.minusButton}>-1 °C</Button>
         <BsArrowLeftRight style={styles.arrowsIcon as React.CSSProperties} />
-        <Button onClick={handlePlusClick} sx={styles.plusButton}>+1 °C</Button>
+        <Button onClick={increaseTemperature} sx={styles.plusButton}>+1 °C</Button>
       </Box>
     </Box>
-  )
-}
+  );
+};

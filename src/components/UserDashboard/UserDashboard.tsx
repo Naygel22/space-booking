@@ -3,13 +3,14 @@ import { Box, Button, Grid, Typography } from '@mui/material';
 import { Reservations } from '../Reservations/Reservations';
 import { styles } from './UserDashboard.styles';
 import { UserProfile } from '../UserProfile/UserProfile';
-import { BsCalendar2CheckFill, BsCalendar2Date, BsFillMegaphoneFill, BsFillPeopleFill, BsFillPersonFill, BsThermometerHalf } from 'react-icons/bs';
+import { BsCalendar2CheckFill, BsCalendar2Date, BsFillGearFill, BsFillMegaphoneFill, BsFillPeopleFill, BsFillPersonFill, BsThermometerHalf } from 'react-icons/bs';
 import { ReservationsCalendar } from '../ReservationsCalendar';
 import { useQuery } from '@tanstack/react-query';
 import { getReservationsForUser } from '../../api/getReservationsForUser';
 import { useSessionContext } from '../SessionProvider'
 import { SoundIntensityChart } from '../SoundIntensityChart/SoundIntensityChart';
 import { TemperatureChart } from '../../TemperatureChart/TemperatureChart';
+import { ManageReservations } from '../ManageReservations/ManageReservations';
 
 export const UserDashboard = () => {
   const { session, userData } = useSessionContext();
@@ -80,6 +81,13 @@ export const UserDashboard = () => {
                 <BsFillPeopleFill style={{ marginRight: '15px', fontSize: '17px' }} />
                 People occupancy
               </Button>
+              <Button
+                sx={{ ...(selectedTab === 'management' ? styles.buttonSelected : styles.button) }}
+                onClick={() => setSelectedTab('management')}
+              >
+                <BsFillGearFill style={{ marginRight: '15px', fontSize: '17px' }} />
+                Manage reservations
+              </Button>
             </>
           }
         </Grid>
@@ -91,6 +99,7 @@ export const UserDashboard = () => {
           </Box>
           {selectedTab === 'sound' && <SoundIntensityChart />}
           {selectedTab === 'temperature' && <TemperatureChart />}
+          {selectedTab === 'management' && <ManageReservations />}
         </Grid>
       </Grid>
     </Box>

@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { supabaseClient } from "../supabaseClient";
 import { Session } from "@supabase/supabase-js";
-import { getUserDataById } from "../api/getUserDataById";
+import { getUserDataByIdFromSession } from "../api/getUserDataByIdFromSession";
 
 type UserType = {
   name: string;
@@ -14,9 +14,9 @@ type UserType = {
 type SessionContextProps = {
   session: Session | null;
   //TODO: dodaj typy
-  userData: UserType | undefined
+  userData: any
   //TODO: dodaj typy
-  getUserData: (session: Session) => void;
+  getUserData: any
 }
 
 const SessionContext = createContext<SessionContextProps | undefined>(undefined)
@@ -28,7 +28,7 @@ export const SessionProvider = ({ children }: { children: React.ReactNode }) => 
 
   const getUserData = async (session: Session) => {
     // TODO: dodaj typy
-    const data: UserType = await getUserDataById(session)
+    const data: any = await getUserDataByIdFromSession(session)
     console.log(data)
     setUserData(data)
   }

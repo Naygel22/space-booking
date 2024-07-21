@@ -46,6 +46,7 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
     onSuccess: () => {
       console.log('Reservation successful');
       queryClient.invalidateQueries({ queryKey: ["userReservations"] });
+      queryClient.invalidateQueries({ queryKey: ["allReservations"] });
       setSelectedDesk(null);
       refetchReservation();
     },
