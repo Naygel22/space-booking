@@ -5,6 +5,7 @@ import startOfWeek from 'date-fns/startOfWeek'
 import getDay from 'date-fns/getDay'
 import enUS from 'date-fns/locale/en-US'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import { Box } from '@mui/material'
 
 const locales = {
   'en-US': enUS,
@@ -17,15 +18,29 @@ const localizer = dateFnsLocalizer({
   getDay,
   locales,
 })
+type Event = {
+  title: string,
+  start: Date,
+  end: Date,
+  allDay?: boolean,
+  resource?: any,
+}
+interface ReservationsCalendarProps {
+  events: Event[];
+}
 
-export const ReservationsCalendar = ({ events }: any) => ( //CalendarProps?
-  <div>
-    <Calendar
-      localizer={localizer}
-      events={events}
-      startAccessor="start"
-      endAccessor="end"
-      style={{ height: 600 }}
-    />
-  </div>
-);
+export const ReservationsCalendar = ({ events }: ReservationsCalendarProps) => {
+  console.log('Type of events:', typeof events);
+  console.log('Events:', events);
+
+  return (
+    <Box id='calendar'>
+      <Calendar
+        localizer={localizer}
+        events={events}
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: 600 }}
+      />
+    </Box>)
+};

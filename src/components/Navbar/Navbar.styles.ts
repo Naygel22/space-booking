@@ -18,7 +18,6 @@ export const styles: { [key: string]: SxProps<Theme> } = {
   link: {
     color: 'white',
     textDecoration: 'none',
-
     marginRight: '25px',
     '&:after': {
       content: '""',
@@ -33,6 +32,20 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     },
     '&:hover:after': {
       width: '100%',
+    },
+  },
+  tourButton: {
+    height: '35px',
+    borderRadius: '10px',
+    cursor: 'pointer',
+    backgroundColor: '#189AB4',
+    padding: '15px',
+    color: 'white',
+    fontSize: '15px',
+    fontWeight: 'bold',
+    border: 'none',
+    '&:hover': {
+      backgroundColor: '#4AB3C6',
     },
   },
 };

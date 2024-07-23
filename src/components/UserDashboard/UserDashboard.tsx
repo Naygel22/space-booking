@@ -33,11 +33,12 @@ export const UserDashboard = () => {
   }
 
   return (
-    <Box sx={styles.container}>
+    <Box sx={styles.container} id='user-dashboard'>
       <Grid container>
         <Grid item xs={3} sx={styles.sidebar}>
           <Box component='img' sx={styles.flexDeskLogo} src="/assets/images/flexDeskLogo.jpeg" />
           <Button
+            id='profile-button'
             sx={{ ...(selectedTab === 'profile' ? styles.buttonSelected : styles.button) }}
             onClick={() => setSelectedTab('profile')}
           >
@@ -45,6 +46,7 @@ export const UserDashboard = () => {
             My Profile
           </Button>
           <Button
+            id='reservations-button'
             sx={{ ...(selectedTab === 'reservations' ? styles.buttonSelected : styles.button) }}
             onClick={() => setSelectedTab('reservations')}
           >
@@ -52,6 +54,7 @@ export const UserDashboard = () => {
             My Reservations
           </Button>
           <Button
+            id='calendar-button'
             sx={{ ...(selectedTab === 'calendar' ? styles.buttonSelected : styles.button) }}
             onClick={() => setSelectedTab('calendar')}
           >

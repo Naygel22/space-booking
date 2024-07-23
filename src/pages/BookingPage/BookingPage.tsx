@@ -7,11 +7,10 @@ import { useSessionContext } from "../../components/SessionProvider";
 import { Box } from "@mui/material";
 import { styles } from "./BookingPage.styles";
 
-
 export const BookingPage = () => {
   const { session } = useSessionContext()
-
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
   };
@@ -21,7 +20,7 @@ export const BookingPage = () => {
   }
 
   return (
-    <Box sx={styles.bookingPageContainer}>
+    <Box sx={styles.bookingPageContainer} id='booking-page'>
 
       <Box sx={styles.datePickerContainer}>
         <Box component="img" sx={styles.flexDeskLogo} src="/assets/images/flexDeskLogo.jpeg" alt="Flex Desk Logo" />
@@ -33,6 +32,12 @@ export const BookingPage = () => {
             value={selectedDate}
             onChange={handleDateChange}
             format="yyyy-MM-dd"
+            slotProps={{
+              textField: {
+                required: true,
+                id: 'date-picker',
+              },
+            }}
             sx={styles.dataPicker}
           />
         </LocalizationProvider>

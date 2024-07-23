@@ -35,7 +35,7 @@ export const UserOnNavbar = ({ userData, handleLogout }: UserOnNavbarType) => {
   };
 
   return (
-    <Box sx={styles.avatarBadge}>
+    <Box sx={styles.avatarBadge} id='user-on-navbar'>
       <Avatar
         onClick={handleClick}
         sx={{ cursor: 'pointer' }}

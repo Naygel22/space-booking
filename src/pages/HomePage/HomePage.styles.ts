@@ -2,6 +2,7 @@ import { SxProps} from "@mui/material";
 
 export const homepageContainer: SxProps = {
   width: '100%',
+  height: '100%'
 }
 
 export const headingContainer: SxProps = {
@@ -14,7 +15,7 @@ export const headingContainer: SxProps = {
   textAlign: 'center',
   paddingLeft: '300px',
   paddingRight: '300px',
-  marginBottom: '500px'
+  marginBottom: '500px',
 }
 
 export const logo: SxProps = {

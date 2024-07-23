@@ -11,7 +11,7 @@ export const styles: { [key: string]: SxProps<Theme> } = {
   bookingPageContainer: {
     display: 'flex',
     width: '85%',
-    margin: '50px auto',
+    marginTop: '-100px',
     backgroundColor: '#464949',
     borderRadius: '10px'
   },

@@ -17,15 +17,15 @@ export const UserProfile = () => {
           <Avatar sx={styles.avatar}>
             {data[0].name[0]}
           </Avatar>
-          <Box sx={styles.nameAndSurname}>
+          <Box sx={styles.nameAndSurname} id='edit-button'>
             <Typography variant="body1" align="center" sx={styles.titleUserName}>{data[0].name}</Typography>
             <Typography variant="body1" align="center" sx={styles.titleUserSurname}>{data[0].surname}</Typography>
-            {!clickedToEdit && <Button onClick={() => setClickedToEdit(true)} sx={styles.pencilButton}><BsFillPencilFill style={styles.pencilIcon as React.CSSProperties} /></Button>}
+            {!clickedToEdit && <Button onClick={() => setClickedToEdit(true)} sx={styles.pencilButton} id="edit-button-click"><BsFillPencilFill style={styles.pencilIcon as React.CSSProperties} /></Button>}
           </Box>
 
           {clickedToEdit &&
             <>
-              <Button onClick={() => setClickedToEdit(false)} sx={styles.goBackButton}><FaArrowLeft style={styles.leftArrowIcon as React.CSSProperties} /></Button>
+              <Button onClick={() => setClickedToEdit(false)} sx={styles.goBackButton}><FaArrowLeft style={styles.leftArrowIcon as React.CSSProperties} id="go-back-button" /></Button>
               <ChangeUserForm initialUserFormValues={{
                 name: data[0].name,
                 surname: data[0].surname,

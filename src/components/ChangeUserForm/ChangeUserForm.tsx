@@ -42,7 +42,7 @@ export const ChangeUserForm = ({ initialUserFormValues }: ChangeUserFormProps) =
   }
 
   return (
-    <Box component="form" onSubmit={formik.handleSubmit} sx={styles.formContainer}>
+    <Box component="form" onSubmit={formik.handleSubmit} sx={styles.formContainer} id="change-user-form">
       <Box sx={styles.textFieldBar}>
         <TextInput formik={formik} accessor="name" label="Name" />
         <TextInput formik={formik} accessor="surname" label="Surname" />

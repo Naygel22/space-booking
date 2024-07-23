@@ -75,7 +75,7 @@ export const Reservations = () => {
   const paginatedReservations = reservations?.slice().reverse().slice(startIndex, endIndex);
 
   return (
-    <Box sx={styles.container}>
+    <Box sx={styles.container} id='reservations'>
       <Grid container sx={styles.header}>
         <Grid item xs={3} sx={styles.cell}>
           <Typography variant="h6" sx={styles.headerText}>Reservation ID</Typography>
@@ -105,7 +105,7 @@ export const Reservations = () => {
               <Grid item xs={3} sx={styles.cell}>
                 <Typography>{desk ? desk.name : "Unknown Desk"}</Typography>
               </Grid>
-              <Grid item xs={3} sx={styles.cell}>
+              <Grid item xs={3} sx={styles.cell} id='status-button'>
                 {isFutureReservation(reservation.date) ? (
                   <Button onClick={() => handleOpenModal(reservation.reservationId)} sx={styles.cancelButton}>Cancel</Button>
                 ) : (
