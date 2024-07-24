@@ -26,13 +26,16 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     flexGrow: 1,
   },
   pricingCardTitle: {
-    fontWeight: 'bold',
+    fontWeight: '600',
     marginTop: '10px',
+    fontFamily: 'Ubuntu',
   },
   pricingCardText: {
     fontSize: '14px',
     marginTop: '10px',
-    marginBottom: '20px'
+    marginBottom: '20px',
+    fontFamily: 'Ubuntu',
+    fontWeight: '500',
   },
   pricingCardPrice: {
     fontSize: '18px',

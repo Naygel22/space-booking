@@ -13,7 +13,7 @@ import { ModalOnCancel } from "../ModalOnCancel/ModalOnCancel";
 const ITEMS_PER_PAGE = 10;
 
 
-export const Reservations = () => {
+const Reservations = () => {
   const { session } = useSessionContext();
   const { notify } = useNotificationContext()
   const [currentPage, setCurrentPage] = useState(1);
@@ -129,3 +129,4 @@ export const Reservations = () => {
     </Box>
   );
 };
+export default Reservations

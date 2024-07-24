@@ -35,7 +35,7 @@ const pricingPlans = [
   },
 ];
 
-export const PricingPage = () => {
+const PricingPage = () => {
   const [isPremium, setIsPremium] = useState(false);
 
   return (
@@ -68,3 +68,4 @@ export const PricingPage = () => {
     </Box>
   );
 };
+export default PricingPage

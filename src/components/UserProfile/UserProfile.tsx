@@ -25,7 +25,7 @@ export const UserProfile = () => {
 
           {clickedToEdit &&
             <>
-              <Button onClick={() => setClickedToEdit(false)} sx={styles.goBackButton}><FaArrowLeft style={styles.leftArrowIcon as React.CSSProperties} id="go-back-button" /></Button>
+              <Button onClick={() => setClickedToEdit(false)} sx={styles.goBackButton} id="go-back-button"><FaArrowLeft style={styles.leftArrowIcon as React.CSSProperties} /></Button>
               <ChangeUserForm initialUserFormValues={{
                 name: data[0].name,
                 surname: data[0].surname,

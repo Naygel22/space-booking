@@ -10,6 +10,7 @@ import { NotificationProvider } from './NotificationContext.tsx'
 import { TemperatureProvider } from './components/TemperatureContext.tsx'
 import { TourContextProvider } from './components/TourContext.tsx'
 import TourWrapper from './components/TourWrapper.tsx'
+import ErrorBoundary from './ErrorBoundary.tsx'
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache(),
@@ -22,20 +23,22 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <TourContextProvider>
-        <TemperatureProvider>
-          <NotificationProvider>
-            <SessionProvider>
-              <BrowserRouter>
-                <TourWrapper />
-                <Navbar />
-                <App />
-              </BrowserRouter>
-            </SessionProvider>
-          </NotificationProvider>
-        </TemperatureProvider>
-      </TourContextProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <TourContextProvider>
+          <TemperatureProvider>
+            <NotificationProvider>
+              <SessionProvider>
+                <BrowserRouter>
+                  <TourWrapper />
+                  <Navbar />
+                  <App />
+                </BrowserRouter>
+              </SessionProvider>
+            </NotificationProvider>
+          </TemperatureProvider>
+        </TourContextProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   </React.StrictMode>
 )

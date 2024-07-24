@@ -10,7 +10,9 @@ export const styles: { [key: string]: SxProps<Theme> } = {
   },
   examplePricingTitle: {
     marginBottom: '40px',
-    color: 'black'
+    color: '#212429',
+    fontFamily: 'Ubuntu',
+    fontWeight: '600'
   },
   morePlansButton: {
     height: '50px',

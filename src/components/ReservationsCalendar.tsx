@@ -30,8 +30,6 @@ interface ReservationsCalendarProps {
 }
 
 export const ReservationsCalendar = ({ events }: ReservationsCalendarProps) => {
-  console.log('Type of events:', typeof events);
-  console.log('Events:', events);
 
   return (
     <Box id='calendar'>

@@ -16,6 +16,8 @@ export const styles: { [key: string]: SxProps<Theme> } = {
   },
   advantageText: {
     textAlign: 'center',
-    padding: 0
+    padding: 0,
+    fontFamily: 'Ubuntu',
+    fontWeight: '500'
   }
 };

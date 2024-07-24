@@ -8,6 +8,8 @@ export const styles: { [key: string]: SxProps<Theme> } = {
   },
   advantagesTitle: {
     textAlign: 'center',
-    marginBottom: '50px'
+    marginBottom: '50px',
+    fontFamily: 'Ubuntu',
+    fontWeight: '600'
   }
 };

@@ -13,7 +13,7 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     width: '85%',
     marginTop: '-100px',
     backgroundColor: '#464949',
-    borderRadius: '10px'
+    borderRadius: '10px',
   },
   datePickerContainer: {
     width: '33%',

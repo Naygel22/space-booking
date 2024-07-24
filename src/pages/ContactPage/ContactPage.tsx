@@ -14,7 +14,7 @@ const initialContactFormValues = {
   message: ''
 };
 
-export const ContactPage = () => {
+const ContactPage = () => {
   const navigate = useNavigate();
   const { notify } = useNotificationContext()
 
@@ -51,3 +51,4 @@ export const ContactPage = () => {
     </Box>
   );
 };
+export default ContactPage

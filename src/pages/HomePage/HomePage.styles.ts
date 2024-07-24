@@ -27,11 +27,15 @@ export const logo: SxProps = {
 export const headingText:SxProps = { 
     color: 'white',
     marginBottom: '10px',
+    fontFamily: 'Ubuntu',
+    fontWeight: '600'
 }
 
 
 export const subheadingText: SxProps = {
   color: 'white',
+  fontFamily: 'Ubuntu',
+    fontWeight: '400'
 }
 
 export const bookYourDeskNowButton: SxProps = { 

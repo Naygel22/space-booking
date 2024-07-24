@@ -250,13 +250,8 @@ export default function TourWrapper() {
             const editButton = document.getElementById('go-back-button');
             if (editButton) {
               editButton.click();
-            }
-            setTimeout(() => {
-
-
               setState({ stepIndex: stepIndex - 1 });
-            }, 300);
-
+            }
           }
           break;
         case 9:

@@ -15,6 +15,8 @@ export const pricingPageTitle: SxProps = {
   fontSize: '24px',
   marginBottom: '20px',
   color: 'white',
+  fontFamily: 'Ubuntu',
+  fontWeight: '600'
 };
 
 export const pricingCardsGrid: SxProps = {

@@ -14,15 +14,19 @@ export const ManageReservations = () => {
   const { notify } = useNotificationContext();
   const [reservationToCancel, setReservationToCancel] = useState<string | null>(null);
 
+  /// TODO: TYPY!!!!!!!!!!!
   const { data: reservations, isLoading, error, refetch } = useQuery({
     queryKey: ['allReservations'],
     queryFn: getAllReservations,
   });
 
+  /// TODO: TYPY!!!!!!!!!!!
   const { data: desks, isLoading: loadingDesks, error: errorDesks } = useQuery({
     queryKey: ['desks'],
     queryFn: getAllDesks,
   });
+
+
 
   const mutation = useMutation({
     mutationFn: async (reservationId: string) => deleteReservationById(reservationId),
@@ -78,7 +82,7 @@ export const ManageReservations = () => {
       width: 185,
       renderCell: (params) => (
         <Box sx={styles.cell}>
-          {params.value}
+          {params.value.slice(-5)}
         </Box>
       ),
     },
@@ -111,7 +115,7 @@ export const ManageReservations = () => {
       width: 185,
       renderCell: (params) => (
         <Box sx={styles.cell}>
-          {isFutureReservation(params.row.date) ? (
+          {params.value === 'ACTIVE' ? (
             <Button onClick={() => {
               console.log('Cancel button clicked for reservationId:', params.row.reservationId);
               handleOpenModal(params.row.reservationId);
@@ -126,6 +130,10 @@ export const ManageReservations = () => {
     },
   ];
 
+  const getStatus = (date: string): "ACTIVE" | "COMPLETED" => {
+    return isFutureReservation(date) ? "ACTIVE" : "COMPLETED"
+  }
+
   const rows = reservations?.map((reservation) => {
     const desk = desks?.find(desk => desk.furnitureId === reservation.furnitureId);
     return {
@@ -134,8 +142,10 @@ export const ManageReservations = () => {
       reservationId: reservation.reservationId,
       date: reservation.date,
       deskName: desk ? desk.name : "Unknown Desk",
+      status: getStatus(reservation.date)
     };
   }) || [];
+
 
   return (
     <Box sx={styles.container}>

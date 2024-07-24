@@ -8,7 +8,7 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     width: '100%',
     height: '100%',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   header: {
     borderBottom: '2px solid #000',
@@ -16,12 +16,13 @@ export const styles: { [key: string]: SxProps<Theme> } = {
 
   },
   headerText: {
-    fontWeight: 'bold',
+    fontWeight: '600',
+    fontFamily: 'Ubuntu',
   },
   row: {
     borderBottom: '1px solid #ccc',
     padding: '10px 0',
-    height: '50px'
+    height: '50px',
   },
   cell: {
     display: 'flex',

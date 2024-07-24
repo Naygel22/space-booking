@@ -6,7 +6,7 @@ import { ExamplePricing } from '../../components/ExamplePricing/ExamplePricing';
 import { Footer } from '../../components/Footer/Footer';
 import { Faq } from '../../components/Faq/Faq';
 
-export const HomePage = () => {
+const HomePage = () => {
   return (
     <Box sx={styles.homepageContainer}>
       <Box sx={styles.headingContainer}>
@@ -27,3 +27,4 @@ export const HomePage = () => {
     </Box>
   );
 };
+export default HomePage

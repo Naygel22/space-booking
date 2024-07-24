@@ -9,7 +9,9 @@ export const styles: { [key: string]: SxProps<Theme> } = {
   title: { 
     fontSize: '25px',
      marginTop: '30px', 
-     marginBottom: '40px' 
+     marginBottom: '40px',
+    fontFamily: 'Ubuntu',
+    fontWeight: '600'
   },
   chart: { 
     width: '100%', 
@@ -20,7 +22,7 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '30%'
+    width: '30%',
   },
   minusButton: {
     border: '5px solid #FD7347',
@@ -32,6 +34,7 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     '&:hover': {
       backgroundColor: 'white',
     },
+    
   },
   plusButton: {
     border: '5px solid #FD7347',

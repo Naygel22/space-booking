@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Button, Grid, Typography } from '@mui/material';
-import { Reservations } from '../Reservations/Reservations';
+import Reservations from '../Reservations/Reservations';
 import { styles } from './UserDashboard.styles';
 import { UserProfile } from '../UserProfile/UserProfile';
 import { BsCalendar2CheckFill, BsCalendar2Date, BsFillGearFill, BsFillMegaphoneFill, BsFillPeopleFill, BsFillPersonFill, BsThermometerHalf } from 'react-icons/bs';
@@ -11,10 +11,15 @@ import { useSessionContext } from '../SessionProvider'
 import { SoundIntensityChart } from '../SoundIntensityChart/SoundIntensityChart';
 import { TemperatureChart } from '../../TemperatureChart/TemperatureChart';
 import { ManageReservations } from '../ManageReservations/ManageReservations';
+import { useTourContext } from '../TourContext';
+import { PeopleOccupancyChart } from '../PeopleOccupancyChart/PeopleOccupancyChart';
 
-export const UserDashboard = () => {
+const tabs = ["profile", "reservations", "calendar", "sound", "temperature", "occupancy", "management"] as const;
+type PossibleTabs = typeof tabs[number]
+
+const UserDashboard = () => {
   const { session, userData } = useSessionContext();
-  const [selectedTab, setSelectedTab] = useState('profile');
+  const [selectedTab, setSelectedTab] = useState<PossibleTabs>('profile');
 
   const { data: reservations } = useQuery({
     queryKey: ['userReservations', session?.user.id],
@@ -27,6 +32,17 @@ export const UserDashboard = () => {
     end: new Date(reservation.date),
     allDay: true,
   })) || [];
+
+  const {
+    setState,
+    state: { stepIndex },
+  } = useTourContext();
+
+  useEffect(() => {
+    if (stepIndex === 6) {
+      setState({ run: true, stepIndex: 6 })
+    }
+  }, [])
 
   if (!userData) {
     return <Typography>No data available</Typography>;
@@ -103,8 +119,10 @@ export const UserDashboard = () => {
           {selectedTab === 'sound' && <SoundIntensityChart />}
           {selectedTab === 'temperature' && <TemperatureChart />}
           {selectedTab === 'management' && <ManageReservations />}
+          {selectedTab === 'occupancy' && <PeopleOccupancyChart />}
         </Grid>
       </Grid>
     </Box>
   );
 };
+export default UserDashboard

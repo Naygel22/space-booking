@@ -14,10 +14,12 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     title: {
       fontSize: '40px',
       color: 'black',
-      marginBottom: '20px'
+      marginBottom: '20px',
+      fontFamily: 'Ubuntu',
+    fontWeight: '600'
     },
     question: {
       fontWeight: 'bold',
-      height: '60px'
+      height: '60px',
     }
 }

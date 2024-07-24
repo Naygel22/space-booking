@@ -1,19 +1,31 @@
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { SpaceViewer } from "../../components/SpaceViewer/SpaceViewer"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LoginInfoToBook } from "../../components/LoginInfoToBook/LoginInfoToBook";
 import { useSessionContext } from "../../components/SessionProvider";
 import { Box } from "@mui/material";
 import { styles } from "./BookingPage.styles";
+import { useTourContext } from "../../components/TourContext";
 
-export const BookingPage = () => {
+const BookingPage = () => {
   const { session } = useSessionContext()
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
   };
+
+  const {
+    setState,
+    state: { stepIndex },
+  } = useTourContext();
+
+  useEffect(() => {
+    if (stepIndex === 2) {
+      setState({ run: true, stepIndex: 2 })
+    }
+  }, [])
 
   if (!session) {
     return <LoginInfoToBook />
@@ -48,6 +60,6 @@ export const BookingPage = () => {
     </Box>
   );
 };
-
+export default BookingPage
 
 

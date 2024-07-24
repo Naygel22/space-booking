@@ -9,7 +9,9 @@ export const styles: { [key: string]: SxProps<Theme> } = {
   title: { 
     fontSize: '25px',
      marginTop: '30px', 
-     marginBottom: '-20px' 
+     marginBottom: '-20px',
+     fontFamily: 'Ubuntu',
+    fontWeight: '600'
   },
   chart: { 
     width: '100%', 
