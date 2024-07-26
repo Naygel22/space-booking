@@ -10,6 +10,19 @@ import { ModalOnCancel } from "../ModalOnCancel/ModalOnCancel";
 import { getAllReservations } from "../../api/getAllReservations";
 import { styles } from "./ManageReservations.styles";
 
+type ReservationType = {
+  reservationId: string;
+  userId: string;
+  date: string;
+  furnitureId: string;
+};
+
+type DeskType = {
+  furnitureId: string;
+  name: string;
+};
+
+
 export const ManageReservations = () => {
   const { notify } = useNotificationContext();
   const [reservationToCancel, setReservationToCancel] = useState<string | null>(null);
@@ -26,7 +39,8 @@ export const ManageReservations = () => {
     queryFn: getAllDesks,
   });
 
-
+  console.log(desks)
+  console.log(reservations)
 
   const mutation = useMutation({
     mutationFn: async (reservationId: string) => deleteReservationById(reservationId),
@@ -171,6 +185,7 @@ export const ManageReservations = () => {
             paginationModel: { page: 0, pageSize: 10 },
           },
         }}
+        pageSizeOptions={[5, 10]}
         autoHeight
       />
       {reservationToCancel && (

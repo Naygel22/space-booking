@@ -2,7 +2,7 @@ import { Modal, Box, Typography, Button } from '@mui/material';
 import { styles } from './ModalOnCancel.styles';
 
 type ModalOnCancelProps = {
-  open: any,
+  open: boolean,
   onConfirm: () => void,
   onClose: () => void,
 }

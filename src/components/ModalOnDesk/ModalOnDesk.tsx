@@ -13,7 +13,7 @@ type ModalOnDeskProps = {
   desk: Desk,
   onClose: () => void,
   onBook: (desk: Desk) => void,
-  selectedDate: any,
+  selectedDate: string,
 }
 
 export type DeskFeatures = {

@@ -28,8 +28,10 @@ export const ChangeUserForm = ({ initialUserFormValues }: ChangeUserFormProps) =
   const { mutate } = useMutation({
     mutationFn: async (data: ChangeUserEmailProps) => changeUserData(data),
     onSuccess: () => {
-      getUserData(session)
-      console.log("success")
+      if (session) {
+        getUserData(session)
+        console.log("success")
+      }
     },
     onError: () => {
       console.log("Something went wrong");

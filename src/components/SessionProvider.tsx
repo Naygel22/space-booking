@@ -13,23 +13,20 @@ type UserType = {
 
 type SessionContextProps = {
   session: Session | null;
-  //TODO: dodaj typy
-  userData: any
-  //TODO: dodaj typy
-  getUserData: any
-}
+  userData: UserType | undefined;
+  getUserData: (session: Session) => Promise<void>;
+};
 
 const SessionContext = createContext<SessionContextProps | undefined>(undefined)
 
 export const SessionProvider = ({ children }: { children: React.ReactNode }) => {
   const [session, setSession] = useState<Session | null>(null)
-  //TODO: dodac typy
   const [userData, setUserData] = useState<UserType | undefined>(undefined);
 
   const getUserData = async (session: Session) => {
     // TODO: dodaj typy
     const data: any = await getUserDataByIdFromSession(session)
-    console.log(data)
+
     setUserData(data)
   }
 
