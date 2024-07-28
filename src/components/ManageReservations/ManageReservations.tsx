@@ -9,32 +9,19 @@ import { useState } from "react";
 import { ModalOnCancel } from "../ModalOnCancel/ModalOnCancel";
 import { getAllReservations } from "../../api/getAllReservations";
 import { styles } from "./ManageReservations.styles";
-
-type ReservationType = {
-  reservationId: string;
-  userId: string;
-  date: string;
-  furnitureId: string;
-};
-
-type DeskType = {
-  furnitureId: string;
-  name: string;
-};
+import { DeskType, ReservationType } from "./ManageReservations.types";
 
 
 export const ManageReservations = () => {
   const { notify } = useNotificationContext();
   const [reservationToCancel, setReservationToCancel] = useState<string | null>(null);
 
-  /// TODO: TYPY!!!!!!!!!!!
-  const { data: reservations, isLoading, error, refetch } = useQuery({
+  const { data: reservations, isLoading, error, refetch } = useQuery<ReservationType[]>({
     queryKey: ['allReservations'],
     queryFn: getAllReservations,
   });
 
-  /// TODO: TYPY!!!!!!!!!!!
-  const { data: desks, isLoading: loadingDesks, error: errorDesks } = useQuery({
+  const { data: desks, isLoading: loadingDesks, error: errorDesks } = useQuery<DeskType[]>({
     queryKey: ['desks'],
     queryFn: getAllDesks,
   });

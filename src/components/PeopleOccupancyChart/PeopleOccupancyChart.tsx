@@ -1,17 +1,17 @@
 import * as echarts from 'echarts/core';
 import {
   CalendarComponent,
-  CalendarComponentOption,
   TooltipComponent,
-  TooltipComponentOption,
   LegendComponent,
-  LegendComponentOption
+  // CalendarComponentOption,
+  // TooltipComponentOption,
+  // LegendComponentOption
 } from 'echarts/components';
 import {
   ScatterChart,
-  ScatterSeriesOption,
   PieChart,
-  PieSeriesOption
+  // ScatterSeriesOption,
+  // PieSeriesOption
 } from 'echarts/charts';
 import { UniversalTransition, LabelLayout } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
@@ -28,13 +28,13 @@ echarts.use([
   LabelLayout
 ]);
 
-type EChartsOption = echarts.ComposeOption<
-  | CalendarComponentOption
-  | TooltipComponentOption
-  | LegendComponentOption
-  | ScatterSeriesOption
-  | PieSeriesOption
->;
+// type EChartsOption = echarts.ComposeOption<
+//   | CalendarComponentOption
+//   | TooltipComponentOption
+//   | LegendComponentOption
+//   | ScatterSeriesOption
+//   | PieSeriesOption
+// >
 
 function getDatesForMonth(firstDayOfMonth: string, firstDayOfNextMonth: string) {
   const date = +echarts.time.parse(firstDayOfMonth);
@@ -68,9 +68,7 @@ export const PeopleOccupancyChart = () => {
         formatter: '{c}',
         position: 'inside'
       },
-      //TODO: call to API
-      // rezerwacje dla dnia
-      // wolne dla dnia
+
       data: [
         { name: 'Free', value: Math.round(Math.random() * 24) },
         { name: 'Occupied', value: Math.round(Math.random() * 24) }

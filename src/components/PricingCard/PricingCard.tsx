@@ -1,12 +1,7 @@
 import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 import { styles } from "./PricingCard.styles";
+import { PricingPlan } from "./PricingCard.types";
 
-export type PricingPlan = {
-  title: string,
-  text: string,
-  imageSrc: string,
-  price?: number,
-};
 
 export const PricingCard = ({ title, text, imageSrc, price }: PricingPlan) => {
   return (

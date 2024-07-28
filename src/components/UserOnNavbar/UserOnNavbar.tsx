@@ -3,14 +3,8 @@ import { useState } from "react";
 import { BsBoxArrowRight, BsPersonCircle } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { styles } from "./UserOnNavbar.styles";
+import { UserOnNavbarType } from "./UserOnNavbar.types";
 
-type UserOnNavbarType = {
-  userData: Array<{
-    name: string;
-    surname: string;
-  }> | undefined
-  handleLogout: () => void
-};
 
 export const UserOnNavbar = ({ userData, handleLogout }: UserOnNavbarType) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

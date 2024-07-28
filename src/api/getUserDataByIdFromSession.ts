@@ -1,9 +1,10 @@
 import { Session } from "@supabase/supabase-js";
 import { supabaseClient } from "../supabaseClient"
+import { UserType } from "../components/SessionProvider";
 
-export const getUserDataByIdFromSession = async (session: Session | null) => {
+export const getUserDataByIdFromSession = async (session: Session | null): Promise<UserType[]> => {
   if (!session) {
-    return
+    return []
   }
 
   const { data: users, error } = await supabaseClient
@@ -13,7 +14,7 @@ export const getUserDataByIdFromSession = async (session: Session | null) => {
 
   if (error) {
     console.error("Error fetching user name:", error);
-    return
+    return []
   }
 
   return users;

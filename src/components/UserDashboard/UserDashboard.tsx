@@ -47,7 +47,6 @@ const UserDashboard = () => {
   if (!userData) {
     return <Typography>No data available</Typography>;
   }
-
   return (
     <Box sx={styles.container} id='user-dashboard'>
       <Grid container>

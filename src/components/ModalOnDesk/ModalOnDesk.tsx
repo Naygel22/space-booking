@@ -2,27 +2,11 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Desk } from '../SpaceViewer/SpaceViewer.types';
 import { MdElectricalServices, MdEventAvailable, MdHeight, MdLight, MdMonitor } from "react-icons/md";
 import { styles } from './ModalOnDesk.styles';
 import { Divider } from '@mui/material';
 import { useNotificationContext } from '../../NotificationContext';
-
-
-type ModalOnDeskProps = {
-  desk: Desk,
-  onClose: () => void,
-  onBook: (desk: Desk) => void,
-  selectedDate: string,
-}
-
-export type DeskFeatures = {
-  monitors: number
-  sockets: number
-  hasLamp: boolean
-  adjustableHeight: boolean
-  otherAccessories?: string[]
-}
+import { ModalOnDeskProps } from './ModalOnDesk.types';
 
 const everyDeskFeatures = {
   monitors: 2,

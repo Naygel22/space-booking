@@ -10,6 +10,10 @@ export const UserProfile = () => {
   const { userData: data } = useSessionContext();
   const [clickedToEdit, setClickedToEdit] = useState(false)
 
+  if (!data || data.length === 0) {
+    return <div>No user data available</div>;
+  }
+
   return (
     <Box sx={styles.container}>
       <Paper sx={styles.paperArea}>
@@ -29,8 +33,8 @@ export const UserProfile = () => {
               <ChangeUserForm initialUserFormValues={{
                 name: data[0].name,
                 surname: data[0].surname,
-                phonenumber: data[0].phonenumber,
-                mail: data[0].mail,
+                phonenumber: data[0].phonenumber ?? '',
+                mail: data[0].mail ?? '',
               }} />
             </>
           }
