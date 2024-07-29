@@ -10,8 +10,8 @@ import { useState } from "react"
 import { useSessionContext } from "../SessionProvider"
 
 const initialLoginFormValues = {
-  mail: '',
-  password: ''
+  mail: 'testuser@flexdesk.com',
+  password: 'Test123@'
 }
 
 export const Login = () => {
