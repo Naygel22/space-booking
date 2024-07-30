@@ -5,9 +5,9 @@ import { sendLoginValues } from "../../api/sendLoginValues"
 import { Link, useNavigate } from "react-router-dom"
 import { Box, Button, Divider, Typography } from "@mui/material"
 import { styles } from "./Login.styles"
-import { useNotificationContext } from "../../NotificationContext"
+import { useNotificationContext } from "../../context/NotificationContext"
 import { useState } from "react"
-import { useSessionContext } from "../SessionProvider"
+import { useSessionContext } from "../../context/SessionProvider"
 
 const initialLoginFormValues = {
   mail: '',

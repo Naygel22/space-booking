@@ -2,8 +2,8 @@ import { describe, test, expect, vi } from "vitest";
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Login } from './Login'
 import { BrowserRouter } from "react-router-dom";
-import { NotificationProvider } from "../../NotificationContext";
-import { SessionProvider } from "../SessionProvider";
+import { NotificationProvider } from "../../context/NotificationContext";
+import { SessionProvider } from "../../context/SessionProvider";
 
 
 describe("Login", () => {

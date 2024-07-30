@@ -2,7 +2,7 @@ import Joyride, { CallBackProps } from 'react-joyride';
 import { useNavigate } from 'react-router-dom';
 import { useMount } from 'react-use';
 import { Container } from '@mui/material';
-import { useTourContext } from './TourContext';
+import { useTourContext } from '../context/TourContext';
 
 export default function TourWrapper() {
   const {

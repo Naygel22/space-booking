@@ -1,4 +1,4 @@
-import { useSessionContext } from "../SessionProvider";
+import { useSessionContext } from "../../context/SessionProvider";
 import { Avatar, Box, Typography, Paper, Button, Grid } from "@mui/material";
 import { styles } from "./UserProfile.styles";
 import { ChangeUserForm } from "../ChangeUserForm/ChangeUserForm";

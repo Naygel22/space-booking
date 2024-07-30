@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import ReactECharts from 'echarts-for-react';
 import { styles } from "./TemperatureChart.styles";
 import { BsArrowLeftRight } from "react-icons/bs";
-import { useTemperatureContext } from "../components/TemperatureContext";
+import { useTemperatureContext } from "../context/TemperatureContext";
 
 export const TemperatureChart = () => {
   const { temperature, increaseTemperature, decreaseTemperature } = useTemperatureContext();

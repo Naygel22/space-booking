@@ -1,11 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useSessionContext } from "../SessionProvider";
+import { useSessionContext } from "../../context/SessionProvider";
 import { supabaseClient } from "../../supabaseClient";
 import { UserOnNavbar } from "../UserOnNavbar/UserOnNavbar";
 import { AppBar, Box, Button, Toolbar } from "@mui/material";
 import { styles } from "./Navbar.styles";
 import { useMount } from "react-use";
-import { useTourContext } from "../TourContext";
+import { useTourContext } from "../../context/TourContext";
 
 
 

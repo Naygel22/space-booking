@@ -5,7 +5,7 @@ import Modal from '@mui/material/Modal';
 import { MdElectricalServices, MdEventAvailable, MdHeight, MdLight, MdMonitor } from "react-icons/md";
 import { styles } from './ModalOnDesk.styles';
 import { Divider } from '@mui/material';
-import { useNotificationContext } from '../../NotificationContext';
+import { useNotificationContext } from '../../context/NotificationContext';
 import { ModalOnDeskProps } from './ModalOnDesk.types';
 
 const everyDeskFeatures = {

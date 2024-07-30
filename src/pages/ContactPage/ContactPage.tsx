@@ -5,7 +5,7 @@ import { TextInput } from "../../components/TextInput";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { ContactFormValues, yupContactSchema } from "../../validators/validators";
-import { useNotificationContext } from "../../NotificationContext";
+import { useNotificationContext } from "../../context/NotificationContext";
 
 const initialContactFormValues = {
   name: '',

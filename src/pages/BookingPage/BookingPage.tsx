@@ -3,10 +3,10 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { SpaceViewer } from "../../components/SpaceViewer/SpaceViewer"
 import { useEffect, useState } from "react";
 import { LoginInfoToBook } from "../../components/LoginInfoToBook/LoginInfoToBook";
-import { useSessionContext } from "../../components/SessionProvider";
+import { useSessionContext } from "../../context/SessionProvider";
 import { Box } from "@mui/material";
 import { styles } from "./BookingPage.styles";
-import { useTourContext } from "../../components/TourContext";
+import { useTourContext } from "../../context/TourContext";
 
 const BookingPage = () => {
   const { session } = useSessionContext()

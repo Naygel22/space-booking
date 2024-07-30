@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import { useSessionContext } from "./SessionProvider"
+import { useSessionContext } from "../context/SessionProvider"
 import { lazy, Suspense } from "react"
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));

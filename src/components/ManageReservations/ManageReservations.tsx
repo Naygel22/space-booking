@@ -4,7 +4,7 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { deleteReservationById } from "../../api/deleteReservationById";
 import { isAfter, parseISO, isToday } from 'date-fns';
 import { getAllDesks } from "../../api/getAllDesks";
-import { useNotificationContext } from "../../NotificationContext";
+import { useNotificationContext } from "../../context/NotificationContext";
 import { useState } from "react";
 import { ModalOnCancel } from "../ModalOnCancel/ModalOnCancel";
 import { getAllReservations } from "../../api/getAllReservations";

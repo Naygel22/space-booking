@@ -1,12 +1,12 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getReservationsForUser } from "../../api/getReservationsForUser";
-import { useSessionContext } from "../SessionProvider";
+import { useSessionContext } from "../../context/SessionProvider";
 import { Box, Button, Grid, Pagination, Typography } from "@mui/material";
 import { styles } from "./Reservations.styles";
 import { deleteReservationById } from "../../api/deleteReservationById";
 import { isAfter, parseISO, isToday } from 'date-fns';
 import { getAllDesks } from "../../api/getAllDesks";
-import { useNotificationContext } from "../../NotificationContext";
+import { useNotificationContext } from "../../context/NotificationContext";
 import { useState } from "react";
 import { ModalOnCancel } from "../ModalOnCancel/ModalOnCancel";
 

@@ -5,8 +5,8 @@ import { ChangeUserFormValues, yupChangeUserSchema } from "../../validators/vali
 import { TextInput } from "../TextInput"
 import { useMutation } from "@tanstack/react-query"
 import { styles } from "./ChangeUserForm.styles"
-import { useNotificationContext } from "../../NotificationContext"
-import { useSessionContext } from "../SessionProvider"
+import { useNotificationContext } from "../../context/NotificationContext"
+import { useSessionContext } from "../../context/SessionProvider"
 
 type ChangeUserFormProps = {
   initialUserFormValues: ChangeUserFormValues

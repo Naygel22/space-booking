@@ -1,6 +1,6 @@
 import { Session } from "@supabase/supabase-js";
 import { supabaseClient } from "../supabaseClient"
-import { UserType } from "../components/SessionProvider";
+import { UserType } from "../context/SessionProvider";
 
 export const getUserDataByIdFromSession = async (session: Session | null): Promise<UserType[]> => {
   if (!session) {

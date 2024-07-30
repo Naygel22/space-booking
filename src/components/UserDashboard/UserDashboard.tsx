@@ -7,11 +7,11 @@ import { BsCalendar2CheckFill, BsCalendar2Date, BsFillGearFill, BsFillMegaphoneF
 import { ReservationsCalendar } from '../ReservationsCalendar';
 import { useQuery } from '@tanstack/react-query';
 import { getReservationsForUser } from '../../api/getReservationsForUser';
-import { useSessionContext } from '../SessionProvider'
+import { useSessionContext } from '../../context/SessionProvider'
 import { SoundIntensityChart } from '../SoundIntensityChart/SoundIntensityChart';
 import { TemperatureChart } from '../../TemperatureChart/TemperatureChart';
 import { ManageReservations } from '../ManageReservations/ManageReservations';
-import { useTourContext } from '../TourContext';
+import { useTourContext } from '../../context/TourContext';
 import { PeopleOccupancyChart } from '../PeopleOccupancyChart/PeopleOccupancyChart';
 
 const tabs = ["profile", "reservations", "calendar", "sound", "temperature", "occupancy", "management"] as const;

@@ -6,7 +6,7 @@ import { Grid, Box, Button } from "@mui/material";
 import { styles } from "./Register.styles";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-import { useNotificationContext } from "../../NotificationContext";
+import { useNotificationContext } from "../../context/NotificationContext";
 
 type RegisterProps = {
   onStepChange: () => void;
