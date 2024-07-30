@@ -12,7 +12,7 @@ import { SoundIntensityChart } from '../SoundIntensityChart/SoundIntensityChart'
 import { TemperatureChart } from '../../TemperatureChart/TemperatureChart';
 import { ManageReservations } from '../ManageReservations/ManageReservations';
 import { useTourContext } from '../../context/TourContext';
-import { PeopleOccupancyChart } from '../PeopleOccupancyChart/PeopleOccupancyChart';
+// import { PeopleOccupancyChart } from '../PeopleOccupancyChart/PeopleOccupancyChart';
 
 const tabs = ["profile", "reservations", "calendar", "sound", "temperature", "occupancy", "management"] as const;
 type PossibleTabs = typeof tabs[number]
@@ -118,7 +118,7 @@ const UserDashboard = () => {
           {selectedTab === 'sound' && <SoundIntensityChart />}
           {selectedTab === 'temperature' && <TemperatureChart />}
           {selectedTab === 'management' && <ManageReservations />}
-          {selectedTab === 'occupancy' && <PeopleOccupancyChart />}
+          {/* {selectedTab === 'occupancy' && <PeopleOccupancyChart />} */}
         </Grid>
       </Grid>
     </Box>
