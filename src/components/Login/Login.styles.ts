@@ -5,11 +5,11 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    paddingTop: '40px'
+    paddingTop: '30px'
   },
   flexDeskLogo: {
-    width: '200px',
-    height: '200px',
+    width: '180px',
+    height: '180px',
     borderRadius: '150px'
   },
   loginForm: {
@@ -24,12 +24,15 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     fontSize: '13px',
     color: '#c52c2c'
   },
+  testText: {
+    fontSize: '14px'
+  },
   loginButton: {
     height: '50px',
     borderRadius: '10px',
     cursor: 'pointer',
     backgroundColor: '#8cb835',
-    marginTop: '40px',
+    marginTop: '10px',
     marginBottom: '20px',
     color: 'white',
     fontSize: '18px',

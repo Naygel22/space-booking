@@ -37,21 +37,24 @@ const BookingPage = () => {
       <Box sx={styles.datePickerContainer}>
         <Box component="img" sx={styles.flexDeskLogo} src="/assets/images/flexDeskLogo.jpeg" alt="Flex Desk Logo" />
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DatePicker
-            label="Pick your date"
-            disablePast
-            views={['year', 'month', 'day']}
-            value={selectedDate}
-            onChange={handleDateChange}
-            format="yyyy-MM-dd"
-            slotProps={{
-              textField: {
-                required: true,
-                id: 'date-picker',
-              },
-            }}
-            sx={styles.dataPicker}
-          />
+          <div id="datePickerID" style={{ width: "80%" }}>
+            <DatePicker
+              label="Pick your date"
+              disablePast
+              views={['year', 'month', 'day']}
+              value={selectedDate}
+              onChange={handleDateChange}
+              format="yyyy-MM-dd"
+
+              slotProps={{
+                textField: {
+                  required: true,
+                  id: 'date-picker',
+                },
+              }}
+              sx={styles.dataPicker}
+            />
+          </div>
         </LocalizationProvider>
       </Box>
       <Box sx={styles.spaceviewerContainer}>

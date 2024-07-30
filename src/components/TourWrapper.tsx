@@ -48,7 +48,7 @@ export default function TourWrapper() {
           ),
         },
         {
-          target: '#date-picker',
+          target: '#datePickerID',
           content: (
             <>
               <h2>Calendar</h2>

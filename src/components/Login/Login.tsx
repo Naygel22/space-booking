@@ -10,8 +10,8 @@ import { useState } from "react"
 import { useSessionContext } from "../SessionProvider"
 
 const initialLoginFormValues = {
-  mail: 'testuser@flexdesk.com',
-  password: 'Test123@'
+  mail: '',
+  password: ''
 }
 
 export const Login = () => {
@@ -48,6 +48,8 @@ export const Login = () => {
           <TextInput formik={formik} accessor='mail' label='E-mail' />
           <TextInput formik={formik} accessor='password' label='Password' type='password' />
           <Typography sx={styles.loginError}>{loginError}</Typography>
+          <Typography sx={styles.testText}>Test Login: testuser@flexdesk.com</Typography>
+          <Typography sx={styles.testText}>Test Password: Test123@</Typography>
           <Button type="submit" sx={styles.loginButton}>Log In</Button>
           <Divider sx={styles.divider}>OR</Divider>
 

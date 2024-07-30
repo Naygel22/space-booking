@@ -6,7 +6,8 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     width: '200px',
     height: '200px',
     borderRadius: '150px',
-    marginTop: '30px'
+    marginTop: '30px',
+    marginBottom: '30px'
   },
   bookingPageContainer: {
     display: 'flex',
@@ -25,8 +26,7 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     width: '100%'
   },
   dataPicker: {
-    marginTop: '30px',
-    width: '81%',
+    width: '100%',
     '.MuiOutlinedInput-root': {
       '& fieldset': {
         borderColor: 'white',
