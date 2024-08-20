@@ -19,6 +19,7 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     color: 'white',
     textDecoration: 'none',
     marginRight: '25px',
+    width: '80px',
     '&:after': {
       content: '""',
       position: 'absolute',
