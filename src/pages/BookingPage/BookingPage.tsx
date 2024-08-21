@@ -7,10 +7,15 @@ import { useSessionContext } from "../../context/SessionProvider";
 import { Box } from "@mui/material";
 import { styles } from "./BookingPage.styles";
 import { useTourContext } from "../../context/TourContext";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 const BookingPage = () => {
   const { session } = useSessionContext()
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down(1300));
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
@@ -32,10 +37,10 @@ const BookingPage = () => {
   }
 
   return (
-    <Box sx={styles.bookingPageContainer} id='booking-page'>
+    <Box sx={styles(isMobile).bookingPageContainer} id='booking-page'>
 
-      <Box sx={styles.datePickerContainer}>
-        <Box component="img" sx={styles.flexDeskLogo} src="/assets/images/flexDeskLogo.jpeg" alt="Flex Desk Logo" />
+      <Box sx={styles(isMobile).datePickerContainer}>
+        <Box component="img" sx={styles(isMobile).flexDeskLogo} src="/assets/images/flexDeskLogo.jpeg" alt="Flex Desk Logo" />
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <div id="datePickerID" style={{ width: "80%" }}>
             <DatePicker
@@ -52,12 +57,12 @@ const BookingPage = () => {
                   id: 'date-picker',
                 },
               }}
-              sx={styles.dataPicker}
+              sx={styles(isMobile).dataPicker}
             />
           </div>
         </LocalizationProvider>
       </Box>
-      <Box sx={styles.spaceviewerContainer}>
+      <Box sx={styles(isMobile).spaceviewerContainer}>
         {selectedDate ? <SpaceViewer selectedDate={selectedDate.toString()} /> : null}
       </Box>
     </Box>

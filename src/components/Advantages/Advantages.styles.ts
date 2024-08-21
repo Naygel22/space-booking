@@ -1,15 +1,14 @@
-import { SxProps, Theme } from "@mui/material";
-
-export const styles: { [key: string]: SxProps<Theme> } = {
+export const styles = (isMobile:boolean)=> ({
   advantagesPageContainer: {
-    padding: '50px 200px 50px 200px',
+    padding: isMobile ? '25px 50px' :'50px 200px',
     backgroundColor: '#212429',
     color: 'white',
   },
   advantagesTitle: {
     textAlign: 'center',
-    marginBottom: '50px',
+    marginBottom: isMobile ? '20px':'50px',
     fontFamily: 'Ubuntu',
-    fontWeight: '600'
+    fontWeight: '600',
+    fontSize: isMobile ? '25px':'34px',
   }
-};
+});

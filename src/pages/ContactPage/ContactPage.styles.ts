@@ -1,13 +1,13 @@
-import { SxProps, Theme } from "@mui/material";
 
-export const styles: { [key: string]: SxProps<Theme> } = {
+
+export const styles = (isMobile:boolean)=> ({
   contactPageContainer: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     padding: '20px',
     backgroundColor: "#2e2d2b",
-    width: '60%',
+    width: isMobile ? '80%': '60%', 
     borderRadius: '20px',
     marginTop: '50px',
   },
@@ -20,12 +20,12 @@ export const styles: { [key: string]: SxProps<Theme> } = {
   },
   title: {
     fontWeight: 'bold',
-    fontSize: '40px',
+    fontSize: isMobile ? '30px' : '40px',
     marginBottom: '30px'
   },
   description: {
     fontWeight: 'bold',
-    fontSize: '22px',
+    fontSize: isMobile ? '18px' : '22px',
     marginBottom: '10px'
   },
   contactDetail: {
@@ -48,7 +48,7 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     cursor: 'pointer',
     backgroundColor: '#8cb835',
     color: 'white',
-    fontSize: '18px',
+    fontSize: isMobile ? '16px' :'18px',
     fontWeight: 'bold',
     border: 'none',
     textAlign: 'center',
@@ -60,4 +60,4 @@ export const styles: { [key: string]: SxProps<Theme> } = {
       backgroundColor: '#afc786',
     },
   }
-};
+});

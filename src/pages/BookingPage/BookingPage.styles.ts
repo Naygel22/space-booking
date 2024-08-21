@@ -1,32 +1,33 @@
-import { SxProps, Theme } from "@mui/material";
 
-export const styles: { [key: string]: SxProps<Theme> } = {
+export const styles = (isMobile:boolean)=> ({
 
   flexDeskLogo: {
-    width: '200px',
-    height: '200px',
+    width: isMobile ? '30%': '200px',
+    height: isMobile ? '30%': '200px',
     borderRadius: '150px',
-    marginTop: '30px',
-    marginBottom: '30px'
+    marginTop: isMobile ? '15px': '30px',
+    marginBottom: isMobile ? '15px': '30px',
+    marginLeft: isMobile ? '30px': '0'
   },
   bookingPageContainer: {
     display: 'flex',
     width: '85%',
- 
+    flexDirection: isMobile ? 'column': 'row',
     backgroundColor: '#464949',
     borderRadius: '10px',
   },
   datePickerContainer: {
-    width: '33%',
+    width: isMobile ? '60%': '33%',
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
+    flexDirection: isMobile ? 'row': 'column',
+    alignItems: 'center',
   },
   spaceviewerContainer: {
     width: '100%'
   },
   dataPicker: {
     width: '100%',
+    marginLeft: isMobile ? '60px': '0',
     '.MuiOutlinedInput-root': {
       '& fieldset': {
         borderColor: 'white',
@@ -54,4 +55,4 @@ export const styles: { [key: string]: SxProps<Theme> } = {
       color: 'white',
     },
   }
-};
+});

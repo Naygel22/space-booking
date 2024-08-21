@@ -1,6 +1,5 @@
-import { SxProps, Theme } from "@mui/material";
 
-export const styles: { [key: string]: SxProps<Theme> } = {
+export const styles = (isMobile:boolean)=> ({
   examplePricingContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -12,7 +11,14 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     marginBottom: '40px',
     color: '#212429',
     fontFamily: 'Ubuntu',
-    fontWeight: '600'
+    fontWeight: '600',
+    textAlign: 'center',
+    fontSize: isMobile ? '25px': '34px', 
+  },
+  examplePricingPlansBox:{
+     paddingLeft: isMobile ? '25px' : '300px', 
+     paddingRight: isMobile ? '25px': '300px', 
+     width: '100%'
   },
   morePlansButton: {
     height: '50px',
@@ -35,4 +41,4 @@ export const styles: { [key: string]: SxProps<Theme> } = {
       backgroundColor: '#afc786',
     },
   },
-};
+});

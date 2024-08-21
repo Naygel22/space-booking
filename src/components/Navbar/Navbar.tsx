@@ -15,8 +15,8 @@ export const Navbar = () => {
   const { session, userData: data } = useSessionContext();
   const navigate = useNavigate();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down(1300)); // Użycie media query do sprawdzenia rozmiaru ekranu
-  const isVerySmallScreen = useMediaQuery(theme.breakpoints.down('xs')); // Dodatkowe media query dla bardzo małych ekranów
+  const isMobile = useMediaQuery(theme.breakpoints.down(1300));
+  const isVerySmallScreen = useMediaQuery(theme.breakpoints.down(600)); // Dodatkowe media query dla bardzo małych ekranów
 
   const [drawerOpen, setDrawerOpen] = useState(false); // Stan dla otwierania i zamykania drawera
 
@@ -82,10 +82,10 @@ export const Navbar = () => {
         )}
         {!session && (
           <>
-            <ListItem button component={Link} to="/login">
+            <ListItem component={Link} to="/login">
               <ListItemText primary="Sign in" />
             </ListItem>
-            <ListItem button component={Link} to="/register">
+            <ListItem component={Link} to="/register">
               <ListItemText primary="Sign up" />
             </ListItem>
           </>
@@ -101,7 +101,6 @@ export const Navbar = () => {
           display: 'flex',
           justifyContent: 'space-between',
           height: '70px',
-          paddingX: isVerySmallScreen ? '20px' : '80px', // Zmniejszenie paddingu na bardzo małych ekranach
         }}
       >
         <Link to="/" style={{ textDecoration: 'none' }}>
@@ -109,7 +108,6 @@ export const Navbar = () => {
             sx={{
               display: 'flex',
               alignItems: 'center',
-              ...(isVerySmallScreen && { width: '200px' }), // Zmniejszenie szerokości logo na bardzo małych ekranach
             }}
           >
             <Box component='img' src="/assets/images/navbarLogo.jpeg" style={{ width: isVerySmallScreen ? '150px' : '250px', borderRadius: '20px' }} />
@@ -123,7 +121,6 @@ export const Navbar = () => {
               color="inherit"
               aria-label="menu"
               onClick={toggleDrawer(true)}
-              sx={{ marginRight: isVerySmallScreen ? '10px' : '20px' }} // Zmniejszenie marginesu między ikoną menu a krawędzią
             >
               <MenuIcon />
             </IconButton>

@@ -5,7 +5,7 @@ export const homepageContainer: SxProps = {
   height: '100%'
 }
 
-export const headingContainer: SxProps = {
+export const headingContainer = (isMobile:boolean)=> ({
   backgroundColor: '#1e2224',
   width: '100%',
   display: 'flex',
@@ -13,10 +13,10 @@ export const headingContainer: SxProps = {
   alignItems: 'center',
   padding: '20px',
   textAlign: 'center',
-  paddingLeft: '300px',
-  paddingRight: '300px',
-  marginBottom: '500px',
-}
+  paddingLeft: isMobile ? '50px' :'300px',
+  paddingRight: isMobile ? '50px' :'300px',
+  marginBottom: isMobile ? '250px' :'500px',
+})
 
 export const logo: SxProps = {
   width: '200px',
@@ -24,21 +24,23 @@ export const logo: SxProps = {
   borderRadius: '100px'
 }
 
-export const headingText:SxProps = { 
+export const headingText = (isMobile:boolean)=> ({
     color: 'white',
     marginBottom: '10px',
     fontFamily: 'Ubuntu',
-    fontWeight: '600'
-}
+    fontWeight: '600',
+    fontSize: isMobile ? '25px' :'34px',
+})
 
 
-export const subheadingText: SxProps = {
+export const subheadingText = (isMobile:boolean)=> ({
   color: 'white',
   fontFamily: 'Ubuntu',
-    fontWeight: '400'
-}
+  fontWeight: '400',
+  fontSize: isMobile ? '15px' :'20px',
+})
 
-export const bookYourDeskNowButton: SxProps = { 
+export const bookYourDeskNowButton = (isMobile:boolean)=> ({
   height: '50px',
   padding: '20px',
   borderRadius: '10px',
@@ -47,7 +49,7 @@ export const bookYourDeskNowButton: SxProps = {
   marginTop: '40px',
   marginBottom: '20px',
   color: 'white',
-  fontSize: '18px',
+  fontSize: isMobile ? '15px' :'18px',
   fontWeight: 'bold',
   border: 'none',
   textAlign: 'center',
@@ -58,6 +60,6 @@ export const bookYourDeskNowButton: SxProps = {
   '&:hover': {
     backgroundColor: '#afc786',
   },
-}
+})
 
 

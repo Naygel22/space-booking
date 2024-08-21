@@ -1,15 +1,15 @@
 import { SxProps } from "@mui/material";
 
-export const pricingPageContainer: SxProps = {
+export const pricingPageContainer = (isMobile:boolean)=> ({
   borderRadius: '20px',
   padding: '30px 0px 40px 0px',
   backgroundColor: '#242424',
-  width: '65%',
+  width: isMobile ? '90%' : '65%',
   marginTop: '50px',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center'
-};
+});
 
 export const pricingPageTitle: SxProps = {
   fontSize: '24px',
@@ -23,7 +23,7 @@ export const pricingCardsGrid: SxProps = {
   padding: '0 20px 20px',
 };
 
-export const contactUsButton: SxProps = {
+export const contactUsButton = (isMobile:boolean)=> ({
   height: '50px',
   padding: '20px',
   borderRadius: '10px',
@@ -31,7 +31,7 @@ export const contactUsButton: SxProps = {
   backgroundColor: '#8cb835',
   marginTop: '20px',
   color: 'white',
-  fontSize: '18px',
+  fontSize: isMobile ? '16px' :'18px',
   fontWeight: 'bold',
   border: 'none',
   textAlign: 'center',
@@ -42,6 +42,6 @@ export const contactUsButton: SxProps = {
   '&:hover': {
     backgroundColor: '#afc786',
   },
-};
+});
 
 

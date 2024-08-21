@@ -3,16 +3,20 @@ import { PricingCard } from "../PricingCard/PricingCard";
 import { styles } from "./ExamplePricing.styles";
 import { Link } from "react-router-dom";
 import { pricingPlans } from "./ExamplePricing.constants";
-
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 
 export const ExamplePricing = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down(1400));
+
   return (
-    <Box sx={styles.examplePricingContainer}>
-      <Typography variant="h4" sx={styles.examplePricingTitle}>Check one of our plans</Typography>
-      <Grid container spacing={3} style={{ paddingLeft: '300px', paddingRight: '300px', width: '100%' }}>
+    <Box sx={styles(isMobile).examplePricingContainer}>
+      <Typography sx={styles(isMobile).examplePricingTitle}>Check one of our plans</Typography>
+      <Grid container spacing={3} sx={styles(isMobile).examplePricingPlansBox}>
         {pricingPlans.map((pricingPlan, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
+          <Grid item xs={12} sm={12} md={4} key={index}>
             <Link to="/pricing" style={{ textDecoration: 'none', color: 'inherit' }}>
               <PricingCard
                 title={pricingPlan.title}
@@ -23,7 +27,7 @@ export const ExamplePricing = () => {
           </Grid>
         ))}
       </Grid>
-      <Box sx={styles.morePlansButton}>
+      <Box sx={styles(isMobile).morePlansButton}>
         <Link to='/pricing' style={{ textDecoration: 'none', color: 'inherit' }}>Check more plans</Link>
       </Box>
     </Box >

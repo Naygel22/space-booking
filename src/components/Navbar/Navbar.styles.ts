@@ -5,8 +5,6 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     backdropFilter: 'blur(10px)',
     bgcolor: 'transparent',
     height: '70px',
-    paddingLeft: '80px',
-    paddingRight: '80px',
     borderBottom: '1px solid beige',
     fontSize: '18px',
   },
