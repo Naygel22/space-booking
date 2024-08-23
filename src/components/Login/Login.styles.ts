@@ -1,11 +1,16 @@
-import { SxProps, Theme } from "@mui/material";
 
-export const styles: { [key: string]: SxProps<Theme> } = {
+
+export const styles = (isMobile:boolean)=> ({
+  loginContainer: {
+    width: '100%',
+    height: '60%'
+  },
   logoAndLoginForm: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    paddingTop: '30px'
+    paddingTop: '30px',
+    width: '100%'
   },
   flexDeskLogo: {
     width: '180px',
@@ -15,7 +20,7 @@ export const styles: { [key: string]: SxProps<Theme> } = {
   loginForm: {
     display: 'flex',
     flexDirection: 'column',
-    width: '500px',
+    width: isMobile ? '100%' : '500px',
     padding: '40px',
     paddingBottom: 0,
     gap: '15px',
@@ -114,4 +119,4 @@ export const styles: { [key: string]: SxProps<Theme> } = {
       borderColor: "white",
     }
   }
-};
+});

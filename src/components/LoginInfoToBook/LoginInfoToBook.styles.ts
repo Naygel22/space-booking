@@ -1,6 +1,6 @@
-import { SxProps, Theme } from "@mui/material";
 
-export const styles: { [key: string]: SxProps<Theme> } = {
+
+export const styles = (isMobile:boolean)=> ({
   container: {
     display: 'flex',
     justifyContent: 'center',
@@ -10,7 +10,8 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     paddingBottom: '30px',
     marginTop: '50px',
     borderRadius: '10px',
-    maxWidth: '50%',
+    maxWidth: isMobile ? '70%' : '50%',
+    flexDirection: isMobile ? 'column' : 'row',
   },
   imageContainer: {
     display: 'flex',
@@ -33,18 +34,21 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     alignItems: 'center',
     alignContent: 'center',
     textAlign: 'center',
-    paddingRight: '70px',
+    paddingRight: isMobile ? '20px' : '70px',
+    paddingLeft: isMobile ? '20px' : '70px',
     paddingTop: '30px',
     height: '100%',
     borderRadius: '0 10px 10px 0',
   },
   title: {
     marginBottom: '20px',
+    fontSize: isMobile ? '17px' : '20px',
     color: '#666',
     fontWeight: 'bold'
   },
   description: {
-    color: '#666'
+    color: '#666',
+    fontSize: isMobile ? '15px' : '16px',
   },
   accessLoginButton: {
     height: '50px',
@@ -52,10 +56,10 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     borderRadius: '10px',
     cursor: 'pointer',
     backgroundColor: '#3b87a7',
-    marginTop: '40px',
-    marginBottom: '20px',
+    marginTop: isMobile ? '20px' : '40px',
+    marginBottom: isMobile ? '5px' : '20px',
     color: 'white',
-    fontSize: '18px',
+    fontSize: isMobile ? '16px' : '18px',
     fontWeight: 'bold',
     display: 'flex',
     alignItems: 'center',
@@ -66,4 +70,4 @@ export const styles: { [key: string]: SxProps<Theme> } = {
       backgroundColor: 'orange',
     },
   },
-};
+});

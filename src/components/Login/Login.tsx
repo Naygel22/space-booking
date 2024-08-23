@@ -8,6 +8,8 @@ import { styles } from "./Login.styles"
 import { useNotificationContext } from "../../context/NotificationContext"
 import { useState } from "react"
 import { useSessionContext } from "../../context/SessionProvider"
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 const initialLoginFormValues = {
   mail: '',
@@ -19,6 +21,9 @@ export const Login = () => {
   const { notify } = useNotificationContext()
   const { getUserData } = useSessionContext()
   const [loginError, setLoginError] = useState<string | null>(null)
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down(900));
 
   const formik = useFormik<LoginFormValues>({
     initialValues: initialLoginFormValues,
@@ -41,36 +46,36 @@ export const Login = () => {
   })
 
   return (
-    <>
-      <Box sx={styles.logoAndLoginForm}>
-        <Box component='img' sx={styles.flexDeskLogo} src="/assets/images/flexDeskLogo.jpeg" />
-        <Box component="form" onSubmit={formik.handleSubmit} sx={styles.loginForm}>
+    <Box sx={styles(isMobile).loginContainer}>
+      <Box sx={styles(isMobile).logoAndLoginForm}>
+        <Box component='img' sx={styles(isMobile).flexDeskLogo} src="/assets/images/flexDeskLogo.jpeg" />
+        <Box component="form" onSubmit={formik.handleSubmit} sx={styles(isMobile).loginForm}>
           <TextInput formik={formik} accessor='mail' label='E-mail' />
           <TextInput formik={formik} accessor='password' label='Password' type='password' />
-          <Typography sx={styles.loginError}>{loginError}</Typography>
-          <Typography sx={styles.testText}>Test Login: testuser@flexdesk.com</Typography>
-          <Typography sx={styles.testText}>Test Password: Test123@</Typography>
-          <Button type="submit" sx={styles.loginButton}>Log In</Button>
-          <Divider sx={styles.divider}>OR</Divider>
+          <Typography sx={styles(isMobile).loginError}>{loginError}</Typography>
+          <Typography sx={styles(isMobile).testText}>Test Login: testuser@flexdesk.com</Typography>
+          <Typography sx={styles(isMobile).testText}>Test Password: Test123@</Typography>
+          <Button type="submit" sx={styles(isMobile).loginButton}>Log In</Button>
+          <Divider sx={styles(isMobile).divider}>OR</Divider>
 
-          <Button type="button" sx={styles.loginWithGoogleButton}
-            startIcon={<Box component='img' sx={styles.googleLogo} src="/assets/images/googleLogo.png" />
+          <Button type="button" sx={styles(isMobile).loginWithGoogleButton}
+            startIcon={<Box component='img' sx={styles(isMobile).googleLogo} src="/assets/images/googleLogo.png" />
             }>
             Log in with Google
           </Button>
 
-          <Button type="button" sx={styles.loginWithGithubButton}
-            startIcon={<Box component="img" src="/assets/images/github-mark-white.svg" sx={styles.githubLogo} />
+          <Button type="button" sx={styles(isMobile).loginWithGithubButton}
+            startIcon={<Box component="img" src="/assets/images/github-mark-white.svg" sx={styles(isMobile).githubLogo} />
             }>
             Log in with GitHub
           </Button>
         </Box>
       </Box>
 
-      <Box sx={styles.loginIsNew}>
-        <Link to="/register" style={styles.signupButtonInLoginForm as React.CSSProperties}>New? Sign up and book your desk!</Link>
+      <Box sx={styles(isMobile).loginIsNew}>
+        <Link to="/register" style={styles(isMobile).signupButtonInLoginForm as React.CSSProperties}>New? Sign up and book your desk!</Link>
       </Box>
-    </>
+    </Box>
 
   )
 }
