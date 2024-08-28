@@ -1,54 +1,54 @@
-import { SxProps, Theme } from "@mui/material";
-
-export const styles: { [key: string]: SxProps<Theme> } = {
+export const styles = (isMobile:boolean, isSmallMobile?:boolean)=> ({
   container: {
     borderRadius: '10px',
     marginTop: '50px',
     display: 'flex',
     backgroundColor: '#2e2d2b',
-    width: '70%',
+    width: isMobile ? '85%' : '70%',
     minHeight: '700px'
   },
   sidebar: {
     borderRight: '1px solid #ccc',
-    paddingRight: '20px',
+    paddingRight: isMobile ? '0' : '20px',
     paddingTop: '20px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
   flexDeskLogo: {
-    width: '200px',
-    height: '200px',
+    width: isMobile ? '80%' : '200px',
+    height: isMobile ? 'auto' : '200px',
     borderRadius: '150px',
     marginBottom: '30px'
   },
   button: {
     marginBottom: '10px',
-    width: '80%',
+    width: isSmallMobile ? '10%' : '80%',
     height: '40px',
     textAlign: 'left',
+    fontSize: isMobile ? '12px' : '14px',
     color: 'white',
     textTransform: 'none',
     borderRadius: '10px',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: isSmallMobile ? 'center' :'flex-start',
     '&:hover': {
       backgroundColor: '#3c3c3c',
     },
   },
   buttonSelected: {
     marginBottom: '10px',
-    width: '80%',
+    width: isSmallMobile ? '10%' : '80%',
     height: '40px',
     textAlign: 'left',
+    fontSize: isMobile ? '12px' : '14px',
     color: 'white',
     textTransform: 'none',
     borderRadius: '10px',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: isSmallMobile ? 'center' :'flex-start',
     '&:hover': {
       backgroundColor: '#3c3c3c',
     },
@@ -86,4 +86,4 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     padding: '10px',
     border: '1px solid #ccc',
   },
-};
+});

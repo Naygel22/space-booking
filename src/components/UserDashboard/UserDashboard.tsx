@@ -12,6 +12,8 @@ import { SoundIntensityChart } from '../SoundIntensityChart/SoundIntensityChart'
 import { TemperatureChart } from '../../TemperatureChart/TemperatureChart';
 import { ManageReservations } from '../ManageReservations/ManageReservations';
 import { useTourContext } from '../../context/TourContext';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 // import { PeopleOccupancyChart } from '../PeopleOccupancyChart/PeopleOccupancyChart';
 
 const tabs = ["profile", "reservations", "calendar", "sound", "temperature", "occupancy", "management"] as const;
@@ -20,6 +22,10 @@ type PossibleTabs = typeof tabs[number]
 const UserDashboard = () => {
   const { session, userData } = useSessionContext();
   const [selectedTab, setSelectedTab] = useState<PossibleTabs>('profile');
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down(1400));
+  const isSmallMobile = useMediaQuery(theme.breakpoints.down(900));
 
   const { data: reservations } = useQuery({
     queryKey: ['userReservations', session?.user.id],
@@ -48,68 +54,68 @@ const UserDashboard = () => {
     return <Typography>No data available</Typography>;
   }
   return (
-    <Box sx={styles.container} id='user-dashboard'>
+    <Box sx={styles(isMobile).container} id='user-dashboard'>
       <Grid container>
-        <Grid item xs={3} sx={styles.sidebar}>
-          <Box component='img' sx={styles.flexDeskLogo} src="/assets/images/flexDeskLogo.jpeg" />
+        <Grid item xs={3} sx={styles(isMobile).sidebar}>
+          <Box component='img' sx={styles(isMobile).flexDeskLogo} src="/assets/images/flexDeskLogo.jpeg" />
           <Button
             id='profile-button'
-            sx={{ ...(selectedTab === 'profile' ? styles.buttonSelected : styles.button) }}
+            sx={{ ...(selectedTab === 'profile' ? styles(isMobile, isSmallMobile).buttonSelected : styles(isMobile, isSmallMobile).button) }}
             onClick={() => setSelectedTab('profile')}
           >
-            <BsFillPersonFill style={{ marginRight: '15px', fontSize: '17px' }} />
-            My Profile
+            <BsFillPersonFill style={{ marginRight: isSmallMobile ? '0' : '15px', fontSize: '17px' }} />
+            {!isSmallMobile && 'My Profile'}
           </Button>
           <Button
             id='reservations-button'
-            sx={{ ...(selectedTab === 'reservations' ? styles.buttonSelected : styles.button) }}
+            sx={{ ...(selectedTab === 'reservations' ? styles(isMobile, isSmallMobile).buttonSelected : styles(isMobile, isSmallMobile).button) }}
             onClick={() => setSelectedTab('reservations')}
           >
-            <BsCalendar2CheckFill style={{ marginRight: '15px', fontSize: '17px' }} />
-            My Reservations
+            <BsCalendar2CheckFill style={{ marginRight: isSmallMobile ? '0' : '15px', fontSize: '17px' }} />
+            {!isSmallMobile && 'My Reservations'}
           </Button>
           <Button
             id='calendar-button'
-            sx={{ ...(selectedTab === 'calendar' ? styles.buttonSelected : styles.button) }}
+            sx={{ ...(selectedTab === 'calendar' ? styles(isMobile, isSmallMobile).buttonSelected : styles(isMobile, isSmallMobile).button) }}
             onClick={() => setSelectedTab('calendar')}
           >
-            <BsCalendar2Date style={{ marginRight: '15px', fontSize: '17px' }} />
-            Calendar
+            <BsCalendar2Date style={{ marginRight: isSmallMobile ? '0' : '15px', fontSize: '17px' }} />
+            {!isSmallMobile && 'Calendar'}
           </Button>
           {userData[0].role === 'admin' &&
             <>
               <Button
-                sx={{ ...(selectedTab === 'sound' ? styles.buttonSelected : styles.button) }}
+                sx={{ ...(selectedTab === 'sound' ? styles(isMobile, isSmallMobile).buttonSelected : styles(isMobile, isSmallMobile).button) }}
                 onClick={() => setSelectedTab('sound')}
               >
-                <BsFillMegaphoneFill style={{ marginRight: '15px', fontSize: '17px' }} />
-                Sound intensity
+                <BsFillMegaphoneFill style={{ marginRight: isSmallMobile ? '0' : '15px', fontSize: '17px' }} />
+                {!isSmallMobile && 'Sound intensity'}
               </Button>
               <Button
-                sx={{ ...(selectedTab === 'temperature' ? styles.buttonSelected : styles.button) }}
+                sx={{ ...(selectedTab === 'temperature' ? styles(isMobile, isSmallMobile).buttonSelected : styles(isMobile, isSmallMobile).button) }}
                 onClick={() => setSelectedTab('temperature')}
               >
-                <BsThermometerHalf style={{ marginRight: '15px', fontSize: '17px' }} />
-                Temperature in the office
+                <BsThermometerHalf style={{ marginRight: isSmallMobile ? '0' : '15px', fontSize: '17px' }} />
+                {!isSmallMobile && 'Temperature in the office'}
               </Button>
               <Button
-                sx={{ ...(selectedTab === 'occupancy' ? styles.buttonSelected : styles.button) }}
+                sx={{ ...(selectedTab === 'occupancy' ? styles(isMobile, isSmallMobile).buttonSelected : styles(isMobile, isSmallMobile).button) }}
                 onClick={() => setSelectedTab('occupancy')}
               >
-                <BsFillPeopleFill style={{ marginRight: '15px', fontSize: '17px' }} />
-                People occupancy
+                <BsFillPeopleFill style={{ marginRight: isSmallMobile ? '0' : '15px', fontSize: '17px' }} />
+                {!isSmallMobile && 'People occupancy'}
               </Button>
               <Button
-                sx={{ ...(selectedTab === 'management' ? styles.buttonSelected : styles.button) }}
+                sx={{ ...(selectedTab === 'management' ? styles(isMobile, isSmallMobile).buttonSelected : styles(isMobile, isSmallMobile).button) }}
                 onClick={() => setSelectedTab('management')}
               >
-                <BsFillGearFill style={{ marginRight: '15px', fontSize: '17px' }} />
-                Manage reservations
+                <BsFillGearFill style={{ marginRight: isSmallMobile ? '0' : '15px', fontSize: '17px' }} />
+                {!isSmallMobile && 'Manage reservations'}
               </Button>
             </>
           }
         </Grid>
-        <Grid item xs={9} sx={styles.content}>
+        <Grid item xs={9} sx={styles(isMobile).content}>
           {selectedTab === 'profile' && <UserProfile />}
           {selectedTab === 'reservations' && <Reservations />}
           <Box sx={{ marginTop: '30px' }}>

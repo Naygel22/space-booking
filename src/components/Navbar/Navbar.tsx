@@ -83,10 +83,18 @@ export const Navbar = () => {
         {!session && (
           <>
             <ListItem component={Link} to="/login">
-              <ListItemText primary="Sign in" />
+              <ListItemText primary="Sign in"
+                sx={{
+                  color: 'white',
+                  textDecoration: 'none'
+                }} />
             </ListItem>
             <ListItem component={Link} to="/register">
-              <ListItemText primary="Sign up" />
+              <ListItemText primary="Sign up"
+                sx={{
+                  color: 'white',
+                  textDecoration: 'none'
+                }} />
             </ListItem>
           </>
         )}
@@ -95,7 +103,7 @@ export const Navbar = () => {
   );
 
   return (
-    <AppBar position="static" sx={styles.navbar} id="top-nav">
+    <AppBar position="static" sx={styles.navbar} id="top-nav" style={{ marginBottom: isMobile ? '50px' : 0 }}>
       <Toolbar
         sx={{
           display: 'flex',

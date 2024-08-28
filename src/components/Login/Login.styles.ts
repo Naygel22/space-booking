@@ -3,7 +3,7 @@
 export const styles = (isMobile:boolean)=> ({
   loginContainer: {
     width: '100%',
-    height: '60%'
+    height: '60%',
   },
   logoAndLoginForm: {
     display: 'flex',

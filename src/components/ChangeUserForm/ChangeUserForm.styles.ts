@@ -1,13 +1,12 @@
-import { SxProps, Theme } from "@mui/material";
-
-export const styles: { [key: string]: SxProps<Theme> } = {
+export const styles = (isSmallMobile?:boolean)=> ({
   formContainer: {  
     marginTop: '50px'
   },
   textFieldBar: {
     marginBottom: '20px',
     display: 'flex',
-    gap: '30px'
+    gap: '30px',
+    flexDirection: isSmallMobile ? 'column' : 'row',
   },
   buttonContainer: {
     width: '100%',
@@ -20,11 +19,11 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     cursor: 'pointer',
     backgroundColor: '#8cb835',
     color: 'white',
-    fontSize: '15px',
+    fontSize: isSmallMobile ? '13px' :'15px',
     fontWeight: 'bold',
     border: 'none',
     '&:hover': {
       backgroundColor: '#afc786',
     },
   }
-};
+});
