@@ -12,7 +12,7 @@ const generateRandomValue = (min: number, max: number): number => {
 export const SoundIntensityChart = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down(1000));
-  const isSmallMobile = useMediaQuery(theme.breakpoints.down(600));
+  //const isSmallMobile = useMediaQuery(theme.breakpoints.down(600));
 
   const [option, setOption] = useState({
     series: [
