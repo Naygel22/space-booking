@@ -2,12 +2,18 @@ import { useEffect, useState } from 'react';
 import ReactECharts from 'echarts-for-react';
 import { Box, Typography } from '@mui/material';
 import { styles } from './SoundIntensityChart.styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 const generateRandomValue = (min: number, max: number): number => {
   return Math.random() * (max - min) + min;
 };
 
 export const SoundIntensityChart = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down(1000));
+  const isSmallMobile = useMediaQuery(theme.breakpoints.down(600));
+
   const [option, setOption] = useState({
     series: [
       {
@@ -55,7 +61,7 @@ export const SoundIntensityChart = () => {
         },
         axisLabel: {
           color: 'white',
-          fontSize: 17,
+          fontSize: isMobile ? 14 : 17,
           distance: -60,
           rotate: 'tangential',
           formatter: function (value: number) {
@@ -73,7 +79,7 @@ export const SoundIntensityChart = () => {
         },
         title: {
           offsetCenter: [0, '-10%'],
-          fontSize: 20,
+          fontSize: isMobile ? 17 : 20,
           color: 'white'
         },
         detail: {
@@ -116,9 +122,9 @@ export const SoundIntensityChart = () => {
   }, []);
 
   return (
-    <Box sx={styles.chartContainer}>
-      <Typography sx={styles.title}>Real-time Sound Intensity in the Office</Typography>
-      <ReactECharts option={option} style={styles.chart as React.CSSProperties} />
+    <Box sx={styles(isMobile).chartContainer}>
+      <Typography sx={styles(isMobile).title}>Real-time Sound Intensity in the Office</Typography>
+      <ReactECharts option={option} style={styles(isMobile).chart as React.CSSProperties} />
     </Box>
 
   )

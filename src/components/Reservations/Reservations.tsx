@@ -9,6 +9,8 @@ import { getAllDesks } from "../../api/getAllDesks";
 import { useNotificationContext } from "../../context/NotificationContext";
 import { useState } from "react";
 import { ModalOnCancel } from "../ModalOnCancel/ModalOnCancel";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -18,6 +20,10 @@ const Reservations = () => {
   const { notify } = useNotificationContext()
   const [currentPage, setCurrentPage] = useState(1);
   const [reservationToCancel, setReservationToCancel] = useState<string | null>(null)
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down(1100));
+  const isSmallMobile = useMediaQuery(theme.breakpoints.down(600));
 
   const { data: reservations, isLoading, error, refetch } = useQuery({
     queryKey: ['userReservations', session?.user.id],
@@ -75,53 +81,53 @@ const Reservations = () => {
   const paginatedReservations = reservations?.slice().reverse().slice(startIndex, endIndex);
 
   return (
-    <Box sx={styles.container} id='reservations'>
-      <Grid container sx={styles.header}>
-        <Grid item xs={3} sx={styles.cell}>
-          <Typography variant="h6" sx={styles.headerText}>Reservation ID</Typography>
+    <Box sx={styles(isMobile).container} id='reservations'>
+      <Grid container sx={styles(isMobile).header}>
+        <Grid item xs={3} sx={styles(isMobile).cell}>
+          <Typography variant="h6" sx={styles(isMobile, isSmallMobile).headerText}>Reservation ID</Typography>
         </Grid>
-        <Grid item xs={3} sx={styles.cell}>
-          <Typography variant="h6" sx={styles.headerText}>Date</Typography>
+        <Grid item xs={3} sx={styles(isMobile).cell}>
+          <Typography variant="h6" sx={styles(isMobile, isSmallMobile).headerText}>Date</Typography>
         </Grid>
-        <Grid item xs={3} sx={styles.cell}>
-          <Typography variant="h6" sx={styles.headerText}>Desk Name</Typography>
+        <Grid item xs={3} sx={styles(isMobile).cell}>
+          <Typography variant="h6" sx={styles(isMobile, isSmallMobile).headerText}>Desk Name</Typography>
         </Grid>
-        <Grid item xs={3} sx={styles.cell}>
-          <Typography variant="h6" sx={styles.headerText}>Status</Typography>
+        <Grid item xs={3} sx={styles(isMobile).cell}>
+          <Typography variant="h6" sx={styles(isMobile, isSmallMobile).headerText}>Status</Typography>
         </Grid>
       </Grid>
-      <Box sx={styles.reservationContent}>
+      <Box >
         {paginatedReservations?.map((reservation) => {
           console.log(reservation)
           const desk = desks?.find(desk => desk.furnitureId === reservation.furnitureId);
           return (
-            <Grid container key={reservation.reservationId} sx={styles.row}>
-              <Grid item xs={3} sx={styles.cell}>
-                <Typography>{reservation.reservationId.slice(-5)}</Typography>
+            <Grid container key={reservation.reservationId} sx={styles(isMobile).row}>
+              <Grid item xs={3} sx={styles(isMobile).cell}>
+                <Typography sx={styles(isMobile, isSmallMobile).cellText}>{reservation.reservationId.slice(-5)}</Typography>
               </Grid>
-              <Grid item xs={3} sx={styles.cell}>
-                <Typography>{reservation.date}</Typography>
+              <Grid item xs={3} sx={styles(isMobile).cell}>
+                <Typography sx={styles(isMobile, isSmallMobile).cellText}>{reservation.date}</Typography>
               </Grid>
-              <Grid item xs={3} sx={styles.cell}>
-                <Typography>{desk ? desk.name : "Unknown Desk"}</Typography>
+              <Grid item xs={3} sx={styles(isMobile).cell}>
+                <Typography sx={styles(isMobile, isSmallMobile).cellText}>{desk ? desk.name : "Unknown Desk"}</Typography>
               </Grid>
-              <Grid item xs={3} sx={styles.cell} id='status-button'>
+              <Grid item xs={3} sx={styles(isMobile).cell} id='status-button'>
                 {isFutureReservation(reservation.date) ? (
-                  <Button onClick={() => handleOpenModal(reservation.reservationId)} sx={styles.cancelButton}>Cancel</Button>
+                  <Button onClick={() => handleOpenModal(reservation.reservationId)} sx={styles(isMobile).cancelButton}>Cancel</Button>
                 ) : (
-                  <Typography sx={styles.statusCompleted}>Completed</Typography>
+                  <Typography sx={styles(isMobile, isSmallMobile).statusCompleted}>Completed</Typography>
                 )}
               </Grid>
             </Grid>
           );
         })}
       </Box>
-      <Box sx={styles.paginationBox}>
+      <Box sx={styles(isMobile).paginationBox}>
         <Pagination
           count={Math.ceil((reservations?.length || 0) / ITEMS_PER_PAGE)}
           page={currentPage}
           onChange={handlePageChange}
-          sx={styles.pagination}
+          sx={styles(isMobile).pagination}
         />
       </Box>
       {reservationToCancel &&

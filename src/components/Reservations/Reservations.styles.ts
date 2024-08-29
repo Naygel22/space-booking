@@ -1,8 +1,6 @@
-import { SxProps, Theme } from "@mui/material";
-
-export const styles: { [key: string]: SxProps<Theme> } = {
+export const styles = (isMobile:boolean, isSmallMobile?:boolean)=> ({
   container: {
-    padding: '20px',
+    padding: isMobile ? '0' :'20px',
     borderRadius: '10px',
     backgroundColor: '#2e2d2b',
     width: '100%',
@@ -18,6 +16,7 @@ export const styles: { [key: string]: SxProps<Theme> } = {
   headerText: {
     fontWeight: '600',
     fontFamily: 'Ubuntu',
+    fontSize: isSmallMobile ? '12px' : isMobile ? '16px' :'20px'
   },
   row: {
     borderBottom: '1px solid #ccc',
@@ -28,10 +27,15 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    textAlign: 'center'
+  },
+  cellText: {
+    fontSize: isSmallMobile ? '12px' : isMobile ? '14px' : '16px'
   },
   statusCompleted: {
     color: 'green',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: isSmallMobile ? '12px' : isMobile ? '14px' : '16px'
   },
   cancelButton: {
     height: '30px',
@@ -40,7 +44,7 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     cursor: 'pointer',
     backgroundColor: '#bc4749',
     color: 'white',
-    fontSize: '13px',
+    fontSize: isMobile ? '11px' : '13px',
     fontWeight: '600',
     border: 'none',
     textAlign: 'center',
@@ -73,4 +77,4 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     }
   }
   
-};
+});

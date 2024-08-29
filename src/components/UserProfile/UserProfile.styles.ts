@@ -56,8 +56,8 @@ export const styles = (isMobile: boolean, isSmallMobile?: boolean) => ({
   },
   goBackButton: {
     position: 'absolute',
-    left: isSmallMobile ? 50 : isMobile ? 25 : 180, // Zmiana left w zależności od rozmiaru ekranu
-    top: isSmallMobile ? 150 : isMobile ? 200 : 252, // Zmiana top w zależności od rozmiaru ekranu
+    left: isSmallMobile ? 50 : isMobile ? 25 : 180, 
+    top: isSmallMobile ? 150 : isMobile ? 200 : 252, 
     '&:hover': {
       backgroundColor: 'transparent',
     },

@@ -1,6 +1,4 @@
-import { SxProps, Theme } from "@mui/material";
-
-export const styles: { [key: string]: SxProps<Theme> } = {
+export const styles = (isMobile:boolean, isSmallMobile?:boolean)=> ({
   chartContainer: { 
     display: 'flex', 
     flexDirection: 'column', 
@@ -11,9 +9,11 @@ export const styles: { [key: string]: SxProps<Theme> } = {
      marginTop: '30px', 
      marginBottom: '-20px',
      fontFamily: 'Ubuntu',
-    fontWeight: '600'
+    fontWeight: '600',
+    textAlign: 'center'
   },
   chart: { 
     width: '100%', 
-    height: '550px' }
-}
+    height: isMobile ? '400px' : '550px',
+  }
+})
