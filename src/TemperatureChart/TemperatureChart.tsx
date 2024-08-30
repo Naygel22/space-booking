@@ -3,9 +3,15 @@ import ReactECharts from 'echarts-for-react';
 import { styles } from "./TemperatureChart.styles";
 import { BsArrowLeftRight } from "react-icons/bs";
 import { useTemperatureContext } from "../context/TemperatureContext";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 export const TemperatureChart = () => {
   const { temperature, increaseTemperature, decreaseTemperature } = useTemperatureContext();
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down(1200));
+  const isSmallMobile = useMediaQuery(theme.breakpoints.down(900));
 
   const option = {
     series: [
@@ -51,7 +57,7 @@ export const TemperatureChart = () => {
         axisLabel: {
           distance: -20,
           color: '#999',
-          fontSize: 20
+          fontSize: isSmallMobile ? 15 : 20,
         },
         anchor: {
           show: false
@@ -65,7 +71,7 @@ export const TemperatureChart = () => {
           lineHeight: 40,
           borderRadius: 8,
           offsetCenter: [0, '45%'],
-          fontSize: 60,
+          fontSize: isSmallMobile ? 25 : 60,
           fontWeight: 'bolder',
           formatter: '{value} °C',
           color: 'inherit'
@@ -118,13 +124,13 @@ export const TemperatureChart = () => {
   };
 
   return (
-    <Box sx={styles.chartContainer}>
-      <Typography sx={styles.title}>Temperature controller in the office</Typography>
-      <ReactECharts option={option} style={styles.chart as React.CSSProperties} />
-      <Box sx={styles.buttons}>
-        <Button onClick={decreaseTemperature} sx={styles.minusButton}>-1 °C</Button>
-        <BsArrowLeftRight style={styles.arrowsIcon as React.CSSProperties} />
-        <Button onClick={increaseTemperature} sx={styles.plusButton}>+1 °C</Button>
+    <Box sx={styles(isMobile).chartContainer}>
+      <Typography sx={styles(isMobile).title}>Temperature controller in the office</Typography>
+      <ReactECharts option={option} style={styles(isMobile, isSmallMobile).chart as React.CSSProperties} />
+      <Box sx={styles(isMobile, isSmallMobile).buttons}>
+        <Button onClick={decreaseTemperature} sx={styles(isMobile).minusButton}>-1 °C</Button>
+        <BsArrowLeftRight style={styles(isMobile).arrowsIcon as React.CSSProperties} />
+        <Button onClick={increaseTemperature} sx={styles(isMobile).plusButton}>+1 °C</Button>
       </Box>
     </Box>
   );

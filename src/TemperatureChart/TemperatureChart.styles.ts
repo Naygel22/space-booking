@@ -1,6 +1,4 @@
-import { SxProps, Theme } from "@mui/material";
-
-export const styles: { [key: string]: SxProps<Theme> } = {
+export const styles = (isMobile:boolean, isSmallMobile?:boolean)=> ({
   chartContainer: { 
     display: 'flex', 
     flexDirection: 'column', 
@@ -11,23 +9,24 @@ export const styles: { [key: string]: SxProps<Theme> } = {
      marginTop: '30px', 
      marginBottom: '40px',
     fontFamily: 'Ubuntu',
-    fontWeight: '600'
+    fontWeight: '600',
+    textAlign: 'center'
   },
   chart: { 
     width: '100%', 
-    height: '450px',
+    height: isSmallMobile ? '400px' : '450px',
     marginBottom: '-20px' 
   },
   buttons: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '30%',
+    width: isSmallMobile ? '70%' :'30%',
   },
   minusButton: {
     border: '5px solid #FD7347',
     borderRadius: '10px',
-    fontSize: '25px',
+    fontSize: isMobile ? '16px' :'25px',
     fontWeight: 'bold',
     color: '#2e2d2b',
     backgroundColor: '#FFAB91',
@@ -39,7 +38,7 @@ export const styles: { [key: string]: SxProps<Theme> } = {
   plusButton: {
     border: '5px solid #FD7347',
     borderRadius: '10px',
-    fontSize: '25px',
+    fontSize: isMobile ? '16px' :'25px',
     fontWeight: 'bold',
     color: '#2e2d2b',
     backgroundColor: '#FFAB91',
@@ -48,6 +47,6 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     },
   },
   arrowsIcon: {
-    fontSize: '30px',
+    fontSize: isMobile ? '20px' :'30px',
   }
-}
+})
