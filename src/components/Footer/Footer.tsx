@@ -3,6 +3,7 @@ import { Facebook, Instagram, LinkedIn, GitHub } from "@mui/icons-material";
 import { styles } from "./Footer.styles";
 
 export const Footer = () => {
+  const currentDateYear = new Date().getFullYear()
   return (
     <Box sx={styles.footerContainer}>
       <Container maxWidth="lg">
@@ -55,7 +56,7 @@ export const Footer = () => {
         </Grid>
         <Box sx={styles.footerCopyRight}>
           <Typography variant="body2">
-            © 2024 FlexDesk. All rights reserved. Made by Piotr Kozłowski
+            © {currentDateYear} FlexDesk. All rights reserved. Made by Piotr Kozłowski
           </Typography>
         </Box>
       </Container>

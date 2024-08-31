@@ -1,6 +1,6 @@
 import { supabaseClient } from "../supabaseClient"
 
-export const deleteReservationById = async (reservationId: string | undefined) => {
+export const deleteReservationById = async (reservationId: string) => {
   const { error } = await supabaseClient
     .from('reservations')
     .delete()

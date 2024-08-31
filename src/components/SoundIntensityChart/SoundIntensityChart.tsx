@@ -5,10 +5,12 @@ import { styles } from './SoundIntensityChart.styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
+
+// This function generates random values for simulation purposes
 const generateRandomValue = (min: number, max: number): number => {
   return Math.random() * (max - min) + min;
 };
-
+//Simulation of showing sound intensity values ​​on a graph
 export const SoundIntensityChart = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down(1000));

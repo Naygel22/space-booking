@@ -26,9 +26,6 @@ export const ManageReservations = () => {
     queryFn: getAllDesks,
   });
 
-  console.log(desks)
-  console.log(reservations)
-
   const mutation = useMutation({
     mutationFn: async (reservationId: string) => deleteReservationById(reservationId),
     onSuccess: () => {
@@ -37,7 +34,6 @@ export const ManageReservations = () => {
       setReservationToCancel(null);
     },
     onError: () => {
-      console.log("Something went wrong");
       notify('Error canceling reservation', "error");
     },
   });
@@ -118,7 +114,6 @@ export const ManageReservations = () => {
         <Box sx={styles.cell}>
           {params.value === 'ACTIVE' ? (
             <Button onClick={() => {
-              console.log('Cancel button clicked for reservationId:', params.row.reservationId);
               handleOpenModal(params.row.reservationId);
             }} sx={styles.cancelButton}>
               Cancel

@@ -16,9 +16,9 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down(1300));
-  const isVerySmallScreen = useMediaQuery(theme.breakpoints.down(600)); // Dodatkowe media query dla bardzo małych ekranów
+  const isVerySmallScreen = useMediaQuery(theme.breakpoints.down(600));
 
-  const [drawerOpen, setDrawerOpen] = useState(false); // Stan dla otwierania i zamykania drawera
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const {
     setState,
@@ -45,7 +45,6 @@ export const Navbar = () => {
     navigate('/');
   };
 
-  // Funkcja do obsługi otwierania/zamykania drawera
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
       event.type === 'keydown' &&
@@ -57,7 +56,6 @@ export const Navbar = () => {
     setDrawerOpen(open);
   };
 
-  // Menu mobilne w Drawerze
   const drawer = (
     <Box onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)} sx={{
       height: '100%',

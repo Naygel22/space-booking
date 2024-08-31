@@ -35,18 +35,14 @@ export const ChangeUserForm = ({ initialUserFormValues }: ChangeUserFormProps) =
     onSuccess: () => {
       if (session) {
         getUserData(session)
-        console.log("success")
+        notify("Changes saved", "success")
       }
     },
     onError: () => {
-      console.log("Something went wrong");
-
+      notify("Something went wrong", "error")
     },
   })
 
-  function saveChanges() {
-    notify("Changes saved", "success")
-  }
 
   return (
     <Box component="form" onSubmit={formik.handleSubmit} sx={styles(isMobile).formContainer} id="change-user-form">
@@ -59,7 +55,7 @@ export const ChangeUserForm = ({ initialUserFormValues }: ChangeUserFormProps) =
         <TextInput formik={formik} accessor="phonenumber" label="Phone" />
       </Box>
       <Box sx={styles(isMobile).buttonContainer}>
-        <Button type="submit" sx={styles(isMobile).saveChangesButton} onClick={saveChanges}>Save changes</Button>
+        <Button type="submit" sx={styles(isMobile).saveChangesButton}>Save changes</Button>
       </Box>
     </Box>
   )

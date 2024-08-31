@@ -9,7 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getReservationsForUser } from '../../api/getReservationsForUser';
 import { useSessionContext } from '../../context/SessionProvider'
 import { SoundIntensityChart } from '../SoundIntensityChart/SoundIntensityChart';
-import { TemperatureChart } from '../../TemperatureChart/TemperatureChart';
+import { TemperatureChart } from '../TemperatureChart/TemperatureChart';
 import { ManageReservations } from '../ManageReservations/ManageReservations';
 import { useTourContext } from '../../context/TourContext';
 import useMediaQuery from '@mui/material/useMediaQuery';
