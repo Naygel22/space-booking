@@ -76,9 +76,25 @@ export const Navbar = () => {
           </ListItem>
         ))}
         {session && (
-          <ListItem onClick={handleClickStart}>
-            <ListItemText primary="Tour" />
-          </ListItem>
+          <>
+            <ListItem component={Link} to={'/profile'}
+              sx={{
+                color: 'white',
+                textDecoration: 'none'
+              }}>
+              <ListItemText primary="My account" />
+            </ListItem>
+            <ListItem
+              onClick={handleLogout}
+              sx={{
+                color: 'white',
+                textDecoration: 'none',
+                cursor: 'pointer'
+              }}>
+              <ListItemText primary="Logout" />
+            </ListItem>
+          </>
+
         )}
         {!session && (
           <>
@@ -103,7 +119,7 @@ export const Navbar = () => {
   );
 
   return (
-    <AppBar position="static" sx={styles.navbar} id="top-nav" style={{ marginBottom: isMobile ? '50px' : 0 }}>
+    <AppBar position="static" sx={styles.navbar} id="top-nav" >
       <Toolbar
         sx={{
           display: 'flex',

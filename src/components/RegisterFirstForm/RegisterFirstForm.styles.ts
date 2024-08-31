@@ -1,15 +1,13 @@
-import { SxProps, Theme } from "@mui/material";
-
-export const styles: { [key: string]: SxProps<Theme> } = {
+export const styles = (isMobile:boolean)=> ({
   registerFirstForm: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '600px',
+    width: isMobile ? '400px' :'600px',
     backgroundColor: '#2e2d2b',
     borderRadius: '10px',
     marginTop: '20px',
-    padding: '40px'
+    padding: '40px',
   },
   loginButton: {
     color: 'white',
@@ -17,13 +15,14 @@ export const styles: { [key: string]: SxProps<Theme> } = {
     fontWeight: 'bold',
     fontSize: '15px',
     textDecoration: 'none',
-    marginLeft: '450px',
+    marginLeft: isMobile ? '250px' :'450px',
     marginBottom: '30px'
   },
   title: {
     fontSize: '30px',
     fontWeight: 'bold',
     marginBottom: '40px',
+    textAlign: 'center'
   },
   registerFirstFormImg: {
     maxWidth: '80%',
@@ -103,4 +102,4 @@ export const styles: { [key: string]: SxProps<Theme> } = {
       backgroundColor: '#24292e',
     }
   },
-};
+});

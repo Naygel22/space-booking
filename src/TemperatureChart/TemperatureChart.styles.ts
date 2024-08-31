@@ -21,7 +21,7 @@ export const styles = (isMobile:boolean, isSmallMobile?:boolean)=> ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: isSmallMobile ? '70%' :'30%',
+    width: isSmallMobile ? '78%' :'30%',
   },
   minusButton: {
     border: '5px solid #FD7347',

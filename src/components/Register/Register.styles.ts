@@ -1,13 +1,11 @@
-import { SxProps, Theme } from "@mui/material";
-
-export const styles: { [key: string]: SxProps<Theme> } = {
+export const styles = (isMobile:boolean)=> ({
   registerContainer: {
     marginTop: "50px",
     backgroundColor: "#2e2d2b",
     borderRadius: "10px",
     paddingLeft: 0,
     paddingRight: 0,
-    width: '60%'
+    width: isMobile ? '80%' :'60%'
   },
   imageContainer: {
     display: 'flex',
@@ -82,4 +80,4 @@ export const styles: { [key: string]: SxProps<Theme> } = {
       backgroundColor: '#afc786',
     },
   }
-};
+});

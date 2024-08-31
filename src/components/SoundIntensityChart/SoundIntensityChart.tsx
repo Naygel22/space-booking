@@ -12,7 +12,7 @@ const generateRandomValue = (min: number, max: number): number => {
 export const SoundIntensityChart = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down(1000));
-  //const isSmallMobile = useMediaQuery(theme.breakpoints.down(600));
+  const isSmallMobile = useMediaQuery(theme.breakpoints.down(700));
 
   const [option, setOption] = useState({
     series: [
@@ -27,7 +27,7 @@ export const SoundIntensityChart = () => {
         splitNumber: 10,
         axisLine: {
           lineStyle: {
-            width: 7,
+            width: 4,
             color: [
               [0.3, '#7CFFB2'],
               [0.5, '#FDDD60'],
@@ -38,8 +38,8 @@ export const SoundIntensityChart = () => {
         },
         pointer: {
           icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-          length: '12%',
-          width: 20,
+          length: '8%',
+          width: 15,
           offsetCenter: [0, '-60%'],
           itemStyle: {
             color: 'auto'
@@ -61,7 +61,7 @@ export const SoundIntensityChart = () => {
         },
         axisLabel: {
           color: 'white',
-          fontSize: isMobile ? 14 : 17,
+          fontSize: 14,
           distance: -60,
           rotate: 'tangential',
           formatter: function (value: number) {
@@ -79,11 +79,11 @@ export const SoundIntensityChart = () => {
         },
         title: {
           offsetCenter: [0, '-10%'],
-          fontSize: isMobile ? 17 : 20,
+          fontSize: 17,
           color: 'white'
         },
         detail: {
-          fontSize: 30,
+          fontSize: 23,
           offsetCenter: [0, '-35%'],
           valueAnimation: true,
           formatter: function (value: number) {
@@ -124,7 +124,7 @@ export const SoundIntensityChart = () => {
   return (
     <Box sx={styles(isMobile).chartContainer}>
       <Typography sx={styles(isMobile).title}>Real-time Sound Intensity in the Office</Typography>
-      <ReactECharts option={option} style={styles(isMobile).chart as React.CSSProperties} />
+      <ReactECharts option={option} style={styles(isMobile, isSmallMobile).chart as React.CSSProperties} />
     </Box>
 
   )

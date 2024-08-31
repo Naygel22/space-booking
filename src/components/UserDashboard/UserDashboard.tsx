@@ -3,7 +3,7 @@ import { Box, Button, Grid, Typography } from '@mui/material';
 import Reservations from '../Reservations/Reservations';
 import { styles } from './UserDashboard.styles';
 import { UserProfile } from '../UserProfile/UserProfile';
-import { BsCalendar2CheckFill, BsCalendar2Date, BsFillGearFill, BsFillMegaphoneFill, BsFillPeopleFill, BsFillPersonFill, BsThermometerHalf } from 'react-icons/bs';
+import { BsCalendar2CheckFill, BsCalendar2Date, BsFillGearFill, BsFillMegaphoneFill, BsFillPersonFill, BsThermometerHalf } from 'react-icons/bs';
 import { ReservationsCalendar } from '../ReservationsCalendar';
 import { useQuery } from '@tanstack/react-query';
 import { getReservationsForUser } from '../../api/getReservationsForUser';
@@ -14,9 +14,8 @@ import { ManageReservations } from '../ManageReservations/ManageReservations';
 import { useTourContext } from '../../context/TourContext';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-// import { PeopleOccupancyChart } from '../PeopleOccupancyChart/PeopleOccupancyChart';
 
-const tabs = ["profile", "reservations", "calendar", "sound", "temperature", "occupancy", "management"] as const;
+const tabs = ["profile", "reservations", "calendar", "sound", "temperature", "management"] as const;
 type PossibleTabs = typeof tabs[number]
 
 const UserDashboard = () => {
@@ -99,13 +98,6 @@ const UserDashboard = () => {
                 {!isSmallMobile && 'Temperature in the office'}
               </Button>
               <Button
-                sx={{ ...(selectedTab === 'occupancy' ? styles(isMobile, isSmallMobile).buttonSelected : styles(isMobile, isSmallMobile).button) }}
-                onClick={() => setSelectedTab('occupancy')}
-              >
-                <BsFillPeopleFill style={{ marginRight: isSmallMobile ? '0' : '15px', fontSize: '17px' }} />
-                {!isSmallMobile && 'People occupancy'}
-              </Button>
-              <Button
                 sx={{ ...(selectedTab === 'management' ? styles(isMobile, isSmallMobile).buttonSelected : styles(isMobile, isSmallMobile).button) }}
                 onClick={() => setSelectedTab('management')}
               >
@@ -124,7 +116,6 @@ const UserDashboard = () => {
           {selectedTab === 'sound' && <SoundIntensityChart />}
           {selectedTab === 'temperature' && <TemperatureChart />}
           {selectedTab === 'management' && <ManageReservations />}
-          {/* {selectedTab === 'occupancy' && <PeopleOccupancyChart />} */}
         </Grid>
       </Grid>
     </Box>

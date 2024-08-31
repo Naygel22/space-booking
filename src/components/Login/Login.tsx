@@ -23,7 +23,7 @@ export const Login = () => {
   const [loginError, setLoginError] = useState<string | null>(null)
 
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down(900));
+  const isMobile = useMediaQuery(theme.breakpoints.down(600));
 
   const formik = useFormik<LoginFormValues>({
     initialValues: initialLoginFormValues,

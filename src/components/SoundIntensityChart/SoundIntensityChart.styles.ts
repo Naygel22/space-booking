@@ -1,4 +1,4 @@
-export const styles = (isMobile:boolean)=> ({
+export const styles = (isMobile:boolean, isSmallMobile?:boolean)=> ({
   chartContainer: { 
     display: 'flex', 
     flexDirection: 'column', 
@@ -14,6 +14,6 @@ export const styles = (isMobile:boolean)=> ({
   },
   chart: { 
     width: '100%', 
-    height: isMobile ? '400px' : '550px',
+    height: isSmallMobile ? '300px' : isMobile ? '400px' :'550px'
   }
 })
