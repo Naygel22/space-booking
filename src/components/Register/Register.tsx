@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useNotificationContext } from "../../context/NotificationContext";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { ROUTES } from "../../routes";
 
 type RegisterProps = {
   onStepChange: () => void;
@@ -33,7 +34,7 @@ export const Register = ({ onStepChange }: RegisterProps) => {
     initialValues: initialRegisterFormValues,
     onSubmit: (values) => {
       sendRegisterValues(values)
-      navigate("/login");
+      navigate(ROUTES.login);
       notify('You successfully registered', "success")
     },
     validationSchema: yupRegisterSchema

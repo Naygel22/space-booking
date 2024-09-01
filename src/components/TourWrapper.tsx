@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMount } from 'react-use';
 import { Container } from '@mui/material';
 import { useTourContext } from '../context/TourContext';
+import { ROUTES } from '../routes';
 
 export default function TourWrapper() {
   const {
@@ -177,13 +178,13 @@ export default function TourWrapper() {
           if (action === 'next') {
             setState({ run: true, stepIndex: stepIndex + 1 });
           } else {
-            navigate('/');
+            navigate(ROUTES.home);
           }
           break;
         case 1:
           if (action === 'next') {
             setState({ run: true, stepIndex: 2 });
-            navigate('/booking');
+            navigate(ROUTES.booking);
           } else if (action === 'prev') {
             setState({ stepIndex: stepIndex - 1 });
             navigate('/');
@@ -217,9 +218,9 @@ export default function TourWrapper() {
         case 5:
           if (action === 'next') {
             setState({ run: true, stepIndex: 6 });
-            navigate('/profile');
+            navigate(ROUTES.profile);
           } else if (action === 'prev') {
-            navigate('/booking');
+            navigate(ROUTES.booking);
             setState({ stepIndex: stepIndex - 1 });
           }
           break;
@@ -228,7 +229,7 @@ export default function TourWrapper() {
             setState({ run: true, stepIndex: 7 });
 
           } else if (action === 'prev') {
-            navigate('/profile')
+            navigate(ROUTES.profile)
             setState({ stepIndex: stepIndex - 1 });
           }
           break;

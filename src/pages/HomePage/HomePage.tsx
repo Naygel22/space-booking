@@ -6,6 +6,7 @@ import { ExamplePricing } from '../../components/ExamplePricing/ExamplePricing';
 import { Footer } from '../../components/Footer/Footer';
 import { Faq } from '../../components/Faq/Faq';
 import { useTheme } from '@mui/material/styles';
+import { ROUTES } from '../../routes';
 
 const HomePage = () => {
   const theme = useTheme();
@@ -21,7 +22,7 @@ const HomePage = () => {
           flexible solutions tailored to your professional needs, ensuring you have the perfect environment to thrive.
         </Typography>
         <Box sx={styles.bookYourDeskNowButton(isMobile)}>
-          <Link to='/booking' style={{ textDecoration: 'none', color: 'inherit' }}>Book your desk now!</Link>
+          <Link to={ROUTES.booking} style={{ textDecoration: 'none', color: 'inherit' }}>Book your desk now!</Link>
         </Box>
       </Box>
       <Advantages />

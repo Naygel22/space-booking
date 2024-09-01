@@ -8,10 +8,9 @@ import { sendReservationValues } from '../../api/sendReservationValues';
 import { format } from 'date-fns';
 import { getReservationForDate } from '../../api/getReservationsForDate';
 import { Desk } from './SpaceViewer.types';
+import { QUERY_KEYS } from '../../api/constants';
 
 export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
-  console.log(selectedDate);
-
   const { session } = useSessionContext();
 
   const [selectedDesk, setSelectedDesk] = useState<Desk | null>(null);
@@ -20,19 +19,17 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
   const queryClient = useQueryClient();
 
   const { data: desks, isLoading, error } = useQuery({
-    queryKey: ['desks'],
+    queryKey: [QUERY_KEYS.desks.getAll],
     queryFn: getAllDesks,
   });
 
   const { data: reservations, refetch: refetchReservation } = useQuery({
-    queryKey: ['reservations', selectedDate],
+    queryKey: [QUERY_KEYS.reservations.getForDate, selectedDate],
     queryFn: () => getReservationForDate(format(selectedDate, 'yyyy-MM-dd')),
   });
 
-  console.log("reser", reservations);
 
   const handleDeskClick = (desk: Desk) => {
-    console.log('Selected desk:', desk);
     setSelectedDesk(desk);
 
   };
@@ -44,9 +41,8 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
   const reservationMutation = useMutation({
     mutationFn: (reservationData: { date: string; furnitureId: string }) => sendReservationValues(reservationData),
     onSuccess: () => {
-      console.log('Reservation successful');
-      queryClient.invalidateQueries({ queryKey: ["userReservations"] });
-      queryClient.invalidateQueries({ queryKey: ["allReservations"] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.reservations.get] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.reservations.getAll] });
       setSelectedDesk(null);
       refetchReservation();
     },
@@ -62,7 +58,6 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
         date: formattedDate,
         furnitureId: selectedDesk.furnitureId,
       });
-      console.log(formattedDate);
     }
   };
 
@@ -127,8 +122,6 @@ export const SpaceViewer = ({ selectedDate }: { selectedDate: string }) => {
   if (!desks) {
     return <div>No data</div>;
   }
-
-  console.log(selectedDate);
 
   return (
     <>

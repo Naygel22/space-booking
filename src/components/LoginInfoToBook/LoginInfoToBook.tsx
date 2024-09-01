@@ -3,6 +3,7 @@ import { styles } from "./LoginInfoToBook.styles";
 import { Link } from "react-router-dom";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { ROUTES } from "../../routes";
 
 export const LoginInfoToBook = () => {
   const theme = useTheme();
@@ -21,7 +22,7 @@ export const LoginInfoToBook = () => {
           <Typography sx={styles(isMobile).description}>
             You need to be logged in to book a desk. Please log in or register to gain access to the booking desks feature.
           </Typography>
-          <Link to='/login' style={{ textDecoration: 'none' }}>
+          <Link to={ROUTES.login} style={{ textDecoration: 'none' }}>
             <Box sx={styles(isMobile).accessLoginButton}>
               LOG IN
             </Box>

@@ -4,6 +4,7 @@ import { BsBoxArrowRight, BsPersonCircle } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { styles } from "./UserOnNavbar.styles";
 import { UserOnNavbarType } from "./UserOnNavbar.types";
+import { ROUTES } from "../../routes";
 
 
 export const UserOnNavbar = ({ userData, handleLogout }: UserOnNavbarType) => {
@@ -24,7 +25,7 @@ export const UserOnNavbar = ({ userData, handleLogout }: UserOnNavbarType) => {
   };
 
   const handleAccountClick = () => {
-    navigate('/profile');
+    navigate(ROUTES.profile);
     handleClose();
   };
 

@@ -10,6 +10,7 @@ import { useState } from "react"
 import { useSessionContext } from "../../context/SessionProvider"
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { ROUTES } from "../../routes"
 
 const initialLoginFormValues = {
   mail: '',
@@ -36,7 +37,7 @@ export const Login = () => {
           }
           if (response) {
             setLoginError(null)
-            navigate('/')
+            navigate(ROUTES.home)
             getUserData(response.session)
             notify("You successfully logged in", "success")
           }
@@ -73,7 +74,7 @@ export const Login = () => {
       </Box>
 
       <Box sx={styles(isMobile).loginIsNew}>
-        <Link to="/register" style={styles(isMobile).signupButtonInLoginForm as React.CSSProperties}>New? Sign up and book your desk!</Link>
+        <Link to={ROUTES.register} style={styles(isMobile).signupButtonInLoginForm as React.CSSProperties}>New? Sign up and book your desk!</Link>
       </Box>
     </Box>
 

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { pricingPlans } from "./ExamplePricing.constants";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { ROUTES } from "../../routes";
 
 
 export const ExamplePricing = () => {
@@ -17,7 +18,7 @@ export const ExamplePricing = () => {
       <Grid container spacing={3} sx={styles(isMobile).examplePricingPlansBox}>
         {pricingPlans.map((pricingPlan, index) => (
           <Grid item xs={12} sm={12} md={4} key={index}>
-            <Link to="/pricing" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link to={ROUTES.pricing} style={{ textDecoration: 'none', color: 'inherit' }}>
               <PricingCard
                 title={pricingPlan.title}
                 text={pricingPlan.text}
@@ -28,7 +29,7 @@ export const ExamplePricing = () => {
         ))}
       </Grid>
       <Box sx={styles(isMobile).morePlansButton}>
-        <Link to='/pricing' style={{ textDecoration: 'none', color: 'inherit' }}>Check more plans</Link>
+        <Link to={ROUTES.pricing} style={{ textDecoration: 'none', color: 'inherit' }}>Check more plans</Link>
       </Box>
     </Box >
   );

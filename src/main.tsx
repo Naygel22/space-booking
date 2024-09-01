@@ -4,7 +4,7 @@ import App from './App.tsx'
 import './index.css'
 import { Navbar } from './components/Navbar/Navbar.tsx'
 import TourWrapper from './components/TourWrapper.tsx'
-import { AppWrapper } from './AppWrapper.tsx'
+import { AppWrapper } from './components/AppWrapper.tsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

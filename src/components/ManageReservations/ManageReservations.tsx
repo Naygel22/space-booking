@@ -10,6 +10,7 @@ import { ModalOnCancel } from "../ModalOnCancel/ModalOnCancel";
 import { getAllReservations } from "../../api/getAllReservations";
 import { styles } from "./ManageReservations.styles";
 import { DeskType, ReservationType } from "./ManageReservations.types";
+import { QUERY_KEYS } from "../../api/constants";
 
 
 export const ManageReservations = () => {
@@ -17,12 +18,12 @@ export const ManageReservations = () => {
   const [reservationToCancel, setReservationToCancel] = useState<string | null>(null);
 
   const { data: reservations, isLoading, error, refetch } = useQuery<ReservationType[]>({
-    queryKey: ['allReservations'],
+    queryKey: [QUERY_KEYS.reservations.getAll],
     queryFn: getAllReservations,
   });
 
   const { data: desks, isLoading: loadingDesks, error: errorDesks } = useQuery<DeskType[]>({
-    queryKey: ['desks'],
+    queryKey: [QUERY_KEYS.desks.getAll],
     queryFn: getAllDesks,
   });
 

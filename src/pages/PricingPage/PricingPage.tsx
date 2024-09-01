@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { pricingPlans } from "./PricingPage.constants";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { ROUTES } from "../../routes";
 
 const PricingPage = () => {
   const [isPremium, setIsPremium] = useState(false);
@@ -36,7 +37,7 @@ const PricingPage = () => {
         ))}
       </Grid>
       <Box sx={styles.contactUsButton(isMobile)}>
-        <Link to='/contact' style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to={ROUTES.contact} style={{ textDecoration: 'none', color: 'inherit' }}>
           Contact us to pick your plan
         </Link>
       </Box>

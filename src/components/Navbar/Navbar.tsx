@@ -10,6 +10,7 @@ import { styles } from "./Navbar.styles";
 import { useMount } from "react-use";
 import { useTourContext } from "../../context/TourContext";
 import { useState } from "react";
+import { ROUTES } from "../../routes";
 
 export const Navbar = () => {
   const { session, userData: data } = useSessionContext();
@@ -42,7 +43,7 @@ export const Navbar = () => {
     if (error) {
       console.error('Error logging out:', error.message);
     }
-    navigate('/');
+    navigate(ROUTES.home);
   };
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -75,7 +76,7 @@ export const Navbar = () => {
         ))}
         {session && (
           <>
-            <ListItem component={Link} to={'/profile'}
+            <ListItem component={Link} to={ROUTES.profile}
               sx={{
                 color: 'white',
                 textDecoration: 'none'
@@ -96,14 +97,14 @@ export const Navbar = () => {
         )}
         {!session && (
           <>
-            <ListItem component={Link} to="/login">
+            <ListItem component={Link} to={ROUTES.login}>
               <ListItemText primary="Sign in"
                 sx={{
                   color: 'white',
                   textDecoration: 'none'
                 }} />
             </ListItem>
-            <ListItem component={Link} to="/register">
+            <ListItem component={Link} to={ROUTES.register}>
               <ListItemText primary="Sign up"
                 sx={{
                   color: 'white',
@@ -125,7 +126,7 @@ export const Navbar = () => {
           height: '70px',
         }}
       >
-        <Link to="/" style={{ textDecoration: 'none' }}>
+        <Link to={ROUTES.home} style={{ textDecoration: 'none' }}>
           <Box
             sx={{
               display: 'flex',
@@ -168,10 +169,10 @@ export const Navbar = () => {
             </Box>
             {!session ? (
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Link to="/login" style={styles.link as React.CSSProperties}>
+                <Link to={ROUTES.login} style={styles.link as React.CSSProperties}>
                   <Button sx={styles.link}>Sign in</Button>
                 </Link>
-                <Link to="/register" style={{ ...styles.link as React.CSSProperties }}>
+                <Link to={ROUTES.register} style={{ ...styles.link as React.CSSProperties }}>
                   <Button sx={styles.link}>Sign up</Button>
                 </Link>
               </Box>

@@ -8,6 +8,7 @@ import { ContactFormValues, yupContactSchema } from "../../validators/validators
 import { useNotificationContext } from "../../context/NotificationContext";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { ROUTES } from "../../routes";
 
 const initialContactFormValues = {
   name: '',
@@ -26,7 +27,7 @@ const ContactPage = () => {
   const formik = useFormik<ContactFormValues>({
     initialValues: initialContactFormValues,
     onSubmit: () => {
-      navigate('/');
+      navigate(ROUTES.home);
       notify("Thank you for your message", "success")
     },
     validationSchema: yupContactSchema

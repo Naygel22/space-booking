@@ -14,6 +14,7 @@ import { ManageReservations } from '../ManageReservations/ManageReservations';
 import { useTourContext } from '../../context/TourContext';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { QUERY_KEYS } from '../../api/constants';
 
 const tabs = ["profile", "reservations", "calendar", "sound", "temperature", "management"] as const;
 type PossibleTabs = typeof tabs[number]
@@ -27,7 +28,7 @@ const UserDashboard = () => {
   const isSmallMobile = useMediaQuery(theme.breakpoints.down(900));
 
   const { data: reservations } = useQuery({
-    queryKey: ['userReservations', session?.user.id],
+    queryKey: [QUERY_KEYS.reservations.get, session?.user.id],
     queryFn: () => getReservationsForUser(session?.user.id),
   });
 

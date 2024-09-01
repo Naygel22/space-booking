@@ -11,6 +11,7 @@ import { useState } from "react";
 import { ModalOnCancel } from "../ModalOnCancel/ModalOnCancel";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { QUERY_KEYS } from "../../api/constants";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -26,12 +27,12 @@ const Reservations = () => {
   const isSmallMobile = useMediaQuery(theme.breakpoints.down(600));
 
   const { data: reservations, isLoading, error, refetch } = useQuery({
-    queryKey: ['userReservations', session?.user.id],
+    queryKey: [QUERY_KEYS.reservations.get, session?.user.id],
     queryFn: () => getReservationsForUser(session?.user.id),
   });
 
   const { data: desks, isLoading: loadingDesks, error: errorDesks } = useQuery({
-    queryKey: ['desks'],
+    queryKey: [QUERY_KEYS.desks.getAll],
     queryFn: getAllDesks,
   });
 
