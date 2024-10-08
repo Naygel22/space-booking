@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 type NotificationType = "success" | "error";
 
-type NotificationContextProps = {
+export type NotificationContextProps = {
   notify: (message: string, type: NotificationType) => void
 }
 

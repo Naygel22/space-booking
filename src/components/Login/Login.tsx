@@ -11,6 +11,8 @@ import { useSessionContext } from "../../context/SessionProvider"
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { ROUTES } from "../../routes"
+import { signInWithGithub } from "../../api/signInWithGithub"
+import { signInWithGoogle } from "../../api/signInWithGoogle"
 
 const initialLoginFormValues = {
   mail: '',
@@ -46,6 +48,7 @@ export const Login = () => {
     validationSchema: yupLoginSchema
   })
 
+
   return (
     <Box sx={styles(isMobile).loginContainer}>
       <Box sx={styles(isMobile).logoAndLoginForm}>
@@ -61,13 +64,13 @@ export const Login = () => {
 
           <Button type="button" sx={styles(isMobile).loginWithGoogleButton}
             startIcon={<Box component='img' sx={styles(isMobile).googleLogo} src="/assets/images/googleLogo.png" />
-            }>
+            } onClick={() => signInWithGoogle(notify)}>
             Log in with Google
           </Button>
 
           <Button type="button" sx={styles(isMobile).loginWithGithubButton}
             startIcon={<Box component="img" src="/assets/images/github-mark-white.svg" sx={styles(isMobile).githubLogo} />
-            }>
+            } onClick={() => signInWithGithub(notify)} >
             Log in with GitHub
           </Button>
         </Box>

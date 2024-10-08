@@ -4,6 +4,9 @@ import { Link } from "react-router-dom"
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles'
 import { ROUTES } from "../../routes"
+import { signInWithGithub } from "../../api/signInWithGithub"
+import { useNotificationContext } from "../../context/NotificationContext"
+import { signInWithGoogle } from "../../api/signInWithGoogle"
 
 type RegisterFirstFormProps = {
   onStepChange: () => void;
@@ -12,6 +15,7 @@ type RegisterFirstFormProps = {
 export const RegisterFirstForm = ({ onStepChange }: RegisterFirstFormProps) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down(650));
+  const { notify } = useNotificationContext()
 
   return (
     <Box sx={styles(isMobile).registerFirstForm}>
@@ -23,13 +27,13 @@ export const RegisterFirstForm = ({ onStepChange }: RegisterFirstFormProps) => {
 
       <Button type="button" sx={styles(isMobile).continueWithGoogleButton}
         startIcon={<Box component='img' sx={styles(isMobile).googleLogo} src="/assets/images/googleLogo.png" />
-        }>
+        } onClick={() => signInWithGoogle(notify)}>
         Continue with Google
       </Button>
 
       <Button type="button" sx={styles(isMobile).continueWithGithubButton}
         startIcon={<Box component="img" src="/assets/images/github-mark-white.svg" sx={styles(isMobile).githubLogo} />
-        }>
+        } onClick={() => signInWithGithub(notify)}>
         Continue with GitHub
       </Button>
     </Box>
