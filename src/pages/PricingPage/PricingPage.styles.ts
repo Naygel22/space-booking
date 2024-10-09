@@ -8,7 +8,8 @@ export const pricingPageContainer = (isMobile:boolean)=> ({
   marginTop: '50px',
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center'
+  alignItems: 'center',
+
 });
 
 export const pricingPageTitle: SxProps = {
