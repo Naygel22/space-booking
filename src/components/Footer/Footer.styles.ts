@@ -12,7 +12,8 @@ export const styles: { [key: string]: SxProps<Theme> } = {
   },
   footerLink: {
     display: "block",
-    margin: "8px 0"
+    margin: "8px 0",
+    color: "#fff"
   },
   footerIcons: {
     display: "flex",

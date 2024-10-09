@@ -29,6 +29,10 @@ body {
   color: #e6e6e6;
 }
 
+a {
+  color: #fff;
+}
+
 
 .app {
   display: flex;

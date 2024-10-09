@@ -1,7 +1,8 @@
-import { Box, Container, Grid, Typography, Link } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import { Facebook, Instagram, LinkedIn, GitHub } from "@mui/icons-material";
 import { styles } from "./Footer.styles";
 import { ROUTES } from "../../routes";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   const currentDateYear = new Date().getFullYear()
@@ -22,34 +23,38 @@ export const Footer = () => {
             <Typography variant="h6" sx={styles.footerHeader}>
               Quick Links
             </Typography>
-            <Link href={ROUTES.home} color="inherit" sx={styles.footerLink}>
+            <Box sx={styles.footerLink}><Link to={ROUTES.home} >
               Home
-            </Link>
-            <Link href={ROUTES.booking} color="inherit" sx={styles.footerLink}>
+            </Link></Box>
+            <Box sx={styles.footerLink}> <Link to={ROUTES.booking}  >
               Booking
-            </Link>
-            <Link href={ROUTES.pricing} color="inherit" sx={styles.footerLink}>
-              Pricing
-            </Link>
-            <Link href={ROUTES.contact} color="inherit" sx={styles.footerLink}>
-              Contact
-            </Link>
+            </Link></Box>
+            <Box sx={styles.footerLink}>
+              <Link to={ROUTES.pricing}  >
+                Pricing
+              </Link>
+            </Box>
+            <Box sx={styles.footerLink}>
+              <Link to={ROUTES.contact}>
+                Contact
+              </Link>
+            </Box>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Typography variant="h6" sx={styles.footerHeader}>
               Follow Us
             </Typography>
             <Box sx={styles.footerIcons}>
-              <Link href={ROUTES.linkedin} color="inherit">
+              <Link to={ROUTES.linkedin} color="inherit">
                 <LinkedIn />
               </Link>
-              <Link href={ROUTES.github} color="inherit">
+              <Link to={ROUTES.github} color="inherit">
                 <GitHub />
               </Link>
-              <Link href={ROUTES.facebook} color="inherit">
+              <Link to={ROUTES.facebook} color="inherit">
                 <Facebook />
               </Link>
-              <Link href={ROUTES.instagram} color="inherit">
+              <Link to={ROUTES.instagram} color="inherit">
                 <Instagram />
               </Link>
             </Box>

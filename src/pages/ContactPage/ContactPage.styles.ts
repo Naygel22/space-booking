@@ -42,7 +42,7 @@ export const styles = (isMobile:boolean)=> ({
   },
   sendMessageButton: {
     height: '50px',
-    width: '70%',
+    width: '100%',
     padding: '20px',
     borderRadius: '10px',
     cursor: 'pointer',
