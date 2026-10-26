@@ -1,86 +1,86 @@
 * {
-  margin: 0;
-  padding: 0;
-  font-family: "Ubuntu", sans-serif;
-  box-sizing: border-box;
-
+    margin: 0;
+    padding: 0;
+    font-family: "Ubuntu", sans-serif;
+    box-sizing: border-box;
 }
 
 @font-face {
-  font-family: 'RNSSanz-Normal';
-  src: url('https://docs.smplrspace.com/static/fonts/RNSSanz-Normal.woff2') format('woff2');
+    font-family: "RNSSanz-Normal";
+    src: url("https://docs.smplrspace.com/static/fonts/RNSSanz-Normal.woff2")
+        format("woff2");
 }
 
 @font-face {
-  font-family: 'RNSSanz-Bold';
-  src: url('https://docs.smplrspace.com/static/fonts/RNSSanz-Bold.woff2') format('woff2');
+    font-family: "RNSSanz-Bold";
+    src: url("https://docs.smplrspace.com/static/fonts/RNSSanz-Bold.woff2")
+        format("woff2");
 }
 
 body {
-  background-color: #464949;
-  background-image: url('/assets/images/Designer (3).jpeg');
-  background-size: cover;
-  /* Dopasowuje obraz do całego tła */
-  background-repeat: no-repeat;
-  /* Zapobiega powtarzaniu obrazu */
-  background-attachment: fixed;
-  /* Obraz pozostaje w miejscu podczas przewijania */
-  background-position: center;
-  color: #e6e6e6;
+    background-color: #464949;
+    background-image: url("/assets/images/homepage.jpg");
+    background-size: cover;
+    /* Dopasowuje obraz do całego tła */
+    background-repeat: no-repeat;
+    /* Zapobiega powtarzaniu obrazu */
+    background-attachment: fixed;
+    /* Obraz pozostaje w miejscu podczas przewijania */
+    background-position: center;
+    color: #e6e6e6;
 }
 
 a {
-  color: #fff;
+    color: #fff;
 }
 
-
 .app {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 70px);
 }
 
 .smplr-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: calc(16 / 9 * 75vh);
-  aspect-ratio: 16 / 9;
-  background-color: #ecf1f5;
+    position: relative;
+    width: 100%;
+    max-width: calc(16 / 9 * 75vh);
+    aspect-ratio: 16 / 9;
+    background-color: #ecf1f5;
 }
 
 .smplr-embed {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 .rbc-off-range-bg {
-  background: white;
+    background: white;
 }
 
 .rbc-calendar .rbc-toolbar {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .rbc-toolbar .rbc-btn-group button {
-  color: white;
-  background-color: rgb(121, 121, 121);
-  font-weight: bold;
+    color: white;
+    background-color: rgb(121, 121, 121);
+    font-weight: bold;
 }
 
 .rbc-toolbar .rbc-btn-group .rbc-active {
-  color: black;
+    color: black;
 }
 
 .rbc-toolbar .rbc-toolbar-label {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .rbc-month-view .rbc-date-cell.rbc-now button.rbc-button-link {
-  color: black;
+    color: black;
 }
 
 .rbc-row .rbc-time-header-cell .rbc-header .rbc-today button.rbc-button-link {
-  color: black;
+    color: black;
 }

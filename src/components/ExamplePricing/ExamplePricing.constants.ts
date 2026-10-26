@@ -4,7 +4,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     title: "Premium Single Desk",
     text: "Optimize your productivity in our exclusive office space. The Premium Single Desk plan provides access to an ergonomic desk, a comfortable chair and high-speed Internet. An ideal solution for those who value privacy and concentration.",
-    imageSrc: "/assets/images/smallAreaDesks.jpeg",
+    imageSrc: "/assets/images/smallAreaDesksReal.jpg",
   },
   {
     title: "Standard Shared Desk",
@@ -14,6 +14,6 @@ export const pricingPlans: PricingPlan[] = [
   {
     title: "Individual need?",
     text: "Contact us and we will try to figure it out!",
-    imageSrc: "/assets/images/individualNeed.jpeg",
+    imageSrc: "/assets/images/individualNeedReal.jpg",
   },
 ];
